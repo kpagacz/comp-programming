@@ -1,2 +1,2 @@
-# spoj
+# SPOJ
 SPOJ excercises
