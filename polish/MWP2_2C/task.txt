@@ -1,0 +1,52 @@
+MWP2_2C - Okręgi
+
+Jaś bardzo lubi rysować okręgi. Ostatnio podczas rysowania wymyślił, że przez środki dwóch wybranych okręgów poprowadzi prostą. Następnie nasz bohater zaznaczył zielonym flamastrem średnicę pierwszego okręgu, a czerwonym średnicę drugiego Kiedy już skończył zaczął się zastanawiać na jakiej długości narysowane średnice się pokrywają. Jako, że już od dłuższego czasu szukałeś wymówki, żeby się nie uczyć do egzaminu postanowiłeś mu pomóc. Zdecydowałeś, że napiszesz program, który mając dane współrzędne środków dwóch okręgów oraz długości ich promieni obliczy szukaną przez Jasia wartość.
+Wejście
+
+W pierwszej linii wejścia znajduje się dokładnie jedna liczba całkowita d (1 ≤ d ≤ 105) określająca ilość zestawów danych. W kolejnych liniach znajdują się zestawy danych.
+
+Każdy zestaw danych składa się z dwóch linii. Każda z nich zawiera opis jednego okręgu narysowanego przez Jasia. Opis okręgu składa się z trzech liczb całkowitych x, y oraz r (-10000 ≤ x, y ≤ 10000, 1 ≤ r ≤ 106) określających odpowiednio współrzędne jego środka oraz promień.
+Wyjście
+
+Dla każdej pary okręgów należy w osobnej linii wypisać jedną liczbę rzeczywistą będącą szukaną przez Jasia długością. Liczba ta powinna zostać wypisana z dokładnością do 2 miejsc po przecinku.
+Przykład
+
+Wejście:
+
+3
+3 3 3
+3 -1 4
+-3 -3 3
+-1 2 5
+3 3 2
+-3 -3 1
+
+Wyjście:
+
+3.00
+2.61
+0.00
+
+Dodatkowe testy:
+input:
+1
+5 5 10
+13 5 4
+
+output:
+6.00
+
+input:
+1
+10 5 2
+5 10 3
+
+output:
+0.00
+
+input:
+1
+0 0 10
+1 1 100
+output:
+20

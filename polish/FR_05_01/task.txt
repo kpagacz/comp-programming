@@ -1,0 +1,28 @@
+FR_05_01 - Dzień tygodnia
+
+Dzień tygodnia
+
+Wyznacz dzień tygodnia za n dni.
+Dni tygodnia oznaczamy skrótami: Pn, Wt, Sr, Cz, Pt, So, Nd
+
+Wejście
+W pierwszym wierszu wejścia znajduje się liczba całkowita d (1 ≤ d ≤ 1000) oznaczająca liczbę przypadków testowych. Każdy przypadek opisany jest w osobnym wierszu, na który składa się skrót dnia tygodnia i liczba n (1 ≤ n ≤ 109).
+
+Wyjście
+Dla każdego przypadku testowego wyznacz skrót dnia tygodnia, który nastąpi za n dni, licząc od dnia tygodnia podanego na wejściu.
+
+
+Przykład
+
+Wejście
+4
+Cz 1
+Pt 2
+So 3
+Nd 4
+
+Wyjście
+Pt
+Nd
+Wt
+Cz

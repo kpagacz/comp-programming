@@ -1,0 +1,24 @@
+FR_09_06 - Odległość w wyrazach
+
+Dla danego wyrazu określ odległosć między najbardziej oddalonymi od siebie znakami (w alfabecie).
+Wejście
+
+W pierwszym wierszu jedna liczba określająca liczbę wyrazów (nie więcej niż tysiac).
+
+W kolejnych wierszach wyrazy złożone z dużych liter języka łacińskiego. Liczba znaków każdego wyrazu zawiera się w przedziale [2..1000].
+Wyjście
+
+Dla każdego wyrazu jedna liczba określająca odległość między najbardziej oddalonymi literami tego wyrazu.
+Przykład
+
+Input:
+3
+FRAKTAL
+PROGRAMOWANIE
+ABC
+
+Output:
+19
+22
+2
+

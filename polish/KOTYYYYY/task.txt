@@ -1,0 +1,44 @@
+KOTYYYYY - Kot pucybut
+
+Zbliża się konkurs na najlepszego kota.
+
+Tym razem dość nietypowa kategoria - na najlepszego kota pucybuta.
+
+Eliminacje do konkursu są dość nietypowe, koty są ustawione twarzą do siebie na pewnych miejscach na bardzo długiej linii.
+
+Owa linia jest podzielona co 1 kotojednostke.
+
+W pojedynku biorą udziały tylko dwa koty - lepszy przechodzi dalej, gorszy idzie na legowisko.
+
+Startuje zawsze starszy kot.
+
+W każdej rundzie każdy kot musi wykonać ruch, mogą się poruszać o 1 kotojednostke lub 2 do przodu, nie mogą się cofać, nie mogą przeskakiwać drugiego kota oraz stać na jego miejscu ( bez bójek, gramy fair play ).
+
+Trenerzy kotów wystresowali swoje koty jak najlepiej mogli, a więc grają one optymalnie, tak aby wygrać. ( Przecież wygranie takiego konkursu to niezły prestiż )
+
+Wygrywa kot, który uniemożliwi ruch przeciwnikowi.
+Input
+
+W pierwszej linii liczba T <10^3
+
+Każdy test opisuje dwa koty
+
+Ai Pi Bj Pj, wiek pierwszego kota i jego położenie na linii, wiek drugiego kota i jego położenie na linii.
+
+Wiek kotów jest różny.
+
+Do obliczeń wystarczy zmienna 32 bitowa.
+Output
+
+W pojedyńczej linii dla każdego testu jedna cyfra - 1, jeżeli wygrywa kot i, w przeciwnym wypadku 0.
+Example
+
+Input:
+1
+10 1 9 5
+ Output:
+0
+
+Wyjaśnienie : 
+Kot 1 może przesunąć się na pole 2 lub 3
+W następnym ruchu kot 2 bez względu na ruch kota 1 zablokuje go i tym samym - wygra. 

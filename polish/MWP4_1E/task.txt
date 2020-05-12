@@ -1,0 +1,28 @@
+MWP4_1E - Prefiks równoważący sufiks
+
+Czy wiesz jakie zadanie występuje najczęściej podczas pierwszego etapu rekrutacji programistów? Jest to zadanie na znalezienie takiego miejsca w ciągu, żeby suma sufiksu równoważna była sumie prefiksu. Jako, że prędzej czy później i Ty trafisz na rozmowę podczas której zapytają Cię o ten problem, postanowiliśmy zapoznać Cię z nim już dzisiaj. Znajdź takie miejsce ciągu, w którym suma sufiksu równa jest sumie prefiksu. Jeżeli w danym ciągu jest więcej niż jedno takie miejsce, wypisz to znajdujące się najbliżej początku ciągu – miejsca o numerze porządkowym równym 1.
+Wejście
+
+W pierwszej linii wejścia znajduje się dokładnie jedna liczba całkowita Z (1 ≤ Z ≤ 100) określająca liczbę zestawów danych.
+
+Każdy zestaw danych składa się z jednej linii. Na początku linii znajduje się liczba całowita m (1 < m ≤ 10000) określająca ilość liczb w ciągu. Następnie w linii znajduje się m liczb całkowitych będących elementami ciągu. Liczby te mieszczą się w zakresie 32 bitowej zmiennej ze znakiem.
+Wyjście
+
+Dla każdego zestawu danych należy w osobnej linii wypisać numer porządkowy elementu po którym prefiks równoważy sufiks lub 0 jeżeli takiego elementu nie ma.
+Przykład
+
+Wejście:
+
+4
+5 4 2 3 1 2
+5 4 -2 1 1 -2
+6 1 -1 1 -1 1 -1
+3 0 0 0
+
+Wyjście:
+
+2
+0
+2
+1
+

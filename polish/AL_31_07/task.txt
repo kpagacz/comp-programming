@@ -1,0 +1,37 @@
+AL_31_07 - Plusy, plusiki
+
+plusy plusikiZadanie to polega na narysowaniu fraktala, którego budujemy w następujący sposób:
+
+    Poziom I: wstawiamy znak +
+    Poziom II: budujemy większy plus ze znaków należących do zbioru {|, +, -}, w ten sposób, aby w cztery wolne miejsca tego plusa można byłoby wstawić plusy z poziomu pierwszego
+    Poziom N: budujemy duży plus ze znaków należących do zbioru {|, +, -}, w ten sposób, aby w cztery wolne miejsca idealnie dopasować figury zbudowane na poziomie N-1 (patrz przykład).
+
+ 
+Wejście
+
+Jedna liczba określająca liczbę poziomów fraktala (nie większa niż 12).
+Wyjście
+
+Fraktal zbudowany z zasadami opisanymi w treści zadania.
+Przykład 1
+
+Wejście:
+3
+
+Wyjście:
++|+|+|+
+-+-|-+-
++|+|+|+
+---+---
++|+|+|+
+-+-|-+-
++|+|+|+
+
+Przykład 2
+
+Wejście:
+1
+
+Wyjście:
++
+

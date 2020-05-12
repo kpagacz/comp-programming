@@ -1,0 +1,27 @@
+FR_10_02 - Jąkała
+
+To był spokojny czwartkowy poranek. Jaś jak zwykle wszedł na SPOJa z zamiarem rozwiązania jednego z zadań, kiedy jego oczom ukazał się news o jubileuszowej 10 edycji Fraktala. Nasz bohater doznał szoku. Starał się przypomnieć sobie gdzie był podczas poprzednich 9 edycji, ale nie potrafił. Szok okazał się na tyle duży, że nasz bohater zaczął się jąkać. Zauważył, że k liter z alfabetu wymawia podwójnie.
+
+Odpowiedz na pytanie, jak będzie słyszany wyraz wypowiedziany przez jąkającego się Jasia?
+Wejście
+
+W pierwszym wierszu jedna liczba naturalna k ∈ [1, 26] określająca liczbę liter.
+
+W drugim wierszu k małych liter alfabetu angielskiego, które Jaś wymawia podwójnie.
+
+W trzecim wierszu jeden wyraz złożony wyłącznie z małych liter języka angielskiego. Liczba znaków mieści się w przedziale [1, 1000].
+Wyjście
+
+Na wyjściu należy wypisać jak będzie słyszany wyraz wypowiedziany przez jąkającego się Jasia.
+Przykład
+
+Wejście:
+
+3
+f k a
+fraktal
+
+Wyjście:
+
+ffraakktaal
+

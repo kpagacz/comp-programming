@@ -1,0 +1,55 @@
+AL_29_01 - Negative split
+
+Jutro sądny dzień, po kilkunastu tygodniach przygotowań stanę na starcie BMW Półmaratonu Praskiego. Przez ten czas udało mi się przejść przez wszystkie etapy budowania formy: począwszy od bólu kolana, poprzez ból pasma biodrowo-piszczelowego na bólu zęba skończywszy ;-) Razem z kilkoma tysiącami innych osób, które podobnie jak ja nie mają lepszych planów na niedzielę, przemierzę 21,0975 kilometrów ulicami Grochowa, Saskiej Kępy oraz Gocławia. Pozostała tylko jedna niewiadoma jaki plan biegu mam zastosować?
+
+Możemy wyróżnić trzy główne strategie:
+
+    Bieg równy - jak sama nazwa wskazuje całą trasę pokonujemy równym tempem.
+    Positive split - pierwsza połowa dystansu jest pokonywana szybciej niż druga.
+    Negative split - druga połowa dystansu jest pokonywana szybciej niż pierwsza.
+
+Positive split jest przeważnie efektem zbyt szybkiego tempa początkowego w biegu równym, rzadko jest to świadomy wybór biegacza. Przeanalizujmy zatem skuteczność strategii negative split. Jestem w posiadaniu międzyczasów n zawodników z zeszłorocznej edycji półmaratonu. Wiem ile zajęło każdemu z nich pokonanie pierwszych 5, 10, 15, 20 kilometrów oraz całej trasy. Oprócz tego znany jest mi czas jaki każdy biegacz chciał osiągnąć. Dla uproszczenia załóżmy, że zawodnik zastosował strategię negative split jeżeli czasy kolejnych odcinków 5 kilometrowych są nierosnące oraz czas pokonania odcinka od 0 do 5 km jest większy od czasu pokonania odcinka od 15 do 20 km. Biegacz zrealizował swój plan jeżeli czas przebycia całej trasy jest mniejszy bądź równy czasowi zakładanemu.
+
+Pomóż mi i oblicz wartości:
+
+    b - ilu zawodników zastosowało strategię negative split?
+    a - ilu spośród b zawodników, którzy zastosowali strategię negative split zrealizowało swój plan?
+    d - ilu zawodników zastosowało strategię inną niż negative split?
+    c - ilu spośród d zawodników, którzy zastosowali strategię inną niż negative split zrealizowało swój plan?
+
+Wejście
+
+W pierwszej linii wejścia znajduje się jedna liczba całkowita n ∈ [1;8000] oznaczająca liczbę biegaczy, których wyniki posiadam. W kolejnych n liniach znajdują się opisy ich wyników.
+
+Każdy wynik składa się z 6 czasów w formacie hh:mm:ss (00 ≤ hh ≤ 03; 00 ≤ mm, ss ≤ 59) oznaczających odpowiednio:
+
+    Czas pokonania pierwszych 5 km.
+    Czas pokonania pierwszych 10 km.
+    Czas pokonania pierwszych 15 km.
+    Czas pokonania pierwszych 20 km.
+    Czas pokonania całej trasy.
+    Czas, który chciał osiągnąć zawodnik.
+
+Wyjście
+
+Na wyjściu należy wypisać a/b c/d gdzie a, b, c, d to wartości zmiennych opisane w treści zadania.
+Przykład
+
+Wejście:
+
+10
+00:15:26 00:30:52 00:46:18 01:01:44 01:04:50 01:07:00
+00:16:01 00:32:02 00:48:24 01:06:15 01:09:34 01:17:00
+00:21:04 00:41:51 01:02:09 01:21:26 01:25:31 01:31:00
+00:22:28 00:45:52 01:09:46 01:34:08 01:38:51 01:35:00
+00:25:27 00:50:54 01:16:21 01:41:48 01:46:54 01:53:00
+00:32:27 01:04:08 01:35:19 02:05:57 02:12:15 02:16:00
+00:36:24 01:13:51 01:51:31 02:29:43 02:37:13 02:39:00
+00:38:13 01:16:20 01:54:18 02:30:55 02:38:28 02:43:00
+00:48:24 01:36:38 02:24:09 03:10:57 03:20:30 03:27:00
+00:48:31 01:37:02 02:25:33 03:14:04 03:23:47 03:25:00
+
+Wyjście:
+
+4/4 5/6
+

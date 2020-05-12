@@ -1,0 +1,24 @@
+MWP3_1C1 - Działka
+
+Pan Jan jest mieszkańcem jednego z miast gospodarzy Euro 2012. Ostatnio los uśmiechnął się do naszego bohatera gdyż okazało się, że posiada on prostokątną działkę w miejscu gdzie ma zostać wybudowany stadion. Pan Jan wie, że będzie mógł dobrze zarobić na sprzedaży tej ziemi miastu. Jako, że jest on człowiekiem zachłannym wymyślił sobie, że jeżeli podzieli swój grunt na mniejsze kwadratowe działki będzie mógł zyskać jeszcze więcej. Po zastanowieniu nasz bohater doszedł do wniosku, że owszem podziału trzeba dokonać, ale powstałe kwadratowe pola powinny być jak największe. Dzięki temu władze miasta nie będą nic podejrzewać. Niestety, Pan Jan nie jest mocny z matematyki dlatego poprosił Ciebie abyś pomógł mu i obliczył długość boku jaką powinny mieć nowe działki.
+Wejście
+
+W pierwszej linii wejścia znajduje się jedna liczba naturalna Z (1 ≤ Z ≤ 105) określająca ilość zestawów danych. W kolejnych liniach znajdują się zestawy danych.
+
+W pierwszej i jedynej linii każdego zestawu danych znajdują się dwie liczby naturalne a i b (2 ≤ a, b ≤ 106) określające wymiary działki Pana Jana.
+Wyjście
+
+Dla każdego zestawu danych należy w osobnej linii wypisać jedną liczbę naturalną będącą szukaną długością boku.
+Przykład
+
+Wejście:
+
+2
+2000 1000
+999983 1000000
+
+Wyjście:
+
+1000
+1
+

@@ -1,0 +1,25 @@
+FR_04_05 - Księżyce Bajtka
+
+Jak to zwykle bywa, na początku roku szkolnego, nauczyciele przygotowują dla swoich uczniów ciekawe zadania, aby zachęcić swoich podopiecznych do pracy na cały długi rok szkolny. Na lekcji matematyki mały Bajtek dostał pewien kolorowy obrazek. Jego zadaniem było wyliczenie sumy pól siwych księżyców.  Jako przyjaciel z ławki i ambitny programista pragniesz mu pomóc. Napisz program, który na podstawie danych R1 i R2 obliczy sumę pól wyróżnionych księżyców.
+
+Uwaga! W C++ pamiętaj o usuwaniu notacji wykładniczej.
+
+księżyce adres:
+https://pl.spoj.com/problems/FR_04_05/
+Wejście
+
+Pierwsza linia wejścia zawiera liczbę zestawów danych Z (0 < Z ≤ 104). W każdym zestawie znajdują się dwie liczby rzeczywiste R1 i R2, określające długość promieni okręgów podane z dokładnością do dwóch miejsc po przecinku (0 < R1, R2 ≤ 215).
+Wyjście
+
+Dla każdego zestawu danych testowych należy wypisać dokładnie jedną liczbę rzeczywistą z precyzją do dwóch miejsc po przecinku, oznaczającą szukaną przez Bajtka sumę pól księżyców.
+Przykład
+
+Wejście:
+2
+4.00 6.00
+3.26 14.68
+
+Wyjście:
+48.00 
+95.71
+

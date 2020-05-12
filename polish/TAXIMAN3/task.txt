@@ -1,0 +1,29 @@
+TAXIMAN3 - Taksówka na Manhattanie 3
+
+Rok 2212. Na Ziemi żyje prawie 30 miliardów ludzi, lecz problem przeludnienia rozwiązał się sam kilkadziesiąt lat temu, kiedy odkryto sposób na życie i podróżowanie w przestrzeni więcej-niż-trzy-wymiarowej. 
+
+Stan Kowalsky, kontynuując rodzinną tradycję, jest taksówkarzem w Nowym Jorku, tak jak jego (pra)6dziadek John (o którym możesz przeczytać tu i tu). Stan "przewozi" swoich pasażerów pomiędzy niektórymi punktami w przestrzeni k-wymiarowej, w której się porusza, wykonując międzywymiarowe skoki teleportacyjne swoją nowoczesną taksówką. Może dostać się w dowolne miejsce, ale sposób poruszania się jest analogiczny do tego, jaki musiał stosować jego przodek, wożąc pasażerów ulicami Manhattanu: W jednym skoku może zmienić położenie taksówki tylko w jednym wymiarze. Zakładając na przykład, że porusza się w przestrzeni pięciowymiarowej, to aby przenieść się z punktu o współrzędnych (3, 1, 8, 1, 2) do punktu (3, 7, 8, 1, 0), musi wykonać dwa skoki teleportacyjne. Pierwszy skok musi nastąpić do punktu (3, 7, 8, 1, 2) albo do punktu (3, 1, 8, 1, 0). Niezależnie od tego, ktorą trasę wybierze, jej długość wyniesie 8 jednostek. Ponieważ Stan zawsze wybiera najkrótszą trasę, to jej długość możemy uznać jako odległość pomiędzy punktem początkowym i końcowym.
+
+Stana interesuje odległość pomiędzy wybranymi dwoma punktami w przestrzeni k-wymiarowej, w której się porusza. Napisz dla niego odpowiedni program.
+
+(Stana nurtuje jeszcze jeden problem, ale to już temat na inne zadanie)
+Wejście
+
+W pierwszej linii wejścia podane są dwie liczby całkowite: liczba wymiarów przestrzeni k (1≤k≤1000) i liczba przypadków testowych do sprawdzenia n (n≤100).
+Każdy przypadek testowy, to dwa punkty, opisane za pomocą ich współrzędnych w dwóch kolejnych liniach.
+Współrzędne każdego z podanych punktów, to ciąg k liczb całkowitych xi dla i=1..k (-109≤xi≤109).
+Wyjście
+
+Dla każdego przypadku testowego, w osobnej linii, jedna liczba całkowita równa odległości pomiędzy podanymi punktami.
+Przykład
+
+Wejście:
+4 2
+10 -3 -2 5
+1 1 5 0
+1 2 3 4
+1 2 0 4
+Wyjście:
+25
+3
+

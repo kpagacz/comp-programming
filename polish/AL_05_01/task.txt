@@ -1,0 +1,30 @@
+AL_05_01 - Czarodziejskie lusterko
+
+Twoim zadaniem jest napisanie programu [jak zawsze], który:
+
+• Wczytuje nieokreśloną z góry ilość liczb w reprezentacji dziesiętnej. 
+• Zamienia je kolejno na liczby w reprezentacji binarnej [dwójkowej]. 
+• Tworzy "lustrzane odbicia" [reverse] tych kolejnych liczb [w reprezentacji binarnej].
+• Zamienia te odwrócone liczby binarne z powrotem na reprezentację dziesiętną i drukuje je.
+
+Przykład: wczytujemy dziesiętną liczbę 1310, zamieniamy ją na 11012, w reprezentacji binarnej, odwracamy kolejność cyfr 1101 | 1011 i drukujemy 10112 jako liczbę dziesiętną, czyli 1110.
+Wejście:
+
+Nie więcej niż 106+1 liczb Li, każda mieszcząca się w zakresie 0 ≤ Li ≤ 264–1, i każda w oddzielnej linii.
+Wyjście
+
+W oddzielnych liniach kolejne liczby zgodnie z opisem zadania.
+Przykład
+
+Wejście:
+13
+47
+11
+61
+
+Wyjście:
+11
+61
+13
+47
+

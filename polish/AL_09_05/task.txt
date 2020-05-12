@@ -1,0 +1,44 @@
+AL_09_05 - Wycieczka 1
+
+W tym zadaniu zakładamy, że Szwajcaria składa się z n miast i połączeń kolejowych pomiędzy nimi. Jakub posiada mapę połączeń kolejowych w Szwajcarii. Ma ona postać tabelki: na j-tej pozycji w i-tym wierszu pojawia się liczba 1 jeśli istnieje połączenie kolejowe z miasta i do j lub 0 jeśli takiego połączenia nie ma.
+Jakub lubi jeździć pociągami, dlatego obliczył dla każdych dwóch miast i, j na ile sposóbów może się przemieścić z i do j wykonując dokładnie jedną przesiadkę. Twoim zadaniem jest zweryfikowanie jego obliczeń.
+Wejście
+
+W pierwszej linii znajduje się liczba naturalna T (1<=T<=20) oznaczająca liczbę zestawów testowych. Następnie opisywane są kolejne zestawy.
+
+Pojedynczy zestaw testowy zbudowany jest następująco:
+- w pierwszej linii znajduje się liczba miast n (1<=n<=100).
+- w kolejnych n liniach znajduje się tabela połączeń kolejowych (w formacie opisanym w treści zadania),
+- w kolejnych n liniach znajduje się tabela wyliczona przez Jakuba (w analogicznym formacie), można założyć że składa się ona z liczb całkowitych z zakresu [0,n].
+Wyjście
+
+Dla każdego zestawu testowego należy w osobnej linii wypisać "TAK" jeśli obliczone przez Jakuba wartości są poprawne lub "NIE" w przeciwnym przypadku.
+Przykład
+
+Input:
+3
+2
+0 1
+1 0
+1 0
+0 1
+2
+0 1
+1 0
+1 2
+0 1
+4
+0 1 1 0
+1 0 0 0
+1 1 0 1
+1 0 1 0
+2 1 0 1
+0 1 1 0
+2 1 2 0
+1 2 1 1
+
+Output:
+TAK
+NIE
+TAK
+
