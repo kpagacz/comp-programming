@@ -46,3 +46,8 @@
 *.exe
 *.user
 *.filters
+*.ipch
+*.recipe
+*.ilk
+*.log
+*.vcxproj*
