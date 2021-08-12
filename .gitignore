@@ -34,3 +34,13 @@
 # VS CODE
 *vscode*
 *.vscode*
+
+# Visual Studio
+*.idb
+*.pdb
+*.sln
+*.vcxproj
+*.suo
+*.tlog
+*.db
+*.exe
