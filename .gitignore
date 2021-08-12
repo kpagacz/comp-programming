@@ -44,3 +44,5 @@
 *.tlog
 *.db
 *.exe
+*.user
+*.filters
