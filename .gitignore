@@ -51,3 +51,4 @@
 *.ilk
 *.log
 *.vcxproj*
+*.vs*
