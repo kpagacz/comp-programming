@@ -3,6 +3,7 @@
 #include<sstream>
 #include<vector>
 #include<numeric>
+#include<algorithm>
 #include<cmath>
 
 int main() {
@@ -17,7 +18,12 @@ int main() {
   }
 
   // calculate mean
-  int answer = (std::accumulate(positions.begin(), positions.end(), 0.0) / positions.size());
+  std::sort(positions.begin(), positions.end());
+  int median = positions[positions.size() / 2];
+  double answer = (std::accumulate(positions.begin(), positions.end(), 0.0) / positions.size());
+  if (median > answer)
+    answer = std::round(answer); else
+    answer = std::trunc(answer);
   int min_sum = std::accumulate(positions.begin(), positions.end(), 0, [&](int a, int b)
                                 { return a + std::abs(b - answer) * (std::abs(b - answer) + 1) / 2; });
   std::cout << "Min sum: " << min_sum << '\n'
