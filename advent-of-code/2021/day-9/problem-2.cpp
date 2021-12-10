@@ -6,96 +6,72 @@
 #include <array>
 #include <set>
 #include <cassert>
+#include<deque>
 
-#define DEBUG 0
-typedef std::vector<std::vector<int> *> smokemap;
+typedef std::vector<std::vector<int>> smokemap;
 using point = std::array<int, 2>;
 
-void print_point(point *p) { std::cout << p->at(0) << " " << p->at(1) << '\n'; }
+const std::vector<point> cardinal_directions{{0, 1}, {0, -1}, {-1, 0}, {1, 0}};
 
-struct Basin
-{
-  Basin() = default;
-  std::set<point*> locations;
-  void print_points()
-  {
-    std::cout << "Basin points " << locations.size() << " START:\n";
-    for (auto p : locations)
-    {
-      print_point(p);
-    }
-    std::cout << "Basin points END\n";
-  }
-};
+void print_point(point p) { std::cout << p[0] << " " << p[1] << '\n'; }
 
-std::vector<point *> get_neighbours(point *origin, smokemap map)
+point add_points(const point& p1, const point& p2) {
+  return {p1[0] + p2[0], p1[1] + p2[1]};
+}
+
+std::vector<point> get_neighbours(point origin, smokemap map)
 {
-  std::vector<point *> neighbours;
-  int x = origin->at(0), y = origin->at(1);
-  if (x > 0)
-    neighbours.push_back(new point({x - 1, y}));
-  if (x < map.size() - 1)
-    neighbours.push_back(new point({x + 1, y}));
-  if (y > 0)
-    neighbours.push_back(new point({x, y - 1}));
-  if (y < map[0]->size() - 1)
-    neighbours.push_back(new point({x, y + 1}));
+  std::vector<point> neighbours;
+  for(const auto& d : cardinal_directions)
+    neighbours.push_back(add_points(origin, d));
   return neighbours;
 }
 
-int point_hazard(point *p, smokemap map)
+int point_hazard(point p, smokemap map)
 {
-  return map[p->at(0)]->at(p->at(1));
+  return map[p[0]][p[1]];
 }
 
-bool does_belong_to_basin(point *p, std::vector<point *> neighbours, Basin *basin, smokemap map)
+bool does_belong_to_basin(point p, smokemap map)
 {
   if(point_hazard(p, map) == 9)
     return false;
   return true;
 }
 
-void flood_fill(Basin *basin, smokemap map, point* p) {
-  if (point_hazard(p, map) == 9) return;
-  auto found = std::find_if(basin->locations.begin(), basin->locations.end(), [&](auto loc)
-                            { return p->at(0) == loc->at(0) && p->at(1) == loc->at(1); });
-  if (found != basin->locations.end())
-    return;
-
-  basin->locations.insert(p);
-  std::vector<point *> ns = get_neighbours(p, map);
-  for(auto n : ns)
-    flood_fill(basin, map, n);
-}
+struct Basin {
+  std::set<point> locations;
+  point origin;
+  Basin() = default;
+  void print() {
+    std::cout << "Basin size: " << locations.size() << " points:\n";
+    for(const auto& p : locations)
+      print_point(p);
+  }
+};
 
 void expand_basin(Basin *basin, smokemap map)
 {
-  std::vector<point *> ns = get_neighbours(*basin->locations.begin(), map);
-  for(auto n : ns)
-    flood_fill(basin, map, n);
+  std::deque<point> possible_locations;
+  possible_locations.push_back(basin->origin);
+  while(possible_locations.size() > 0) {
+    point front = possible_locations.front();
+    possible_locations.pop_front();
+    if (does_belong_to_basin(front, map) && basin->locations.find(front) == basin->locations.end()) {
+      basin->locations.insert(front);
+      auto ns = get_neighbours(front, map);
+      for(auto n : ns)
+        possible_locations.push_back(n);
+    }
+  }
 }
 
 
-bool is_low_point(smokemap map, int x, int y)
+bool is_low_point(smokemap map, point p)
 {
-  std::vector<int> x_perturb;
-  if (x > 0)
-    x_perturb.push_back(-1);
-  if (x < map.size() - 1)
-    x_perturb.push_back(1);
-  for (const auto &i : x_perturb)
-  {
-    if (!(map[x + i]->at(y) > map[x]->at(y)))
-      return false;
-  }
-  std::vector<int> y_perturb;
-  if (y > 0)
-    y_perturb.push_back(-1);
-  if (y < map[0]->size() - 1)
-    y_perturb.push_back(1);
-  for (const auto &i : y_perturb)
-  {
-    if (!(map[x]->at(y + i) > map[x]->at(y)))
+  std::vector<point> ns = get_neighbours(p, map);
+  for(const auto& n : ns) {
+    if (!(point_hazard(p, map) < point_hazard(n, map)))
       return false;
   }
 
@@ -108,23 +84,24 @@ int main()
   smokemap heightmap;
   while (std::getline(std::cin, line))
   {
-    std::vector<int> *row_heights = new std::vector<int>();
+    std::vector<int> row_heights({9}); // first column of boundary
     for (const auto &c : line)
-      row_heights->push_back(c - '0');
+      row_heights.push_back(c - '0');
+    row_heights.push_back(9); // last column of boundary
     heightmap.push_back(row_heights);
   }
+  heightmap.insert(heightmap.begin(), std::vector<int>(heightmap[0].size(), 9)); // first row of boundary
+  heightmap.push_back(std::vector<int>(heightmap[0].size(), 9)); // last row of boundary
 
   std::vector<Basin *> basins;
   for (int i = 0; i < heightmap.size(); i++)
   {
-    for (int j = 0; j < heightmap[0]->size(); j++)
+    for (int j = 0; j < heightmap[0].size(); j++)
     {
-      if (is_low_point(heightmap, i, j))
+      if (is_low_point(heightmap, {i, j}))
       {
-        if (DEBUG)
-          std::cout << "Low point: " << i << " " << j << " value: " << heightmap[i]->at(j) << '\n';
         Basin *new_basin = new Basin();
-        new_basin->locations.insert(new point({i, j}));
+        new_basin->origin = point{i, j};
         basins.push_back(new_basin);
       }
     }
