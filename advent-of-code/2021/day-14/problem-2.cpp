@@ -5,10 +5,10 @@
 #include<numeric>
 #include<string>
 
-constexpr int DAYS = 10;
+constexpr int DAYS = 40;
 
 using rules = std::unordered_map<std::string, std::string>;
-using polymer = std::unordered_map<std::string, int>;
+using polymer = std::unordered_map<std::string, uint64_t>;
 
 void apply_step(polymer& p, const rules& r) {
   polymer new_polymer_pairs;
@@ -61,7 +61,7 @@ int main() {
   for (auto i = 0U; i < DAYS; i++)
     apply_step(p, r);
 
-  std::vector<int> ranking('Z' - 'A' + 1, 0);
+  std::vector<uint64_t> ranking('Z' - 'A' + 1, 0);
   for(const auto& pair : p) {
     ranking[pair.first[0] - 'A'] += pair.second;
     ranking[pair.first[1] - 'A'] += pair.second;
@@ -70,9 +70,9 @@ int main() {
   std::erase_if(ranking, [](const auto &el)
                 { return el == 0; });
 
-  int most_common = *std::max_element(ranking.begin(), ranking.end());
+  uint64_t most_common = *std::max_element(ranking.begin(), ranking.end());
   most_common = most_common / 2 + most_common % 2;
-  int least_common = *std::min_element(ranking.begin(), ranking.end());
+  uint64_t least_common = *std::min_element(ranking.begin(), ranking.end());
   least_common = least_common / 2 + least_common % 2;
 
   std::cout << "Most common: " << most_common << " least common: " << least_common << " diff: " << most_common - least_common << '\n';
