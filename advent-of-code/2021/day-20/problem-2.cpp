@@ -8,8 +8,8 @@
 #include <vector>
 
 using grid = std::vector<std::string>;
-const int GRID_SIZE = 200;
-const int ENHANCEMENT_ROUNDS = 2;
+const int GRID_SIZE = 500;
+const int ENHANCEMENT_ROUNDS = 50;
 
 char enhance_pixels(const std::string& algorithm, std::string pixels) {
   std::replace(pixels.begin(), pixels.end(), '.', '0');
@@ -31,6 +31,7 @@ grid enhance_image(const grid& image, const std::string algorithm) {
   }
 
   // because borders need to be flipped (the input is infinite)
+  if (algorithm[0] == '.') return answer;
   for (int i : {0, GRID_SIZE - 1})
     for (int j = 0; j < GRID_SIZE; j++)
       image[i][j] == '.' ? answer[i][j] = '#' : answer[i][j] = '.';
