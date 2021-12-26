@@ -1,3 +1,11 @@
+// link to the problem
+// https://leetcode.com/problems/longest-palindromic-substring/submissions/
+
+// What have I learned from this problem?
+// * how to insert a character between every character in a string:
+// std::copy(s.begin(), s.end(), std::ostream_iterator<char>(os, "|"))
+// * how to remove all occurences of a character from a string:
+// str.erase(std::remove(begin(), end(), "|"),  str.end());
 #include <iostream>
 #include <iterator>
 #include <sstream>
