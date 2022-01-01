@@ -1,4 +1,4 @@
-// link to the problem:
+// link to the problem: https://leetcode.com/problems/build-array-from-permutation/
 #include <algorithm>
 #include <array>
 #include <iostream>
