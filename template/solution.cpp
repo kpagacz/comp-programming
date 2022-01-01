@@ -7,6 +7,7 @@
 #include<numeric>
 #include<sstream>
 #include<iterator>
+#include<queue>
 
 
 int main(int argc, char** argv) {
