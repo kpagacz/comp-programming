@@ -1,4 +1,4 @@
-// link to the problem:
+// link to the problem: https://leetcode.com/problems/running-sum-of-1d-array/
 #include<iostream>
 #include<vector>
 #include<array>
