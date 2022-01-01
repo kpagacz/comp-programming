@@ -23,8 +23,8 @@ class Solution {
   ListNode* mergeKLists(std::vector<ListNode*>& lists) {
     auto compareNodes = [](ListNode* a, ListNode* b) { return a->val > b->val; };
     std::priority_queue min_heap(compareNodes, std::vector<ListNode*>());
-    std::for_each(lists.begin(), lists.end(), [&](auto list) {
-      if (list != nullptr) min_heap.push(list);
+    std::for_each(lists.begin(), lists.end(), [&](auto listHead) {
+      if (listHead != nullptr) min_heap.push(listHead);
     });
 
     if (min_heap.empty()) return nullptr;
