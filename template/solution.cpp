@@ -8,6 +8,7 @@
 #include<sstream>
 #include<iterator>
 #include<queue>
+#include <stdexcept>
 
 
 int main(int argc, char** argv) {
