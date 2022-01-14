@@ -10,6 +10,7 @@
 #include <stack>
 #include <stdexcept>
 #include <string>
+#include <unordered_map>
 #include <vector>
 
 int main(int argc, char** argv) {}
