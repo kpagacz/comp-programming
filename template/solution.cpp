@@ -7,6 +7,7 @@
 #include <numeric>
 #include <queue>
 #include <sstream>
+#include <stack>
 #include <stdexcept>
 #include <string>
 #include <vector>
