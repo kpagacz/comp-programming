@@ -12,5 +12,6 @@
 #include <string>
 #include <unordered_map>
 #include <vector>
+#include "MapValuesAccumulator.cpp"
 
 int main(int argc, char** argv) {}
