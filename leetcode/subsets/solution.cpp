@@ -2,7 +2,6 @@
 // What did I learn:
 // * I had a bug where I was making the AND operation with "&&" instead of "&"...
 // * I had an "off by one" bug where I was taking 2 to the power of nums.size() + 1 instead of nums.size()
-
 #include <algorithm>
 #include <array>
 #include <cassert>
