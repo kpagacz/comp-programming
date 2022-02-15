@@ -36,6 +36,7 @@ class Solution {
   }
   int threeSumClosest(std::vector<int>& nums, int target) {
     std::sort(nums.begin(), nums.end());
+    std::unique(nums.begin(), nums.end());
     int answer;
     int best_min = INT32_MAX;
     for (auto i{0}; i < nums.size() - 2; i++) {
