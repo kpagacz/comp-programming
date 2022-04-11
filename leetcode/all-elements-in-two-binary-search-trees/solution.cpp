@@ -25,41 +25,40 @@
 
 class Solution {
 public:
-    void addSortedElements(std::vector<int>& elements, TreeNode* root) {
-      if (root == nullptr)
-        return;
-      addSortedElements(elements, root->left);
-      elements.push_back(root->val);
-      addSortedElements(elements, root->right);
+    void inOrderTraversal(TreeNode* root, std::vector<int>& arr) {
+      if (root) {
+        inOrderTraversal(root->left, arr);
+        arr.push_back(root->val);
+        inOrderTraversal(root->right, arr);
+      }
     }
-    // the invariant is: root1->val is lower than root2 or root2 is nullptr
-    void addAllElementsRecursive(std::vector<int>& elements, TreeNode* root1, TreeNode* root2) {
-      if (root1 == nullptr && root2 == nullptr)
+    void mergeTwoArrays(const std::vector<int>& first, const std::vector<int>& second, const int ind1, const int ind2, std::vector<int> &arr, const int ind) {
+      if (first.size() == ind1 && second.size() == ind2)
         return;
-
-      if (root1 == nullptr) {
-        addSortedElements(elements, root2);
-        return;
-      }
-
-      if (root2 == nullptr) {
-        addSortedElements(elements, root1);
+      if (first.size() == ind1) {
+        arr[ind] = second[ind2];
+        mergeTwoArrays(first, second, ind1, ind2 + 1, arr, ind + 1);
         return;
       }
-
-      if (root1->val < root2->val) {
-        addSortedElements(elements, root1->left);
-        elements.push_back(root1->val);
-        addAllElementsRecursive(elements, root1->right, root2);
+      if (second.size() == ind2) {
+        arr[ind] = first[ind1];
+        mergeTwoArrays(first, second, ind1 + 1, ind2, arr, ind + 1);
+        return;
+      }
+      if (first[ind1] < second[ind2]) {
+        arr[ind] = first[ind1];
+        mergeTwoArrays(first, second, ind1 + 1, ind2, arr, ind + 1);
       } else {
-        addSortedElements(elements, root2->left);
-        elements.push_back(root2->val);
-        addAllElementsRecursive(elements, root1, root2->right);
+        arr[ind] = second[ind2];
+        mergeTwoArrays(first, second, ind1, ind2 + 1, arr, ind + 1);
       }
     }
     std::vector<int> getAllElements(TreeNode* root1, TreeNode* root2) {
-      std::vector<int> answer;
-      addAllElementsRecursive(answer, root1, root2);
+      std::vector<int> first, second;
+      inOrderTraversal(root1, first);
+      inOrderTraversal(root2, second);
+      std::vector<int> answer(first.size() + second.size());
+      mergeTwoArrays(first, second, 0, 0, answer, 0);
       return answer;
     }
 };
