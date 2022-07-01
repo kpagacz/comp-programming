@@ -20,7 +20,7 @@ public:
     int findKthLargest(std::vector<int>& nums, int k) {
       std::priority_queue<int, std::vector<int>, std::greater<int>> kthLargest;
       for (const auto& num : nums) {
-        kthLargest.push(num);
+        if (num > kthLargest.top()) kthLargest.push(num);
         if (kthLargest.size() > k) kthLargest.pop();
       }
       return kthLargest.top();
