@@ -21,7 +21,7 @@ class Solution {
     std::vector<std::vector<int>> answer(matrix[0].size(), std::vector<int>(matrix.size()));
     for (int i = 0; i < matrix.size(); ++i)
       for (int j = 0; j < matrix[0].size(); ++j) answer[j][i] = std::move(matrix[i][j]);
-      return answer;
+    return answer;
   }
 };
 
