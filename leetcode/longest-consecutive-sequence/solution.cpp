@@ -15,8 +15,8 @@
 #include <unordered_set>
 #include <vector>
 
-// Runtime: 177 ms, faster than 70.91% of C++ online submissions for Longest Consecutive Sequence.
-// Memory Usage: 77.1 MB, less than 5.02% of C++ online submissions for Longest Consecutive Sequence.
+// Runtime: 139 ms, faster than 80.39% of C++ online submissions for Longest Consecutive Sequence.
+// Memory Usage: 75.5 MB, less than 5.02% of C++ online submissions for Longest Consecutive Sequence.
 
 class Solution {
  public:
@@ -29,7 +29,7 @@ class Solution {
     }
 
     std::vector<int> sorted;
-    // sorted.reserve(nums.size());
+    sorted.reserve(nums.size());
     for (auto& bucket : buckets) {
       std::sort(bucket.begin(), bucket.end());
       std::copy(bucket.begin(), bucket.end(), std::back_inserter(sorted));
