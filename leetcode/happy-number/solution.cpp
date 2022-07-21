@@ -21,7 +21,7 @@ class Solution {
     while (n != 1 && seen.count(n) == 0) {
       seen.insert(n);
       int temp = 0;
-      while(n > 0) {
+      while (n > 0) {
         temp += (n % 10) * (n % 10);
         n /= 10;
       }
