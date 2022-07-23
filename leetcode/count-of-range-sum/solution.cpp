@@ -23,11 +23,11 @@
 // uses
 //    typename std::iterator_traits<InputIt>::value_type sum = *first;
 // to declare the type of the running sum.
-// Obviously, in my cases this was int and not int64_t which caused the overflow.
-
+// Obviously, in my case this was int and not int64_t which caused the overflow.
 
 // Lessons learned:
 // * I need to remember that I can preprocess the array before tackling the problem to make it a little bit easier.
+// * In this problem, it was important to use the prefix sum array.
 
 // Runtime: 501 ms, faster than 93.80% of C++ online submissions for Count of Range Sum.
 // Memory Usage: 70.6 MB, less than 84.56% of C++ online submissions for Count of Range Sum.
@@ -47,9 +47,9 @@ class Solution {
 
     int answer = 0;
     for (int i = prefixSums.size() - 1; i >= 0; --i) {
-      const auto lowerBoundIndex =
+      const auto& lowerBoundIndex =
           std::lower_bound(sortedPrefixSums.begin(), sortedPrefixSums.end(), prefixSums[i] + lower);
-      const auto upperBoundIndex = std::upper_bound(lowerBoundIndex, sortedPrefixSums.end(), prefixSums[i] + upper);
+      const auto& upperBoundIndex = std::upper_bound(lowerBoundIndex, sortedPrefixSums.end(), prefixSums[i] + upper);
       answer += sum(lowerBoundIndex - sortedPrefixSums.begin(), upperBoundIndex - sortedPrefixSums.begin());
       const auto& prefixIndex =
           std::lower_bound(sortedPrefixSums.begin(), sortedPrefixSums.end(), prefixSums[i]) - sortedPrefixSums.begin();
