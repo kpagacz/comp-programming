@@ -29,14 +29,6 @@ class BinaryIndexedTree {
     }
   }
 
-  void set(std::size_t index, int value) {
-    int difference = value - bit[index + 1];
-    std::copy(bit.begin(), bit.end(), std::ostream_iterator<int>(std::cout, " "));
-    std::cout << "\n";
-    std::cout << "difference " << difference << '\n';
-    update(index, difference);
-  }
-
   int sum(std::size_t index) {
     int answer = 0;
     while (index > 0) {
@@ -60,7 +52,8 @@ class NumArray {
     this->nums = nums;
   }
 
-  void update(int index, int val) { int difference = val - nums[index];
+  void update(int index, int val) {
+    int difference = val - nums[index];
     nums[index] = val;
     bit.update(index, difference);
   }
