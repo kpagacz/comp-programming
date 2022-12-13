@@ -55,7 +55,10 @@ int compare(const Comparable& first, const Comparable& second) {
   const List* secondList =
       downcastedSecond != nullptr ? new List(downcastedSecond) : dynamic_cast<const List*>(&second);
 
-  return compare(*firstList, *secondList);
+  int comparison = compare(*firstList, *secondList);
+  if (downcastedFirst != nullptr) delete firstList;
+  if (downcastedSecond != nullptr) delete secondList;
+  return comparison;
 }
 
 // Reading
@@ -108,6 +111,8 @@ class Solution {
       input >> secondPacket;
       Comparable *first = fromString(firstPacket), *second = fromString(secondPacket);
       if (compare(*first, *second) == 1) sumOfRightPacketPairs += index;
+      delete first;
+      delete second;
       index++;
     }
     return sumOfRightPacketPairs;
@@ -130,9 +135,10 @@ class Solution {
     // I should be forced to calculate the distance from the beginning and add 1
     // to it because the problem counts indices from 1 but it does not work like I would expect.
     // I am confused, but I do not want to investigate.
-    for (auto p : allPackets) p->print(), std::cout << '\n';
-    return (std::distance(allPackets.begin(), firstDividerPacket)) *
-           (std::distance(allPackets.begin(), secondDividerPacket));
+    // for (auto p : allPackets) p->print(), std::cout << '\n';
+    for (const auto& p : allPackets) delete p;
+    return (std::distance(allPackets.begin(), firstDividerPacket) + 1) *
+           (std::distance(allPackets.begin(), secondDividerPacket) + 1);
   }
 };
 
