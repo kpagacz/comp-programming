@@ -26,7 +26,7 @@ class Solution {
         // std::cout << "Point: " << row << " " << col << '\n';
         points.pop();
         if (row == end.first && col == end.second) return steps;
-        if (grid[row][col] == 'X') continue;
+        if (grid[row][col] == VISITED) continue;
         for (auto [deltaRow, deltaCol] : directions)
           if (isValidDestination({row, col}, {row + deltaRow, col + deltaCol}, grid))
             newPoints.push({row + deltaRow, col + deltaCol});
