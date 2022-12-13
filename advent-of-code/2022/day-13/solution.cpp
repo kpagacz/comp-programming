@@ -132,13 +132,9 @@ class Solution {
     auto secondDividerPacket = std::find_if(allPackets.begin(), allPackets.end(), [&](const auto& packet) {
       return compare(*packet, *fromString(additionalPackets[1])) == 0;
     });
-    // I should be forced to calculate the distance from the beginning and add 1
-    // to it because the problem counts indices from 1 but it does not work like I would expect.
-    // I am confused, but I do not want to investigate.
-    // for (auto p : allPackets) p->print(), std::cout << '\n';
     for (const auto& p : allPackets) delete p;
-    return (std::distance(allPackets.begin(), firstDividerPacket) + 1) *
-           (std::distance(allPackets.begin(), secondDividerPacket) + 1);
+    return (std::distance(allPackets.begin(), firstDividerPacket)) *
+           (std::distance(allPackets.begin(), secondDividerPacket));
   }
 };
 
@@ -146,5 +142,9 @@ int main() {
   Solution s;
   std::cout << "Part 1: " << s.part1("input") << '\n';
   std::cout << "Part 2: " << s.part2("input") << '\n';
+
+  std::cout << "Others: \n";
+  std::cout << "Part 1: " << s.part1("others-solution-and-input/input") << '\n';
+  std::cout << "Part 2: " << s.part2("others-solution-and-input/input") << '\n';
   return 0;
 }
