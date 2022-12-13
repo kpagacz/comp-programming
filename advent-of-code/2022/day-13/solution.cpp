@@ -2,102 +2,74 @@
 #include <iostream>
 #include <stack>
 #include <string>
+#include <variant>
 #include <vector>
 
-struct Comparable {
-  virtual ~Comparable(){};
-  virtual void print() const = 0;
-};
-struct Int : Comparable {
-  int element;
-  Int() = default;
-  Int(int _element) : element(_element) {}
-  void print() const {
-    std::cout << element;
+struct Packet {
+  std::vector<std::variant<int, Packet>> packet;
+  Packet() = default;
+  Packet(std::vector<std::variant<int, Packet>> _packet) : packet(_packet) {}
+  static Packet fromString(const std::string& input) {
+    std::stack<Packet*> openPackets;
+    std::stack<std::variant<int, Packet>> elements;
+    auto it{0};
+    while (it < input.size()) {
+      if (input[it] == ',') {
+        it++;
+        continue;
+      }
+      if (input[it] == '[') {
+        elements.push(Packet());
+        openPackets.push(&std::get<Packet>(elements.top()));
+        it++;
+        continue;
+      }
+      if (input[it] == ']') {
+        while (std::holds_alternative<int>(elements.top()) || &std::get<Packet>(elements.top()) != openPackets.top())
+          openPackets.top()->packet.push_back(elements.top()), elements.pop();
+        std::reverse(openPackets.top()->packet.begin(), openPackets.top()->packet.end());
+        openPackets.pop();
+        it++;
+        continue;
+      }
+      assert(std::isdigit(input[it]));
+      auto nextNotNumber = input.find_first_of(",[]", it);
+      std::string no = input.substr(it, nextNotNumber - it);
+      elements.push(std::stoi(no));
+      it = nextNotNumber;
+    }
+    assert(elements.size() == 1);
+    assert(std::holds_alternative<Packet>(elements.top()));
+    return std::get<Packet>(elements.top());
   }
-};
-struct List : Comparable {
-  std::vector<const Comparable*> elements;
-  bool closed = false;
-  List() = default;
-  List(const Int* element) : elements(std::vector<const Comparable*>{element}) {}
   void print() const {
     std::cout << "[";
-    for (const auto& el : elements) el->print(), std::cout << ",";
+    for (const auto& el : packet)
+      if (std::holds_alternative<Packet>(el)) std::get<Packet>(el).print();
+      else std::cout << std::get<int>(el) << ",";
     std::cout << "]";
   }
 };
 
-// Comparisons
-int compare(const Int& first, const Int& second);
-int compare(const List& first, const List& second);
-int compare(const Comparable& first, const Comparable& second);
-
-int compare(const Int& first, const Int& second) {
-  return (second.element > first.element) - (first.element > second.element);
-}
-int compare(const List& first, const List& second) {
-  auto firstIt = first.elements.begin();
-  auto secondIt = second.elements.begin();
-  while (firstIt != first.elements.end() && secondIt != second.elements.end()) {
-    if (compare(**firstIt, **secondIt) != 0) return compare(**firstIt, **secondIt);
+int compare(const std::variant<int, Packet>& first, const std::variant<int, Packet>& second);
+int compare(const Packet& first, const Packet& second) {
+  auto firstIt = first.packet.begin(), secondIt = second.packet.begin();
+  while (firstIt != first.packet.end() && secondIt != second.packet.end()) {
+    auto comparison = compare(*firstIt, *secondIt);
+    if (comparison != 0) return comparison;
     firstIt++, secondIt++;
   }
-
-  return (firstIt == first.elements.end()) - (secondIt == second.elements.end());
+  return (firstIt == first.packet.end()) - (secondIt == second.packet.end());
 }
-int compare(const Comparable& first, const Comparable& second) {
-  const Int* downcastedFirst = dynamic_cast<const Int*>(&first);
-  const Int* downcastedSecond = dynamic_cast<const Int*>(&second);
-  if (downcastedFirst != nullptr && downcastedSecond != nullptr) return compare(*downcastedFirst, *downcastedSecond);
-
-  const List* firstList = downcastedFirst != nullptr ? new List(downcastedFirst) : dynamic_cast<const List*>(&first);
-  const List* secondList =
-      downcastedSecond != nullptr ? new List(downcastedSecond) : dynamic_cast<const List*>(&second);
-
-  int comparison = compare(*firstList, *secondList);
-  if (downcastedFirst != nullptr) delete firstList;
-  if (downcastedSecond != nullptr) delete secondList;
-  return comparison;
-}
-
-// Reading
-Comparable* fromString(const std::string& text) {
-  int textIt = 0;
-  std::stack<Comparable*> elements;
-  while (textIt < text.size() && textIt != std::string::npos) {
-    // std::cout << "CUrrent char: " << text[textIt] << '\n';
-    if (text[textIt] == ',') {
-      textIt++;
-      continue;
-    }
-    if (text[textIt] == '[') {
-      elements.push(new List());
-      textIt++;
-      continue;
-    }
-    if (text[textIt] == ']') {
-      std::stack<Comparable*> toAdd;
-      for (List* topElement = dynamic_cast<List*>(elements.top()); topElement == nullptr || topElement->closed;
-           elements.pop(), topElement = dynamic_cast<List*>(elements.top()))
-        toAdd.push(elements.top());
-
-      List* currentlyFilledList = dynamic_cast<List*>(elements.top());
-      assert(currentlyFilledList != nullptr);
-      while (!toAdd.empty()) currentlyFilledList->elements.push_back(toAdd.top()), toAdd.pop();
-      currentlyFilledList->closed = true;
-      textIt++;
-      continue;
-    }
-    assert(std::isdigit(text[textIt]));
-    auto nextNotNumber = text.find_first_of(",[]", textIt);
-    std::string no = text.substr(textIt, nextNotNumber - textIt);
-    elements.push(new Int(std::stoi(no)));
-    textIt = nextNotNumber;
+int compare(const std::variant<int, Packet>& first, const std::variant<int, Packet>& second) {
+  if (std::holds_alternative<int>(first) && std::holds_alternative<int>(second)) {
+    return (std::get<int>(second) > std::get<int>(first)) - (std::get<int>(first) > std::get<int>(second));
   }
-
-  assert(elements.size() == 1);
-  return elements.top();
+  auto firstPacket = std::holds_alternative<int>(first) ? Packet(std::vector<std::variant<int, Packet>>(1, first))
+                                                        : std::get<Packet>(first);
+  auto secondPacket = std::holds_alternative<int>(second) ? Packet(std::vector<std::variant<int, Packet>>(1, second))
+                                                          : std::get<Packet>(second);
+  return compare(firstPacket, secondPacket);
 }
 
 class Solution {
@@ -105,45 +77,41 @@ class Solution {
   int part1(const std::string& pathToInput) {
     std::fstream input(pathToInput, std::ios_base::in);
     std::string firstPacket, secondPacket;
-    int index = 1, sumOfRightPacketPairs = 0;
-
+    int index = 1;
+    int sum = 0;
     while (input >> firstPacket) {
       input >> secondPacket;
-      Comparable *first = fromString(firstPacket), *second = fromString(secondPacket);
-      if (compare(*first, *second) == 1) sumOfRightPacketPairs += index;
-      delete first;
-      delete second;
+      Packet first = Packet::fromString(firstPacket), second = Packet::fromString(secondPacket);
+      if (compare(first, second) == 1) sum += index;
       index++;
     }
-    return sumOfRightPacketPairs;
+    return sum;
   }
+
   int part2(const std::string& pathToInput) {
     std::fstream input(pathToInput, std::ios_base::in);
-    std::string packet;
-    std::vector<Comparable*> allPackets;
-    while (input >> packet) allPackets.push_back(fromString(packet));
-    const std::vector<std::string> additionalPackets{"[[2]]", "[[6]]"};
-    for (auto packet : additionalPackets) allPackets.push_back(fromString(packet));
-    std::sort(allPackets.begin(), allPackets.end(),
-              [](const auto& first, const auto& second) { return compare(*first, *second) >= 0; });
-    auto firstDividerPacket = std::find_if(allPackets.begin(), allPackets.end(), [&](const auto& packet) {
-      return compare(*packet, *fromString(additionalPackets[0])) == 0;
-    });
-    auto secondDividerPacket = std::find_if(allPackets.begin(), allPackets.end(), [&](const auto& packet) {
-      return compare(*packet, *fromString(additionalPackets[1])) == 0;
-    });
-    for (const auto& p : allPackets) delete p;
-    return (std::distance(allPackets.begin(), firstDividerPacket)) *
-           (std::distance(allPackets.begin(), secondDividerPacket));
+    auto firstDivider = Packet::fromString("[[2]]"), secondDivider = Packet::fromString("[[6]]");
+    std::string newpacket;
+    auto firstIndex{0}, secondIndex{0};
+    while (input >> newpacket) {
+      Packet newPacket = Packet::fromString(newpacket);
+      if (compare(newPacket, firstDivider) == 1) firstIndex++;
+      if (compare(newPacket, secondDivider) == 1) secondIndex++;
+    }
+
+    firstIndex++;
+    secondIndex += 2;
+    return firstIndex * secondIndex;
   }
 };
 
 int main() {
   Solution s;
+  Packet first = Packet::fromString("[[1],[2,3,4]]"), second = Packet::fromString("[[1],4]");
   std::cout << "Part 1: " << s.part1("input") << '\n';
   std::cout << "Part 2: " << s.part2("input") << '\n';
 
-  std::cout << "Others: \n";
+  std::cout << "\n\nOther input:\n";
   std::cout << "Part 1: " << s.part1("others-solution-and-input/input") << '\n';
   std::cout << "Part 2: " << s.part2("others-solution-and-input/input") << '\n';
   return 0;
