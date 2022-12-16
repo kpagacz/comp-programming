@@ -1,0 +1,1022 @@
+g++ solution.cpp fmt/format.cc -o solution.exe -std=c++2a
+./solution.exe
+Part 1: Size of the queue: 1
+Current: 1 valve:AA flowRate:0 released:0 timeLeft:30
+Current flow potential 0 condition: false
+Size of the queue: 3
+Current: 1 valve:DD flowRate:0 released:0 timeLeft:29
+Current flow potential 0 condition: false
+Size of the queue: 6
+Current: 1 valve:II flowRate:0 released:0 timeLeft:29
+Current flow potential 0 condition: false
+Size of the queue: 7
+Current: 1 valve:BB flowRate:0 released:0 timeLeft:29
+Current flow potential 0 condition: false
+Size of the queue: 9
+Current: 1 valve:CC flowRate:0 released:0 timeLeft:28
+Current flow potential 0 condition: false
+Size of the queue: 11
+Current: 1 valve:AA flowRate:0 released:0 timeLeft:28
+Current flow potential 0 condition: false
+Loop
+Size of the queue: 10
+Current: 1 valve:EE flowRate:0 released:0 timeLeft:28
+Current flow potential 0 condition: false
+Size of the queue: 12
+Current: 1001 valve:DD flowRate:20 released:0 timeLeft:28
+Current flow potential 560 condition: false
+Size of the queue: 14
+Current: 100000001 valve:AA flowRate:0 released:0 timeLeft:28
+Current flow potential 0 condition: false
+Loop
+Size of the queue: 13
+Current: 100000001 valve:JJ flowRate:0 released:0 timeLeft:28
+Current flow potential 0 condition: false
+Size of the queue: 14
+Current: 1 valve:CC flowRate:0 released:0 timeLeft:28
+Current flow potential 0 condition: false
+Loop
+Size of the queue: 13
+Current: 1 valve:AA flowRate:0 released:0 timeLeft:28
+Current flow potential 0 condition: false
+Loop
+Size of the queue: 12
+Current: 11 valve:BB flowRate:13 released:0 timeLeft:28
+Current flow potential 364 condition: false
+Size of the queue: 13
+Current: 1 valve:DD flowRate:0 released:0 timeLeft:27
+Current flow potential 0 condition: true
+lower potential
+Size of the queue: 12
+Current: 1 valve:BB flowRate:0 released:0 timeLeft:27
+Current flow potential 0 condition: true
+lower potential
+Size of the queue: 11
+Current: 101 valve:CC flowRate:2 released:0 timeLeft:27
+Current flow potential 54 condition: false
+Size of the queue: 12
+Current: 1 valve:FF flowRate:0 released:0 timeLeft:27
+Current flow potential 0 condition: false
+Size of the queue: 13
+Current: 1 valve:DD flowRate:0 released:0 timeLeft:27
+Current flow potential 0 condition: true
+lower potential
+Size of the queue: 12
+Current: 10001 valve:EE flowRate:3 released:0 timeLeft:27
+Current flow potential 81 condition: false
+Size of the queue: 13
+Current: 1001 valve:CC flowRate:20 released:20 timeLeft:27
+Current flow potential 560 condition: false
+Size of the queue: 15
+Current: 1001 valve:AA flowRate:20 released:20 timeLeft:27
+Current flow potential 560 condition: false
+Size of the queue: 17
+Current: 1001 valve:EE flowRate:20 released:20 timeLeft:27
+Current flow potential 560 condition: false
+Size of the queue: 19
+Current: 100000001 valve:II flowRate:0 released:0 timeLeft:27
+Current flow potential 0 condition: false
+Loop
+Size of the queue: 18
+Current: 1100000001 valve:JJ flowRate:21 released:0 timeLeft:27
+Current flow potential 567 condition: false
+Size of the queue: 18
+Current: 11 valve:CC flowRate:13 released:13 timeLeft:27
+Current flow potential 364 condition: true
+lower potential
+Size of the queue: 17
+Current: 11 valve:AA flowRate:13 released:13 timeLeft:27
+Current flow potential 364 condition: true
+lower potential
+Size of the queue: 16
+Current: 101 valve:DD flowRate:2 released:2 timeLeft:26
+Current flow potential 54 condition: true
+lower potential
+Size of the queue: 15
+Current: 101 valve:BB flowRate:2 released:2 timeLeft:26
+Current flow potential 54 condition: true
+lower potential
+Size of the queue: 14
+Current: 100001 valve:EE flowRate:0 released:0 timeLeft:26
+Current flow potential 0 condition: true
+lower potential
+Size of the queue: 13
+Current: 100001 valve:GG flowRate:0 released:0 timeLeft:26
+Current flow potential 0 condition: false
+Size of the queue: 14
+Current: 10001 valve:FF flowRate:3 released:3 timeLeft:26
+Current flow potential 81 condition: false
+Size of the queue: 15
+Current: 10001 valve:DD flowRate:3 released:3 timeLeft:26
+Current flow potential 81 condition: true
+lower potential
+Size of the queue: 14
+Current: 1001 valve:DD flowRate:20 released:40 timeLeft:26
+Current flow potential 560 condition: false
+Loop
+Size of the queue: 13
+Current: 1001 valve:BB flowRate:20 released:40 timeLeft:26
+Current flow potential 560 condition: false
+Size of the queue: 15
+Current: 1101 valve:CC flowRate:22 released:40 timeLeft:26
+Current flow potential 612 condition: false
+Size of the queue: 16
+Current: 1001 valve:DD flowRate:20 released:40 timeLeft:26
+Current flow potential 560 condition: false
+Loop
+Size of the queue: 15
+Current: 1001 valve:II flowRate:20 released:40 timeLeft:26
+Current flow potential 560 condition: false
+Size of the queue: 16
+Current: 1001 valve:BB flowRate:20 released:40 timeLeft:26
+Current flow potential 560 condition: false
+Loop
+Size of the queue: 15
+Current: 1001 valve:FF flowRate:20 released:40 timeLeft:26
+Current flow potential 560 condition: false
+Size of the queue: 16
+Current: 1001 valve:DD flowRate:20 released:40 timeLeft:26
+Current flow potential 560 condition: false
+Loop
+Size of the queue: 15
+Current: 11001 valve:EE flowRate:23 released:40 timeLeft:26
+Current flow potential 638 condition: false
+Size of the queue: 16
+Current: 1100000001 valve:II flowRate:21 released:21 timeLeft:26
+Current flow potential 567 condition: false
+Size of the queue: 17
+Current: 1100001 valve:FF flowRate:0 released:0 timeLeft:25
+Current flow potential 0 condition: true
+lower potential
+Size of the queue: 16
+Current: 1100001 valve:HH flowRate:0 released:0 timeLeft:25
+Current flow potential 0 condition: false
+Size of the queue: 17
+Current: 110001 valve:EE flowRate:3 released:6 timeLeft:25
+Current flow potential 81 condition: true
+lower potential
+Size of the queue: 16
+Current: 110001 valve:GG flowRate:3 released:6 timeLeft:25
+Current flow potential 81 condition: false
+Size of the queue: 17
+Current: 1001 valve:CC flowRate:20 released:60 timeLeft:25
+Current flow potential 560 condition: true
+lower potential
+Size of the queue: 16
+Current: 1001 valve:AA flowRate:20 released:60 timeLeft:25
+Current flow potential 560 condition: false
+Loop
+Size of the queue: 15
+Current: 1011 valve:BB flowRate:33 released:60 timeLeft:25
+Current flow potential 885 condition: false
+Size of the queue: 16
+Current: 1101 valve:DD flowRate:22 released:62 timeLeft:25
+Current flow potential 612 condition: false
+Size of the queue: 18
+Current: 1101 valve:BB flowRate:22 released:62 timeLeft:25
+Current flow potential 612 condition: true
+lower potential
+Size of the queue: 17
+Current: 100001001 valve:AA flowRate:20 released:60 timeLeft:25
+Current flow potential 560 condition: false
+Loop
+Size of the queue: 16
+Current: 100001001 valve:JJ flowRate:20 released:60 timeLeft:25
+Current flow potential 560 condition: true
+lower potential
+Size of the queue: 15
+Current: 101001 valve:EE flowRate:20 released:60 timeLeft:25
+Current flow potential 560 condition: true
+lower potential
+Size of the queue: 14
+Current: 101001 valve:GG flowRate:20 released:60 timeLeft:25
+Current flow potential 560 condition: false
+Size of the queue: 15
+Current: 11001 valve:FF flowRate:23 released:63 timeLeft:25
+Current flow potential 638 condition: false
+Size of the queue: 16
+Current: 11001 valve:DD flowRate:23 released:63 timeLeft:25
+Current flow potential 638 condition: false
+Size of the queue: 18
+Current: 1100000001 valve:AA flowRate:21 released:42 timeLeft:25
+Current flow potential 567 condition: false
+Size of the queue: 20
+Current: 1100000001 valve:JJ flowRate:21 released:42 timeLeft:25
+Current flow potential 567 condition: false
+Loop
+Size of the queue: 19
+Current: 1100001 valve:GG flowRate:0 released:0 timeLeft:24
+Current flow potential 0 condition: true
+lower potential
+Size of the queue: 18
+Current: 11100001 valve:HH flowRate:22 released:0 timeLeft:24
+Current flow potential 528 condition: false
+Size of the queue: 18
+Current: 1110001 valve:FF flowRate:3 released:9 timeLeft:24
+Current flow potential 81 condition: true
+lower potential
+Size of the queue: 17
+Current: 1110001 valve:HH flowRate:3 released:9 timeLeft:24
+Current flow potential 81 condition: true
+lower potential
+Size of the queue: 16
+Current: 1011 valve:CC flowRate:33 released:93 timeLeft:24
+Current flow potential 885 condition: false
+Size of the queue: 18
+Current: 1011 valve:AA flowRate:33 released:93 timeLeft:24
+Current flow potential 885 condition: false
+Size of the queue: 20
+Current: 1101 valve:CC flowRate:22 released:84 timeLeft:24
+Current flow potential 612 condition: true
+lower potential
+Size of the queue: 19
+Current: 1101 valve:AA flowRate:22 released:84 timeLeft:24
+Current flow potential 612 condition: true
+lower potential
+Size of the queue: 18
+Current: 1101 valve:EE flowRate:22 released:84 timeLeft:24
+Current flow potential 612 condition: true
+lower potential
+Size of the queue: 17
+Current: 1101001 valve:FF flowRate:20 released:80 timeLeft:24
+Current flow potential 560 condition: true
+lower potential
+Size of the queue: 16
+Current: 1101001 valve:HH flowRate:20 released:80 timeLeft:24
+Current flow potential 560 condition: false
+Size of the queue: 17
+Current: 111001 valve:EE flowRate:23 released:86 timeLeft:24
+Current flow potential 638 condition: false
+Loop
+Size of the queue: 16
+Current: 111001 valve:GG flowRate:23 released:86 timeLeft:24
+Current flow potential 638 condition: false
+Size of the queue: 17
+Current: 11001 valve:CC flowRate:23 released:86 timeLeft:24
+Current flow potential 638 condition: true
+lower potential
+Size of the queue: 16
+Current: 11001 valve:AA flowRate:23 released:86 timeLeft:24
+Current flow potential 638 condition: true
+lower potential
+Size of the queue: 15
+Current: 11001 valve:EE flowRate:23 released:86 timeLeft:24
+Current flow potential 638 condition: false
+Loop
+Size of the queue: 14
+Current: 1100000001 valve:DD flowRate:21 released:63 timeLeft:24
+Current flow potential 567 condition: true
+lower potential
+Size of the queue: 13
+Current: 1100000001 valve:II flowRate:21 released:63 timeLeft:24
+Current flow potential 567 condition: false
+Loop
+Size of the queue: 12
+Current: 1100000001 valve:BB flowRate:21 released:63 timeLeft:24
+Current flow potential 567 condition: true
+lower potential
+Size of the queue: 11
+Current: 11100001 valve:GG flowRate:22 released:22 timeLeft:23
+Current flow potential 528 condition: true
+lower potential
+Size of the queue: 10
+Current: 1011 valve:DD flowRate:33 released:126 timeLeft:23
+Current flow potential 885 condition: false
+Size of the queue: 12
+Current: 1011 valve:BB flowRate:33 released:126 timeLeft:23
+Current flow potential 885 condition: false
+Loop
+Size of the queue: 11
+Current: 1111 valve:CC flowRate:35 released:126 timeLeft:23
+Current flow potential 931 condition: false
+Size of the queue: 12
+Current: 1011 valve:DD flowRate:33 released:126 timeLeft:23
+Current flow potential 885 condition: false
+Loop
+Size of the queue: 11
+Current: 1011 valve:II flowRate:33 released:126 timeLeft:23
+Current flow potential 885 condition: false
+Size of the queue: 12
+Current: 1011 valve:BB flowRate:33 released:126 timeLeft:23
+Current flow potential 885 condition: false
+Loop
+Size of the queue: 11
+Current: 1101001 valve:GG flowRate:20 released:100 timeLeft:23
+Current flow potential 560 condition: true
+lower potential
+Size of the queue: 10
+Current: 11101001 valve:HH flowRate:42 released:100 timeLeft:23
+Current flow potential 1066 condition: false
+Size of the queue: 10
+Current: 1111001 valve:FF flowRate:23 released:109 timeLeft:23
+Current flow potential 638 condition: false
+Loop
+Size of the queue: 9
+Current: 1111001 valve:HH flowRate:23 released:109 timeLeft:23
+Current flow potential 638 condition: true
+lower potential
+Size of the queue: 8
+Current: 1011 valve:CC flowRate:33 released:159 timeLeft:22
+Current flow potential 885 condition: true
+lower potential
+Size of the queue: 7
+Current: 1011 valve:AA flowRate:33 released:159 timeLeft:22
+Current flow potential 885 condition: false
+Loop
+Size of the queue: 6
+Current: 1011 valve:EE flowRate:33 released:159 timeLeft:22
+Current flow potential 885 condition: false
+Size of the queue: 8
+Current: 1111 valve:DD flowRate:35 released:161 timeLeft:22
+Current flow potential 931 condition: false
+Size of the queue: 10
+Current: 1111 valve:BB flowRate:35 released:161 timeLeft:22
+Current flow potential 931 condition: false
+Size of the queue: 11
+Current: 100001011 valve:AA flowRate:33 released:159 timeLeft:22
+Current flow potential 885 condition: false
+Loop
+Size of the queue: 10
+Current: 100001011 valve:JJ flowRate:33 released:159 timeLeft:22
+Current flow potential 885 condition: false
+Size of the queue: 11
+Current: 11101001 valve:GG flowRate:42 released:142 timeLeft:22
+Current flow potential 1066 condition: false
+Size of the queue: 12
+Current: 1011 valve:FF flowRate:33 released:192 timeLeft:21
+Current flow potential 885 condition: false
+Size of the queue: 13
+Current: 1011 valve:DD flowRate:33 released:192 timeLeft:21
+Current flow potential 885 condition: true
+lower potential
+Size of the queue: 12
+Current: 11011 valve:EE flowRate:36 released:192 timeLeft:21
+Current flow potential 948 condition: false
+Size of the queue: 13
+Current: 1111 valve:CC flowRate:35 released:196 timeLeft:21
+Current flow potential 931 condition: false
+Loop
+Size of the queue: 12
+Current: 1111 valve:AA flowRate:35 released:196 timeLeft:21
+Current flow potential 931 condition: false
+Size of the queue: 14
+Current: 1111 valve:EE flowRate:35 released:196 timeLeft:21
+Current flow potential 931 condition: true
+lower potential
+Size of the queue: 13
+Current: 1111 valve:CC flowRate:35 released:196 timeLeft:21
+Current flow potential 931 condition: false
+Loop
+Size of the queue: 12
+Current: 1111 valve:AA flowRate:35 released:196 timeLeft:21
+Current flow potential 931 condition: false
+Loop
+Size of the queue: 11
+Current: 100001011 valve:II flowRate:33 released:192 timeLeft:21
+Current flow potential 885 condition: false
+Loop
+Size of the queue: 10
+Current: 1100001011 valve:JJ flowRate:54 released:192 timeLeft:21
+Current flow potential 1326 condition: false
+Size of the queue: 10
+Current: 11101001 valve:FF flowRate:42 released:184 timeLeft:21
+Current flow potential 1066 condition: false
+Size of the queue: 11
+Current: 11101001 valve:HH flowRate:42 released:184 timeLeft:21
+Current flow potential 1066 condition: false
+Loop
+Size of the queue: 10
+Current: 101011 valve:EE flowRate:33 released:225 timeLeft:20
+Current flow potential 885 condition: true
+lower potential
+Size of the queue: 9
+Current: 101011 valve:GG flowRate:33 released:225 timeLeft:20
+Current flow potential 885 condition: true
+lower potential
+Size of the queue: 8
+Current: 11011 valve:FF flowRate:36 released:228 timeLeft:20
+Current flow potential 948 condition: true
+lower potential
+Size of the queue: 7
+Current: 11011 valve:DD flowRate:36 released:228 timeLeft:20
+Current flow potential 948 condition: false
+Size of the queue: 9
+Current: 1111 valve:DD flowRate:35 released:231 timeLeft:20
+Current flow potential 931 condition: true
+lower potential
+Size of the queue: 8
+Current: 1111 valve:II flowRate:35 released:231 timeLeft:20
+Current flow potential 931 condition: false
+Size of the queue: 9
+Current: 1111 valve:BB flowRate:35 released:231 timeLeft:20
+Current flow potential 931 condition: false
+Loop
+Size of the queue: 8
+Current: 1100001011 valve:II flowRate:54 released:246 timeLeft:20
+Current flow potential 1326 condition: false
+Size of the queue: 9
+Current: 11101001 valve:EE flowRate:42 released:226 timeLeft:20
+Current flow potential 1066 condition: false
+Size of the queue: 11
+Current: 11101001 valve:GG flowRate:42 released:226 timeLeft:20
+Current flow potential 1066 condition: false
+Loop
+Size of the queue: 10
+Current: 11011 valve:CC flowRate:36 released:264 timeLeft:19
+Current flow potential 948 condition: false
+Size of the queue: 12
+Current: 11011 valve:AA flowRate:36 released:264 timeLeft:19
+Current flow potential 948 condition: false
+Size of the queue: 14
+Current: 11011 valve:EE flowRate:36 released:264 timeLeft:19
+Current flow potential 948 condition: true
+lower potential
+Size of the queue: 13
+Current: 100001111 valve:AA flowRate:35 released:266 timeLeft:19
+Current flow potential 931 condition: true
+lower potential
+Size of the queue: 12
+Current: 100001111 valve:JJ flowRate:35 released:266 timeLeft:19
+Current flow potential 931 condition: true
+lower potential
+Size of the queue: 11
+Current: 1100001011 valve:AA flowRate:54 released:300 timeLeft:19
+Current flow potential 1326 condition: false
+Size of the queue: 13
+Current: 1100001011 valve:JJ flowRate:54 released:300 timeLeft:19
+Current flow potential 1326 condition: false
+Loop
+Size of the queue: 12
+Current: 11101001 valve:FF flowRate:42 released:268 timeLeft:19
+Current flow potential 1066 condition: false
+Loop
+Size of the queue: 11
+Current: 11101001 valve:DD flowRate:42 released:268 timeLeft:19
+Current flow potential 1066 condition: false
+Size of the queue: 13
+Current: 11111001 valve:EE flowRate:45 released:268 timeLeft:19
+Current flow potential 1123 condition: false
+Size of the queue: 14
+Current: 11011 valve:DD flowRate:36 released:300 timeLeft:18
+Current flow potential 948 condition: true
+lower potential
+Size of the queue: 13
+Current: 11011 valve:BB flowRate:36 released:300 timeLeft:18
+Current flow potential 948 condition: false
+Size of the queue: 14
+Current: 11111 valve:CC flowRate:38 released:300 timeLeft:18
+Current flow potential 984 condition: false
+Size of the queue: 15
+Current: 11011 valve:DD flowRate:36 released:300 timeLeft:18
+Current flow potential 948 condition: true
+lower potential
+Size of the queue: 14
+Current: 11011 valve:II flowRate:36 released:300 timeLeft:18
+Current flow potential 948 condition: true
+lower potential
+Size of the queue: 13
+Current: 11011 valve:BB flowRate:36 released:300 timeLeft:18
+Current flow potential 948 condition: false
+Loop
+Size of the queue: 12
+Current: 1100001011 valve:DD flowRate:54 released:354 timeLeft:18
+Current flow potential 1326 condition: false
+Size of the queue: 14
+Current: 1100001011 valve:II flowRate:54 released:354 timeLeft:18
+Current flow potential 1326 condition: false
+Loop
+Size of the queue: 13
+Current: 1100001011 valve:BB flowRate:54 released:354 timeLeft:18
+Current flow potential 1326 condition: false
+Size of the queue: 14
+Current: 11101001 valve:CC flowRate:42 released:310 timeLeft:18
+Current flow potential 1066 condition: false
+Size of the queue: 16
+Current: 11101001 valve:AA flowRate:42 released:310 timeLeft:18
+Current flow potential 1066 condition: true
+lower potential
+Size of the queue: 15
+Current: 11101001 valve:EE flowRate:42 released:310 timeLeft:18
+Current flow potential 1066 condition: true
+lower potential
+Size of the queue: 14
+Current: 11111001 valve:FF flowRate:45 released:313 timeLeft:18
+Current flow potential 1123 condition: false
+Size of the queue: 15
+Current: 11111001 valve:DD flowRate:45 released:313 timeLeft:18
+Current flow potential 1123 condition: true
+lower potential
+Size of the queue: 14
+Current: 11011 valve:CC flowRate:36 released:336 timeLeft:17
+Current flow potential 948 condition: true
+lower potential
+Size of the queue: 13
+Current: 11011 valve:AA flowRate:36 released:336 timeLeft:17
+Current flow potential 948 condition: true
+lower potential
+Size of the queue: 12
+Current: 11111 valve:DD flowRate:38 released:338 timeLeft:17
+Current flow potential 984 condition: true
+lower potential
+Size of the queue: 11
+Current: 11111 valve:BB flowRate:38 released:338 timeLeft:17
+Current flow potential 984 condition: true
+lower potential
+Size of the queue: 10
+Current: 1100001011 valve:CC flowRate:54 released:408 timeLeft:17
+Current flow potential 1326 condition: false
+Size of the queue: 12
+Current: 1100001011 valve:AA flowRate:54 released:408 timeLeft:17
+Current flow potential 1326 condition: false
+Loop
+Size of the queue: 11
+Current: 1100001011 valve:EE flowRate:54 released:408 timeLeft:17
+Current flow potential 1326 condition: false
+Size of the queue: 13
+Current: 1100001011 valve:CC flowRate:54 released:408 timeLeft:17
+Current flow potential 1326 condition: false
+Loop
+Size of the queue: 12
+Current: 1100001011 valve:AA flowRate:54 released:408 timeLeft:17
+Current flow potential 1326 condition: false
+Loop
+Size of the queue: 11
+Current: 11101001 valve:DD flowRate:42 released:352 timeLeft:17
+Current flow potential 1066 condition: true
+lower potential
+Size of the queue: 10
+Current: 11101001 valve:BB flowRate:42 released:352 timeLeft:17
+Current flow potential 1066 condition: true
+lower potential
+Size of the queue: 9
+Current: 11101101 valve:CC flowRate:44 released:352 timeLeft:17
+Current flow potential 1100 condition: true
+lower potential
+Size of the queue: 8
+Current: 11111001 valve:EE flowRate:45 released:358 timeLeft:17
+Current flow potential 1123 condition: true
+lower potential
+Size of the queue: 7
+Current: 11111001 valve:GG flowRate:45 released:358 timeLeft:17
+Current flow potential 1123 condition: false
+Size of the queue: 8
+Current: 1100001011 valve:DD flowRate:54 released:462 timeLeft:16
+Current flow potential 1326 condition: false
+Loop
+Size of the queue: 7
+Current: 1100001011 valve:BB flowRate:54 released:462 timeLeft:16
+Current flow potential 1326 condition: false
+Loop
+Size of the queue: 6
+Current: 1100001111 valve:CC flowRate:56 released:462 timeLeft:16
+Current flow potential 1358 condition: false
+Size of the queue: 7
+Current: 1100001011 valve:FF flowRate:54 released:462 timeLeft:16
+Current flow potential 1326 condition: false
+Size of the queue: 8
+Current: 1100001011 valve:DD flowRate:54 released:462 timeLeft:16
+Current flow potential 1326 condition: false
+Loop
+Size of the queue: 7
+Current: 1100011011 valve:EE flowRate:57 released:462 timeLeft:16
+Current flow potential 1374 condition: false
+Size of the queue: 8
+Current: 11111001 valve:FF flowRate:45 released:403 timeLeft:16
+Current flow potential 1123 condition: true
+lower potential
+Size of the queue: 7
+Current: 11111001 valve:HH flowRate:45 released:403 timeLeft:16
+Current flow potential 1123 condition: false
+Size of the queue: 7
+Current: 1100001111 valve:DD flowRate:56 released:518 timeLeft:15
+Current flow potential 1358 condition: false
+Size of the queue: 9
+Current: 1100001111 valve:BB flowRate:56 released:518 timeLeft:15
+Current flow potential 1358 condition: false
+Size of the queue: 10
+Current: 1100101011 valve:EE flowRate:54 released:516 timeLeft:15
+Current flow potential 1326 condition: true
+lower potential
+Size of the queue: 9
+Current: 1100101011 valve:GG flowRate:54 released:516 timeLeft:15
+Current flow potential 1326 condition: false
+Size of the queue: 10
+Current: 1100011011 valve:FF flowRate:57 released:519 timeLeft:15
+Current flow potential 1374 condition: false
+Size of the queue: 11
+Current: 1100011011 valve:DD flowRate:57 released:519 timeLeft:15
+Current flow potential 1374 condition: false
+Size of the queue: 13
+Current: 11111001 valve:GG flowRate:45 released:448 timeLeft:15
+Current flow potential 1123 condition: true
+lower potential
+Size of the queue: 12
+Current: 1100001111 valve:CC flowRate:56 released:574 timeLeft:14
+Current flow potential 1358 condition: false
+Loop
+Size of the queue: 11
+Current: 1100001111 valve:AA flowRate:56 released:574 timeLeft:14
+Current flow potential 1358 condition: false
+Size of the queue: 13
+Current: 1100001111 valve:EE flowRate:56 released:574 timeLeft:14
+Current flow potential 1358 condition: true
+lower potential
+Size of the queue: 12
+Current: 1100001111 valve:CC flowRate:56 released:574 timeLeft:14
+Current flow potential 1358 condition: false
+Loop
+Size of the queue: 11
+Current: 1100001111 valve:AA flowRate:56 released:574 timeLeft:14
+Current flow potential 1358 condition: false
+Loop
+Size of the queue: 10
+Current: 1101101011 valve:FF flowRate:54 released:570 timeLeft:14
+Current flow potential 1326 condition: true
+lower potential
+Size of the queue: 9
+Current: 1101101011 valve:HH flowRate:54 released:570 timeLeft:14
+Current flow potential 1326 condition: false
+Size of the queue: 10
+Current: 1100111011 valve:EE flowRate:57 released:576 timeLeft:14
+Current flow potential 1374 condition: false
+Loop
+Size of the queue: 9
+Current: 1100111011 valve:GG flowRate:57 released:576 timeLeft:14
+Current flow potential 1374 condition: false
+Size of the queue: 10
+Current: 1100011011 valve:CC flowRate:57 released:576 timeLeft:14
+Current flow potential 1374 condition: false
+Size of the queue: 12
+Current: 1100011011 valve:AA flowRate:57 released:576 timeLeft:14
+Current flow potential 1374 condition: false
+Size of the queue: 14
+Current: 1100011011 valve:EE flowRate:57 released:576 timeLeft:14
+Current flow potential 1374 condition: false
+Loop
+Size of the queue: 13
+Current: 1100001111 valve:DD flowRate:56 released:630 timeLeft:13
+Current flow potential 1358 condition: true
+lower potential
+Size of the queue: 12
+Current: 1100001111 valve:II flowRate:56 released:630 timeLeft:13
+Current flow potential 1358 condition: false
+Size of the queue: 13
+Current: 1100001111 valve:BB flowRate:56 released:630 timeLeft:13
+Current flow potential 1358 condition: false
+Loop
+Size of the queue: 12
+Current: 1101101011 valve:GG flowRate:54 released:624 timeLeft:13
+Current flow potential 1326 condition: true
+lower potential
+Size of the queue: 11
+Current: 1111101011 valve:HH flowRate:76 released:624 timeLeft:13
+Current flow potential 1612 condition: false
+Size of the queue: 11
+Current: 1101111011 valve:FF flowRate:57 released:633 timeLeft:13
+Current flow potential 1374 condition: false
+Loop
+Size of the queue: 10
+Current: 1101111011 valve:HH flowRate:57 released:633 timeLeft:13
+Current flow potential 1374 condition: true
+lower potential
+Size of the queue: 9
+Current: 1100011011 valve:DD flowRate:57 released:633 timeLeft:13
+Current flow potential 1374 condition: false
+Loop
+Size of the queue: 8
+Current: 1100011011 valve:BB flowRate:57 released:633 timeLeft:13
+Current flow potential 1374 condition: false
+Size of the queue: 9
+Current: 1100011111 valve:CC flowRate:59 released:633 timeLeft:13
+Current flow potential 1400 condition: false
+Size of the queue: 10
+Current: 1100011011 valve:DD flowRate:57 released:633 timeLeft:13
+Current flow potential 1374 condition: false
+Loop
+Size of the queue: 9
+Current: 1100011011 valve:II flowRate:57 released:633 timeLeft:13
+Current flow potential 1374 condition: false
+Size of the queue: 10
+Current: 1100011011 valve:BB flowRate:57 released:633 timeLeft:13
+Current flow potential 1374 condition: false
+Loop
+Size of the queue: 9
+Current: 1100001111 valve:AA flowRate:56 released:686 timeLeft:12
+Current flow potential 1358 condition: true
+lower potential
+Size of the queue: 8
+Current: 1100001111 valve:JJ flowRate:56 released:686 timeLeft:12
+Current flow potential 1358 condition: false
+Size of the queue: 8
+Current: 1111101011 valve:GG flowRate:76 released:700 timeLeft:12
+Current flow potential 1612 condition: false
+Size of the queue: 9
+Current: 1100011011 valve:CC flowRate:57 released:690 timeLeft:12
+Current flow potential 1374 condition: true
+lower potential
+Size of the queue: 8
+Current: 1100011011 valve:AA flowRate:57 released:690 timeLeft:12
+Current flow potential 1374 condition: false
+Loop
+Size of the queue: 7
+Current: 1100011111 valve:DD flowRate:59 released:692 timeLeft:12
+Current flow potential 1400 condition: false
+Size of the queue: 9
+Current: 1100011111 valve:BB flowRate:59 released:692 timeLeft:12
+Current flow potential 1400 condition: false
+Size of the queue: 10
+Current: 1100011011 valve:AA flowRate:57 released:690 timeLeft:12
+Current flow potential 1374 condition: false
+Loop
+Size of the queue: 9
+Current: 1100011011 valve:JJ flowRate:57 released:690 timeLeft:12
+Current flow potential 1374 condition: false
+Size of the queue: 9
+Current: 1100001111 valve:II flowRate:56 released:742 timeLeft:11
+Current flow potential 1358 condition: true
+lower potential
+Size of the queue: 8
+Current: 1111101011 valve:FF flowRate:76 released:776 timeLeft:11
+Current flow potential 1612 condition: false
+Size of the queue: 9
+Current: 1111101011 valve:HH flowRate:76 released:776 timeLeft:11
+Current flow potential 1612 condition: false
+Loop
+Size of the queue: 8
+Current: 1100011111 valve:CC flowRate:59 released:751 timeLeft:11
+Current flow potential 1400 condition: false
+Loop
+Size of the queue: 7
+Current: 1100011111 valve:AA flowRate:59 released:751 timeLeft:11
+Current flow potential 1400 condition: false
+Size of the queue: 9
+Current: 1100011111 valve:EE flowRate:59 released:751 timeLeft:11
+Current flow potential 1400 condition: false
+Size of the queue: 10
+Current: 1100011111 valve:CC flowRate:59 released:751 timeLeft:11
+Current flow potential 1400 condition: false
+Loop
+Size of the queue: 9
+Current: 1100011111 valve:AA flowRate:59 released:751 timeLeft:11
+Current flow potential 1400 condition: false
+Loop
+Size of the queue: 8
+Current: 1100011011 valve:II flowRate:57 released:747 timeLeft:11
+Current flow potential 1374 condition: false
+Loop
+Size of the queue: 7
+Current: 1111101011 valve:EE flowRate:76 released:852 timeLeft:10
+Current flow potential 1612 condition: false
+Size of the queue: 9
+Current: 1111101011 valve:GG flowRate:76 released:852 timeLeft:10
+Current flow potential 1612 condition: false
+Loop
+Size of the queue: 8
+Current: 1100011111 valve:DD flowRate:59 released:810 timeLeft:10
+Current flow potential 1400 condition: false
+Loop
+Size of the queue: 7
+Current: 1100011111 valve:II flowRate:59 released:810 timeLeft:10
+Current flow potential 1400 condition: false
+Size of the queue: 8
+Current: 1100011111 valve:BB flowRate:59 released:810 timeLeft:10
+Current flow potential 1400 condition: false
+Loop
+Size of the queue: 7
+Current: 1100011111 valve:FF flowRate:59 released:810 timeLeft:10
+Current flow potential 1400 condition: true
+lower potential
+Size of the queue: 6
+Current: 1100011111 valve:DD flowRate:59 released:810 timeLeft:10
+Current flow potential 1400 condition: false
+Loop
+Size of the queue: 5
+Current: 1111101011 valve:FF flowRate:76 released:928 timeLeft:9
+Current flow potential 1612 condition: false
+Loop
+Size of the queue: 4
+Current: 1111101011 valve:DD flowRate:76 released:928 timeLeft:9
+Current flow potential 1612 condition: false
+Size of the queue: 6
+Current: 1111111011 valve:EE flowRate:79 released:928 timeLeft:9
+Current flow potential 1639 condition: false
+Size of the queue: 7
+Current: 1100011111 valve:AA flowRate:59 released:869 timeLeft:9
+Current flow potential 1400 condition: false
+Loop
+Size of the queue: 6
+Current: 1100011111 valve:JJ flowRate:59 released:869 timeLeft:9
+Current flow potential 1400 condition: false
+Size of the queue: 6
+Current: 1111101011 valve:CC flowRate:76 released:1004 timeLeft:8
+Current flow potential 1612 condition: false
+Size of the queue: 8
+Current: 1111101011 valve:AA flowRate:76 released:1004 timeLeft:8
+Current flow potential 1612 condition: false
+Size of the queue: 10
+Current: 1111101011 valve:EE flowRate:76 released:1004 timeLeft:8
+Current flow potential 1612 condition: true
+lower potential
+Size of the queue: 9
+Current: 1111111011 valve:FF flowRate:79 released:1007 timeLeft:8
+Current flow potential 1639 condition: false
+Size of the queue: 10
+Current: 1111111011 valve:DD flowRate:79 released:1007 timeLeft:8
+Current flow potential 1639 condition: false
+Size of the queue: 12
+Current: 1100011111 valve:II flowRate:59 released:928 timeLeft:8
+Current flow potential 1400 condition: false
+Loop
+Size of the queue: 11
+Current: 1111101011 valve:DD flowRate:76 released:1080 timeLeft:7
+Current flow potential 1612 condition: true
+lower potential
+Size of the queue: 10
+Current: 1111101011 valve:BB flowRate:76 released:1080 timeLeft:7
+Current flow potential 1612 condition: false
+Size of the queue: 11
+Current: 1111101111 valve:CC flowRate:78 released:1080 timeLeft:7
+Current flow potential 1626 condition: false
+Size of the queue: 12
+Current: 1111101011 valve:DD flowRate:76 released:1080 timeLeft:7
+Current flow potential 1612 condition: true
+lower potential
+Size of the queue: 11
+Current: 1111101011 valve:II flowRate:76 released:1080 timeLeft:7
+Current flow potential 1612 condition: false
+Size of the queue: 12
+Current: 1111101011 valve:BB flowRate:76 released:1080 timeLeft:7
+Current flow potential 1612 condition: false
+Loop
+Size of the queue: 11
+Current: 1111111011 valve:EE flowRate:79 released:1086 timeLeft:7
+Current flow potential 1639 condition: false
+Loop
+Size of the queue: 10
+Current: 1111111011 valve:GG flowRate:79 released:1086 timeLeft:7
+Current flow potential 1639 condition: false
+Size of the queue: 11
+Current: 1111111011 valve:CC flowRate:79 released:1086 timeLeft:7
+Current flow potential 1639 condition: false
+Size of the queue: 13
+Current: 1111111011 valve:AA flowRate:79 released:1086 timeLeft:7
+Current flow potential 1639 condition: false
+Size of the queue: 15
+Current: 1111111011 valve:EE flowRate:79 released:1086 timeLeft:7
+Current flow potential 1639 condition: false
+Loop
+Size of the queue: 14
+Current: 1111101011 valve:CC flowRate:76 released:1156 timeLeft:6
+Current flow potential 1612 condition: true
+lower potential
+Size of the queue: 13
+Current: 1111101011 valve:AA flowRate:76 released:1156 timeLeft:6
+Current flow potential 1612 condition: true
+lower potential
+Size of the queue: 12
+Current: 1111101111 valve:DD flowRate:78 released:1158 timeLeft:6
+Current flow potential 1626 condition: true
+lower potential
+Size of the queue: 11
+Current: 1111101111 valve:BB flowRate:78 released:1158 timeLeft:6
+Current flow potential 1626 condition: false
+Size of the queue: 12
+Current: 1111101011 valve:AA flowRate:76 released:1156 timeLeft:6
+Current flow potential 1612 condition: true
+lower potential
+Size of the queue: 11
+Current: 1111101011 valve:JJ flowRate:76 released:1156 timeLeft:6
+Current flow potential 1612 condition: false
+Size of the queue: 11
+Current: 1111111011 valve:FF flowRate:79 released:1165 timeLeft:6
+Current flow potential 1639 condition: false
+Loop
+Size of the queue: 10
+Current: 1111111011 valve:HH flowRate:79 released:1165 timeLeft:6
+Current flow potential 1639 condition: false
+Size of the queue: 10
+Current: 1111111011 valve:DD flowRate:79 released:1165 timeLeft:6
+Current flow potential 1639 condition: false
+Loop
+Size of the queue: 9
+Current: 1111111011 valve:BB flowRate:79 released:1165 timeLeft:6
+Current flow potential 1639 condition: false
+Size of the queue: 10
+Current: 1111111111 valve:CC flowRate:81 released:1165 timeLeft:6
+Current flow potential 1651 condition: false
+Size of the queue: 11
+Current: 1111111011 valve:DD flowRate:79 released:1165 timeLeft:6
+Current flow potential 1639 condition: false
+Loop
+Size of the queue: 10
+Current: 1111111011 valve:II flowRate:79 released:1165 timeLeft:6
+Current flow potential 1639 condition: false
+Size of the queue: 11
+Current: 1111111011 valve:BB flowRate:79 released:1165 timeLeft:6
+Current flow potential 1639 condition: false
+Loop
+Size of the queue: 10
+Current: 1111101111 valve:CC flowRate:78 released:1236 timeLeft:5
+Current flow potential 1626 condition: true
+lower potential
+Size of the queue: 9
+Current: 1111101111 valve:AA flowRate:78 released:1236 timeLeft:5
+Current flow potential 1626 condition: true
+lower potential
+Size of the queue: 8
+Current: 1111101011 valve:II flowRate:76 released:1232 timeLeft:5
+Current flow potential 1612 condition: true
+lower potential
+Size of the queue: 7
+Current: 1111111011 valve:GG flowRate:79 released:1244 timeLeft:5
+Current flow potential 1639 condition: false
+Loop
+Size of the queue: 6
+Current: 1111111011 valve:CC flowRate:79 released:1244 timeLeft:5
+Current flow potential 1639 condition: true
+lower potential
+Size of the queue: 5
+Current: 1111111011 valve:AA flowRate:79 released:1244 timeLeft:5
+Current flow potential 1639 condition: false
+Loop
+Size of the queue: 4
+Current: 1111111111 valve:DD flowRate:81 released:1246 timeLeft:5
+Current flow potential 1651 condition: false
+Size of the queue: 6
+Current: 1111111111 valve:BB flowRate:81 released:1246 timeLeft:5
+Current flow potential 1651 condition: false
+Size of the queue: 7
+Current: 1111111011 valve:AA flowRate:79 released:1244 timeLeft:5
+Current flow potential 1639 condition: false
+Loop
+Size of the queue: 6
+Current: 1111111011 valve:JJ flowRate:79 released:1244 timeLeft:5
+Current flow potential 1639 condition: false
+Size of the queue: 6
+Current: 1111111111 valve:CC flowRate:81 released:1327 timeLeft:4
+Current flow potential 1651 condition: false
+Loop
+Size of the queue: 5
+Current: 1111111111 valve:AA flowRate:81 released:1327 timeLeft:4
+Current flow potential 1651 condition: false
+Size of the queue: 7
+Current: 1111111111 valve:EE flowRate:81 released:1327 timeLeft:4
+Current flow potential 1651 condition: false
+Size of the queue: 8
+Current: 1111111111 valve:CC flowRate:81 released:1327 timeLeft:4
+Current flow potential 1651 condition: false
+Loop
+Size of the queue: 7
+Current: 1111111111 valve:AA flowRate:81 released:1327 timeLeft:4
+Current flow potential 1651 condition: false
+Loop
+Size of the queue: 6
+Current: 1111111011 valve:II flowRate:79 released:1323 timeLeft:4
+Current flow potential 1639 condition: false
+Loop
+Size of the queue: 5
+Current: 1111111111 valve:DD flowRate:81 released:1408 timeLeft:3
+Current flow potential 1651 condition: false
+Loop
+Size of the queue: 4
+Current: 1111111111 valve:II flowRate:81 released:1408 timeLeft:3
+Current flow potential 1651 condition: false
+Size of the queue: 5
+Current: 1111111111 valve:BB flowRate:81 released:1408 timeLeft:3
+Current flow potential 1651 condition: false
+Loop
+Size of the queue: 4
+Current: 1111111111 valve:FF flowRate:81 released:1408 timeLeft:3
+Current flow potential 1651 condition: false
+Size of the queue: 5
+Current: 1111111111 valve:DD flowRate:81 released:1408 timeLeft:3
+Current flow potential 1651 condition: false
+Loop
+Size of the queue: 4
+Current: 1111111111 valve:AA flowRate:81 released:1489 timeLeft:2
+Current flow potential 1651 condition: false
+Loop
+Size of the queue: 3
+Current: 1111111111 valve:JJ flowRate:81 released:1489 timeLeft:2
+Current flow potential 1651 condition: false
+Size of the queue: 3
+Current: 1111111111 valve:EE flowRate:81 released:1489 timeLeft:2
+Current flow potential 1651 condition: false
+Loop
+Size of the queue: 2
+Current: 1111111111 valve:GG flowRate:81 released:1489 timeLeft:2
+Current flow potential 1651 condition: false
+Size of the queue: 3
+Current: 1111111111 valve:II flowRate:81 released:1570 timeLeft:1
+Current flow potential 1651 condition: false
+Loop
+Size of the queue: 2
+Current: 1111111111 valve:FF flowRate:81 released:1570 timeLeft:1
+Current flow potential 1651 condition: false
+Loop
+Size of the queue: 1
+Current: 1111111111 valve:HH flowRate:81 released:1570 timeLeft:1
+Current flow potential 1651 condition: false
+Size of the queue: 1
+Current: 1111111111 valve:GG flowRate:81 released:1651 timeLeft:0
+1651
