@@ -1,0 +1,627 @@
+g++ solution.cpp -o solution.exe -std=c++2a
+./solution.exe
+Part 1: Rock: 0
+Start: 3 2
+Shifted root: 3 3
+shifted point: 3 3
+shifted point: 3 4
+shifted point: 3 5
+shifted point: 3 6
+Shifted root: 2 3
+shifted point: 2 3
+shifted point: 2 4
+shifted point: 2 5
+shifted point: 2 6
+Start: 2 3
+Shifted root: 2 4
+shifted point: 2 4
+shifted point: 2 5
+shifted point: 2 6
+shifted point: 2 7
+Shifted root: 1 3
+shifted point: 1 3
+shifted point: 1 4
+shifted point: 1 5
+shifted point: 1 6
+Start: 1 3
+Shifted root: 1 4
+shifted point: 1 4
+shifted point: 1 5
+shifted point: 1 6
+shifted point: 1 7
+Shifted root: 0 3
+shifted point: 0 3
+shifted point: 0 4
+shifted point: 0 5
+shifted point: 0 6
+Start: 0 3
+Shifted root: 0 2
+shifted point: 0 2
+shifted point: 0 3
+shifted point: 0 4
+shifted point: 0 5
+Shifted root: -1 2
+shifted point: -1 2
+Landed at: 0 2
+Rock: 1
+Start: 4 2
+Shifted root: 4 1
+shifted point: 4 2
+shifted point: 5 1
+shifted point: 5 2
+shifted point: 5 3
+shifted point: 6 2
+Shifted root: 3 1
+shifted point: 3 2
+shifted point: 4 1
+shifted point: 4 2
+shifted point: 4 3
+shifted point: 5 2
+Start: 3 1
+Shifted root: 3 2
+shifted point: 3 3
+shifted point: 4 2
+shifted point: 4 3
+shifted point: 4 4
+shifted point: 5 3
+Shifted root: 2 2
+shifted point: 2 3
+shifted point: 3 2
+shifted point: 3 3
+shifted point: 3 4
+shifted point: 4 3
+Start: 2 2
+Shifted root: 2 1
+shifted point: 2 2
+shifted point: 3 1
+shifted point: 3 2
+shifted point: 3 3
+shifted point: 4 2
+Shifted root: 1 1
+shifted point: 1 2
+shifted point: 2 1
+shifted point: 2 2
+shifted point: 2 3
+shifted point: 3 2
+Start: 1 1
+Shifted root: 1 2
+shifted point: 1 3
+shifted point: 2 2
+shifted point: 2 3
+shifted point: 2 4
+shifted point: 3 3
+Shifted root: 0 2
+shifted point: 0 3
+Landed at: 1 2
+Rock: 2
+Start: 7 2
+Shifted root: 7 3
+shifted point: 7 3
+shifted point: 7 4
+shifted point: 7 5
+shifted point: 8 5
+shifted point: 9 5
+Shifted root: 6 3
+shifted point: 6 3
+shifted point: 6 4
+shifted point: 6 5
+shifted point: 7 5
+shifted point: 8 5
+Start: 6 3
+Shifted root: 6 2
+shifted point: 6 2
+shifted point: 6 3
+shifted point: 6 4
+shifted point: 7 4
+shifted point: 8 4
+Shifted root: 5 2
+shifted point: 5 2
+shifted point: 5 3
+shifted point: 5 4
+shifted point: 6 4
+shifted point: 7 4
+Start: 5 2
+Shifted root: 5 1
+shifted point: 5 1
+shifted point: 5 2
+shifted point: 5 3
+shifted point: 6 3
+shifted point: 7 3
+Shifted root: 4 1
+shifted point: 4 1
+shifted point: 4 2
+shifted point: 4 3
+shifted point: 5 3
+shifted point: 6 3
+Start: 4 1
+Shifted root: 4 0
+shifted point: 4 0
+shifted point: 4 1
+shifted point: 4 2
+shifted point: 5 2
+shifted point: 6 2
+Shifted root: 3 0
+shifted point: 3 0
+shifted point: 3 1
+shifted point: 3 2
+shifted point: 4 2
+shifted point: 5 2
+Start: 3 0
+Shifted root: 3 1
+shifted point: 3 1
+shifted point: 3 2
+shifted point: 3 3
+Shifted root: 2 0
+shifted point: 2 0
+shifted point: 2 1
+shifted point: 2 2
+Landed at: 3 0
+Rock: 3
+Start: 9 2
+Shifted root: 9 3
+shifted point: 9 3
+shifted point: 10 3
+shifted point: 11 3
+shifted point: 12 3
+Shifted root: 8 3
+shifted point: 8 3
+shifted point: 9 3
+shifted point: 10 3
+shifted point: 11 3
+Start: 8 3
+Shifted root: 8 2
+shifted point: 8 2
+shifted point: 9 2
+shifted point: 10 2
+shifted point: 11 2
+Shifted root: 7 2
+shifted point: 7 2
+shifted point: 8 2
+shifted point: 9 2
+shifted point: 10 2
+Start: 7 2
+Shifted root: 7 3
+shifted point: 7 3
+shifted point: 8 3
+shifted point: 9 3
+shifted point: 10 3
+Shifted root: 6 3
+shifted point: 6 3
+shifted point: 7 3
+shifted point: 8 3
+shifted point: 9 3
+Start: 6 3
+Shifted root: 6 4
+shifted point: 6 4
+shifted point: 7 4
+shifted point: 8 4
+shifted point: 9 4
+Shifted root: 5 4
+shifted point: 5 4
+shifted point: 6 4
+shifted point: 7 4
+shifted point: 8 4
+Start: 5 4
+Shifted root: 5 5
+shifted point: 5 5
+shifted point: 6 5
+shifted point: 7 5
+shifted point: 8 5
+Shifted root: 4 5
+shifted point: 4 5
+shifted point: 5 5
+shifted point: 6 5
+shifted point: 7 5
+Start: 4 5
+Shifted root: 4 4
+shifted point: 4 4
+shifted point: 5 4
+shifted point: 6 4
+shifted point: 7 4
+Shifted root: 3 4
+shifted point: 3 4
+shifted point: 4 4
+shifted point: 5 4
+shifted point: 6 4
+Start: 3 4
+Shifted root: 3 3
+shifted point: 3 3
+Shifted root: 2 4
+shifted point: 2 4
+Landed at: 3 4
+Rock: 4
+Start: 10 2
+Shifted root: 10 1
+shifted point: 10 1
+shifted point: 10 2
+shifted point: 11 1
+shifted point: 11 2
+Shifted root: 9 1
+shifted point: 9 1
+shifted point: 9 2
+shifted point: 10 1
+shifted point: 10 2
+Start: 9 1
+Shifted root: 9 2
+shifted point: 9 2
+shifted point: 9 3
+shifted point: 10 2
+shifted point: 10 3
+Shifted root: 8 2
+shifted point: 8 2
+shifted point: 8 3
+shifted point: 9 2
+shifted point: 9 3
+Start: 8 2
+Shifted root: 8 3
+shifted point: 8 3
+shifted point: 8 4
+shifted point: 9 3
+shifted point: 9 4
+Shifted root: 7 3
+shifted point: 7 3
+shifted point: 7 4
+shifted point: 8 3
+shifted point: 8 4
+Start: 7 3
+Shifted root: 7 4
+shifted point: 7 4
+shifted point: 7 5
+shifted point: 8 4
+shifted point: 8 5
+Shifted root: 6 4
+shifted point: 6 4
+Landed at: 7 4
+Rock: 5
+Start: 12 2
+Shifted root: 12 1
+shifted point: 12 1
+shifted point: 12 2
+shifted point: 12 3
+shifted point: 12 4
+Shifted root: 11 1
+shifted point: 11 1
+shifted point: 11 2
+shifted point: 11 3
+shifted point: 11 4
+Start: 11 1
+Shifted root: 11 0
+shifted point: 11 0
+shifted point: 11 1
+shifted point: 11 2
+shifted point: 11 3
+Shifted root: 10 0
+shifted point: 10 0
+shifted point: 10 1
+shifted point: 10 2
+shifted point: 10 3
+Start: 10 0
+Shifted root: 10 -1
+shifted point: 10 -1
+Shifted root: 9 0
+shifted point: 9 0
+shifted point: 9 1
+shifted point: 9 2
+shifted point: 9 3
+Start: 9 0
+Shifted root: 9 1
+shifted point: 9 1
+shifted point: 9 2
+shifted point: 9 3
+shifted point: 9 4
+Shifted root: 8 1
+shifted point: 8 1
+shifted point: 8 2
+shifted point: 8 3
+shifted point: 8 4
+Landed at: 9 1
+Rock: 6
+Start: 13 2
+Shifted root: 13 1
+shifted point: 13 2
+shifted point: 14 1
+shifted point: 14 2
+shifted point: 14 3
+shifted point: 15 2
+Shifted root: 12 1
+shifted point: 12 2
+shifted point: 13 1
+shifted point: 13 2
+shifted point: 13 3
+shifted point: 14 2
+Start: 12 1
+Shifted root: 12 0
+shifted point: 12 1
+shifted point: 13 0
+shifted point: 13 1
+shifted point: 13 2
+shifted point: 14 1
+Shifted root: 11 0
+shifted point: 11 1
+shifted point: 12 0
+shifted point: 12 1
+shifted point: 12 2
+shifted point: 13 1
+Start: 11 0
+Shifted root: 11 -1
+shifted point: 11 0
+shifted point: 12 -1
+Shifted root: 10 0
+shifted point: 10 1
+shifted point: 11 0
+shifted point: 11 1
+shifted point: 11 2
+shifted point: 12 1
+Start: 10 0
+Shifted root: 10 1
+shifted point: 10 2
+shifted point: 11 1
+shifted point: 11 2
+shifted point: 11 3
+shifted point: 12 2
+Shifted root: 9 1
+shifted point: 9 2
+Landed at: 10 1
+Rock: 7
+Start: 16 2
+Shifted root: 16 3
+shifted point: 16 3
+shifted point: 16 4
+shifted point: 16 5
+shifted point: 17 5
+shifted point: 18 5
+Shifted root: 15 3
+shifted point: 15 3
+shifted point: 15 4
+shifted point: 15 5
+shifted point: 16 5
+shifted point: 17 5
+Start: 15 3
+Shifted root: 15 2
+shifted point: 15 2
+shifted point: 15 3
+shifted point: 15 4
+shifted point: 16 4
+shifted point: 17 4
+Shifted root: 14 2
+shifted point: 14 2
+shifted point: 14 3
+shifted point: 14 4
+shifted point: 15 4
+shifted point: 16 4
+Start: 14 2
+Shifted root: 14 3
+shifted point: 14 3
+shifted point: 14 4
+shifted point: 14 5
+shifted point: 15 5
+shifted point: 16 5
+Shifted root: 13 3
+shifted point: 13 3
+shifted point: 13 4
+shifted point: 13 5
+shifted point: 14 5
+shifted point: 15 5
+Start: 13 3
+Shifted root: 13 4
+shifted point: 13 4
+shifted point: 13 5
+shifted point: 13 6
+shifted point: 14 6
+shifted point: 15 6
+Shifted root: 12 4
+shifted point: 12 4
+shifted point: 12 5
+shifted point: 12 6
+shifted point: 13 6
+shifted point: 14 6
+Start: 12 4
+Shifted root: 12 3
+shifted point: 12 3
+shifted point: 12 4
+shifted point: 12 5
+shifted point: 13 5
+shifted point: 14 5
+Shifted root: 11 3
+shifted point: 11 3
+Landed at: 12 3
+Rock: 8
+Start: 18 2
+Shifted root: 18 1
+shifted point: 18 1
+shifted point: 19 1
+shifted point: 20 1
+shifted point: 21 1
+Shifted root: 17 1
+shifted point: 17 1
+shifted point: 18 1
+shifted point: 19 1
+shifted point: 20 1
+Start: 17 1
+Shifted root: 17 2
+shifted point: 17 2
+shifted point: 18 2
+shifted point: 19 2
+shifted point: 20 2
+Shifted root: 16 2
+shifted point: 16 2
+shifted point: 17 2
+shifted point: 18 2
+shifted point: 19 2
+Start: 16 2
+Shifted root: 16 3
+shifted point: 16 3
+shifted point: 17 3
+shifted point: 18 3
+shifted point: 19 3
+Shifted root: 15 3
+shifted point: 15 3
+shifted point: 16 3
+shifted point: 17 3
+shifted point: 18 3
+Start: 15 3
+Shifted root: 15 4
+shifted point: 15 4
+shifted point: 16 4
+shifted point: 17 4
+shifted point: 18 4
+Shifted root: 14 4
+shifted point: 14 4
+shifted point: 15 4
+shifted point: 16 4
+shifted point: 17 4
+Start: 14 4
+Shifted root: 14 5
+shifted point: 14 5
+Shifted root: 13 4
+shifted point: 13 4
+shifted point: 14 4
+shifted point: 15 4
+shifted point: 16 4
+Start: 13 4
+Shifted root: 13 5
+shifted point: 13 5
+Shifted root: 12 4
+shifted point: 12 4
+Landed at: 13 4
+Rock: 9
+Start: 20 2
+Shifted root: 20 1
+shifted point: 20 1
+shifted point: 20 2
+shifted point: 21 1
+shifted point: 21 2
+Shifted root: 19 1
+shifted point: 19 1
+shifted point: 19 2
+shifted point: 20 1
+shifted point: 20 2
+Start: 19 1
+Shifted root: 19 0
+shifted point: 19 0
+shifted point: 19 1
+shifted point: 20 0
+shifted point: 20 1
+Shifted root: 18 0
+shifted point: 18 0
+shifted point: 18 1
+shifted point: 19 0
+shifted point: 19 1
+Start: 18 0
+Shifted root: 18 1
+shifted point: 18 1
+shifted point: 18 2
+shifted point: 19 1
+shifted point: 19 2
+Shifted root: 17 1
+shifted point: 17 1
+shifted point: 17 2
+shifted point: 18 1
+shifted point: 18 2
+Start: 17 1
+Shifted root: 17 0
+shifted point: 17 0
+shifted point: 17 1
+shifted point: 18 0
+shifted point: 18 1
+Shifted root: 16 0
+shifted point: 16 0
+shifted point: 16 1
+shifted point: 17 0
+shifted point: 17 1
+Start: 16 0
+Shifted root: 16 1
+shifted point: 16 1
+shifted point: 16 2
+shifted point: 17 1
+shifted point: 17 2
+Shifted root: 15 1
+shifted point: 15 1
+shifted point: 15 2
+shifted point: 16 1
+shifted point: 16 2
+Start: 15 1
+Shifted root: 15 2
+shifted point: 15 2
+shifted point: 15 3
+shifted point: 16 2
+shifted point: 16 3
+Shifted root: 14 2
+shifted point: 14 2
+shifted point: 14 3
+shifted point: 15 2
+shifted point: 15 3
+Start: 14 2
+Shifted root: 14 1
+shifted point: 14 1
+shifted point: 14 2
+shifted point: 15 1
+shifted point: 15 2
+Shifted root: 13 1
+shifted point: 13 1
+shifted point: 13 2
+shifted point: 14 1
+shifted point: 14 2
+Start: 13 1
+Shifted root: 13 0
+shifted point: 13 0
+shifted point: 13 1
+shifted point: 14 0
+shifted point: 14 1
+Shifted root: 12 0
+shifted point: 12 0
+shifted point: 12 1
+shifted point: 13 0
+shifted point: 13 1
+Start: 12 0
+Shifted root: 12 -1
+shifted point: 12 -1
+Shifted root: 11 0
+shifted point: 11 0
+shifted point: 11 1
+Landed at: 12 0
+Rock: 10
+Start: 20 2
+Shifted root: 20 3
+shifted point: 20 3
+shifted point: 20 4
+shifted point: 20 5
+shifted point: 20 6
+Shifted root: 19 3
+shifted point: 19 3
+shifted point: 19 4
+shifted point: 19 5
+shifted point: 19 6
+Start: 19 3
+Shifted root: 19 4
+shifted point: 19 4
+shifted point: 19 5
+shifted point: 19 6
+shifted point: 19 7
+Shifted root: 18 3
+shifted point: 18 3
+shifted point: 18 4
+shifted point: 18 5
+shifted point: 18 6
+Start: 18 3
+Shifted root: 18 2
+shifted point: 18 2
+shifted point: 18 3
+shifted point: 18 4
+shifted point: 18 5
+Shifted root: 17 2
+shifted point: 17 2
+shifted point: 17 3
+shifted point: 17 4
+shifted point: 17 5
+Start: 17 2
+Shifted root: 17 3
+shifted point: 17 3
+shifted point: 17 4
+shifted point: 17 5
+shifted point: 17 6
+Shifted root: 16 3
+shifted point: 16 3
+shifted point: 16 4
+Landed at: 17 3
+17
