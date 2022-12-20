@@ -11,8 +11,8 @@ template <class T>
 struct PairHash {
   std::size_t operator()(const std::pair<T, T>& key) const {
     std::size_t hash = 0;
-    hash = std::hash<int>()(key.first) << 16;
-    hash ^= std::hash<int>()(key.second);
+    hash = std::hash<T>()(key.first) << 16;
+    hash ^= std::hash<T>()(key.second);
     return hash;
   }
 };
@@ -29,7 +29,6 @@ class Solution {
       auto start = getStartingPoint<int64_t>(heights);
       // std::cout << "Rock: " << rocks << '\n';
       auto didShift = true;
-      if (rocks % shapes.size() == 0) std::cout << "Rock: " << rocks << " jets: " << jet << '\n';
       while (didShift) {
         // std::cout << "Start: " << start.first << " " << start.second << '\n';
         switch (shifts[jet % shifts.size()]) {
@@ -42,7 +41,6 @@ class Solution {
           default:
             assert(false);
         }
-        if (jet % 40 == 0) std::cout << "Height: " << height(heights) << '\n';
         jet++;
         didShift = shiftShape(start, shapes[rocks % shapes.size()], DOWN, allPoints);
       }
@@ -59,16 +57,55 @@ class Solution {
   }
 
   int64_t part2(const std::string& path) {
-    auto jets = readInput(path);
+    auto shifts = readInput(path);
     auto [heights, allPoints] = prepareStructures<int64_t>();
-    int64_t rocks = 0;
-    int64_t jet = 0;
+    int rocks = 0;
+    int jet = 0;
 
-    std::cout << shapes.size() << " " << jets.size() << " ";
-    std::cout << (int)std::lcm(shapes.size(), jets.size());
+    auto isValidFloor = [&](const std::vector<int64_t>& heights) {
+      return heights[2] == heights[3] == heights[4] == heights[5] && heights[0] < 4 && heights[1] < 4 &&
+             heights[6] < 18;
+    };
+    while (rocks < 1e7) {
+      // bool isBottomCovered = true;
+      // for (const auto& height : heights) isBottomCovered = isBottomCovered && height > -1;
+      // if (isBottomCovered) {
+      //   std::cout << "Bottom covered after: " << rocks << " rocks\n";
+      //   for (const auto& [x, y] : allPoints)
+      //     if (x < 30) std::cout << x << " " << y << '\n';
+      //   break;
+      // }
+      // if (rocks % shapes.size() == 0 && rocks != 0 && isValidFloor(heights)) {
+      //   std::cout << "Floor repeated!\n";
+      //   std::cout << "Rocks: " << rocks << '\n';
+      // }
+      if (rocks % shapes.size() == 0 && jet % shifts.size() == 0)
+        std::cout << "Cycle: " << rocks << " " << jet << " h: " << height(heights) << '\n';
+      auto start = getStartingPoint<int64_t>(heights);
+      auto didShift = true;
+      while (didShift) {
+        switch (shifts[jet % shifts.size()]) {
+          case '>':
+            shiftShape(start, shapes[rocks % shapes.size()], RIGHT, allPoints);
+            break;
+          case '<':
+            shiftShape(start, shapes[rocks % shapes.size()], LEFT, allPoints);
+            break;
+          default:
+            assert(false);
+        }
+        jet++;
+        didShift = shiftShape(start, shapes[rocks % shapes.size()], DOWN, allPoints);
+      }
+      for (const auto& point : shapes[rocks % shapes.size()]) {
+        auto added = add(start, point);
+        heights[added.second] = std::max(heights[added.second], added.first);
+        allPoints.insert(added);
+      }
+      rocks++;
+    }
 
-    std::cout << '\n';
-    return 0;
+    return *std::max_element(heights.begin(), heights.end()) + 1;
   }
 
  private:
@@ -128,6 +165,6 @@ class Solution {
 int main() {
   Solution s;
   std::cout << "Part 1: " << s.part1("input") << '\n';
-  std::cout << "Part 2: " << s.part2("test") << '\n';
+  std::cout << "Part 2: " << s.part2("input") << '\n';
   return 0;
 }
