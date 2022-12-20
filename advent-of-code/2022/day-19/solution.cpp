@@ -48,9 +48,9 @@ struct Blueprint {
 constexpr int TIME_LIMIT = 24;
 class BlueprintQuality {
  public:
-  static int get(const Blueprint& blueprint) {
+  static int get(const Blueprint& blueprint, const int& timeLimit = TIME_LIMIT) {
     std::stack<State> dfs;
-    dfs.push({1, 0, 0, 0, 0, 0, 0, TIME_LIMIT});
+    dfs.push({1, 0, 0, 0, 0, 0, 0, timeLimit});
     int maxGeodes = 0;
 
     while (!dfs.empty()) {
@@ -61,19 +61,21 @@ class BlueprintQuality {
         maxGeodes = std::max(maxGeodes, stored(Geode, state));
         continue;
       }
+      if (stored(Geode, state) + timeLeft * (timeLeft + 1) / 2 <= maxGeodes) {
+        continue;
+      }
 
-      print(state);
       for (const auto& material : {Geode, Obsidian, Clay, Ore}) {
         if (productionEqualsMaxNeed(material, state, blueprint)) continue;
         if (!canBuildRobot(material, state)) continue;
         auto daysToSkip = daysToBuildRobot(material, state, blueprint);
         auto newState = advanceDays(daysToSkip, state);
-        // print(newState);
         newState = buyRobot(material, newState, blueprint);
         dfs.push(newState);
       }
     }
 
+    // std::cout << "Max geodes: " << maxGeodes << '\n';
     return maxGeodes * blueprint.index;
   }
 
@@ -81,10 +83,10 @@ class BlueprintQuality {
   using State = std::tuple<int, int, int, int, int, int, int,
                            int>;  // oreR, clayR, obsidianR, ore, clay, obsidian, geode, timeLeft
   static void print(const State& state) {
-    std::cout << "State. Ore Rs: " << std::get<0>(state) << " Clay Rs:" << std::get<1>(state)
-              << " Obsidian Rs:" << std::get<2>(state) << " stored: " << stored(Ore, state) << " "
-              << stored(Clay, state) << " " << stored(Obsidian, state) << " " << stored(Geode, state)
-              << " time: " << std::get<7>(state) << '\n';
+    std::cout << "State. Ore Rs:" << std::get<0>(state) << " Clay Rs:" << std::get<1>(state)
+              << " Obsidian Rs:" << std::get<2>(state) << " stored:" << stored(Ore, state) << " " << stored(Clay, state)
+              << " " << stored(Obsidian, state) << " " << stored(Geode, state) << " time:" << std::get<7>(state)
+              << '\n';
   }
   static bool canBuildRobot(const Material& material, const State& state) {
     switch (material) {
@@ -122,7 +124,7 @@ class BlueprintQuality {
                 std::get<3>(state) - b.geodeRobot.first,
                 std::get<4>(state),
                 std::get<5>(state) - b.geodeRobot.second,
-                std::get<6>(state) + std::get<7>(state) - 1,
+                std::get<6>(state) + std::max(0, std::get<7>(state)),
                 std::get<7>(state)};
     }
   }
@@ -132,18 +134,26 @@ class BlueprintQuality {
     auto roundUp = [&](const auto& divident, const auto& divisor) {
       return divident % divisor == 0 ? divident / divisor : divident / divisor + 1;
     };
+
     switch (material) {
       case Ore:
-        return roundUp(std::max(blueprint.oreRobot - stored(Ore, state), 0), std::get<0>(state)) + 1;
+        if (blueprint.oreRobot <= stored(Ore, state)) return 1;
+        return roundUp(blueprint.oreRobot - stored(Ore, state), std::get<0>(state)) + 1;
       case Clay:
-        return roundUp(std::max(blueprint.clayRobot - stored(Clay, state), 0), std::get<0>(state)) + 1;
+        if (blueprint.clayRobot - stored(Ore, state) <= 0) return 1;
+        return roundUp(blueprint.clayRobot - stored(Ore, state), std::get<0>(state)) + 1;
       case Obsidian:
-        oreWait = roundUp(std::max(blueprint.obsidianRobot.first - stored(Ore, state), 0), std::get<0>(state));
-        clayWait = roundUp(std::max(blueprint.obsidianRobot.second - stored(Clay, state), 0), std::get<1>(state));
+        if (blueprint.obsidianRobot.first <= stored(Ore, state) &&
+            blueprint.obsidianRobot.second <= stored(Clay, state))
+          return 1;
+        oreWait = roundUp(blueprint.obsidianRobot.first - stored(Ore, state), std::get<0>(state));
+        clayWait = roundUp(blueprint.obsidianRobot.second - stored(Clay, state), std::get<1>(state));
         return std::max(oreWait, clayWait) + 1;
       case Geode:
-        oreWait = roundUp(std::max(blueprint.geodeRobot.first - stored(Ore, state), 0), std::get<0>(state));
-        obsidianWait = roundUp(std::max(0, blueprint.geodeRobot.second - stored(Obsidian, state)), std::get<2>(state));
+        if (blueprint.geodeRobot.first <= stored(Ore, state) && blueprint.geodeRobot.second <= stored(Obsidian, state))
+          return 1;
+        oreWait = roundUp(blueprint.geodeRobot.first - stored(Ore, state), std::get<0>(state));
+        obsidianWait = roundUp(blueprint.geodeRobot.second - stored(Obsidian, state), std::get<2>(state));
         return std::max(oreWait, obsidianWait) + 1;
     }
   }
@@ -190,15 +200,23 @@ class Solution {
  public:
   int part1(const std::string& path) {
     auto blueprints = parseInput(path);
-    for (const auto& b : blueprints) b.print(std::cout);
     int sum = 0;
 
     for (const auto& blueprint : blueprints) {
       auto quality = BlueprintQuality::get(blueprint);
-      std::cout << "QUALITY: " << quality << '\n';
       sum += quality;
     }
     return sum;
+  }
+
+  int part2(const std::string& path) {
+    auto blueprints = parseInput(path);
+    int multiplier = 1;
+    for (int i = 0; i < 3; i++) {
+      auto quality = BlueprintQuality::get(blueprints[i], 32);
+      multiplier *= quality / blueprints[i].index;
+    }
+    return multiplier;
   }
 
  private:
@@ -224,6 +242,7 @@ class Solution {
 
 int main() {
   Solution s;
-  std::cout << "Part 1: " << s.part1("test") << '\n';
+  std::cout << "Part 1: " << s.part1("input") << '\n';
+  std::cout << "Part 2: " << s.part2("input") << '\n';
   return 0;
 }
