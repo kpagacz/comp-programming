@@ -7,6 +7,14 @@
 #include <unordered_set>
 #include <vector>
 
+#include "utils.cc"
+
+template <class Ch, class Tr, class... Args>
+auto& operator<<(std::basic_ostream<Ch, Tr>& os, std::tuple<Args...> const& t) {
+  std::apply([&os](auto&&... args) { ((os << args << " "), ...); }, t);
+  return os;
+}
+
 template <class T>
 struct PairHash {
   std::size_t operator()(const std::pair<T, T>& key) const {
@@ -27,10 +35,8 @@ class Solution {
 
     while (rocks < 2022) {
       auto start = getStartingPoint<int64_t>(heights);
-      // std::cout << "Rock: " << rocks << '\n';
       auto didShift = true;
       while (didShift) {
-        // std::cout << "Start: " << start.first << " " << start.second << '\n';
         switch (shifts[jet % shifts.size()]) {
           case '>':
             shiftShape(start, shapes[rocks % shapes.size()], RIGHT, allPoints);
@@ -44,7 +50,6 @@ class Solution {
         jet++;
         didShift = shiftShape(start, shapes[rocks % shapes.size()], DOWN, allPoints);
       }
-      // std::cout << "Landed at: " << start.first << " " << start.second << '\n';
       for (const auto& point : shapes[rocks % shapes.size()]) {
         auto added = add(start, point);
         heights[added.second] = std::max(heights[added.second], added.first);
@@ -62,27 +67,30 @@ class Solution {
     int rocks = 0;
     int jet = 0;
 
-    auto isValidFloor = [&](const std::vector<int64_t>& heights) {
-      return heights[2] == heights[3] == heights[4] == heights[5] && heights[0] < 4 && heights[1] < 4 &&
-             heights[6] < 18;
+    using Key = std::tuple<int, int, int, int, int, int, int, int>;
+    using Value = std::vector<std::tuple<int, int>>;  // rocks fallen, height
+
+    std::unordered_map<Key, Value, utils::TupleHash<int, int, int, int, int, int, int, int>> cache;
+    auto constructKey = [&](const int& jet, const std::vector<int64_t>& heights, const auto& allPoints) {
+      std::vector<int> masks;
+      auto maxHeight = height(heights);
+      for (int i = 0; i < heights.size(); i++) {
+        int mask = 0;
+        for (int j = 0; j < 30; j++)
+          if (allPoints.contains({maxHeight - j, i})) mask |= 1 << j;
+        masks.push_back(mask);
+      }
+      return std::make_tuple(jet, masks[0], masks[1], masks[2], masks[3], masks[4], masks[5], masks[6]);
     };
-    while (rocks < 1e7) {
-      // bool isBottomCovered = true;
-      // for (const auto& height : heights) isBottomCovered = isBottomCovered && height > -1;
-      // if (isBottomCovered) {
-      //   std::cout << "Bottom covered after: " << rocks << " rocks\n";
-      //   for (const auto& [x, y] : allPoints)
-      //     if (x < 30) std::cout << x << " " << y << '\n';
-      //   break;
-      // }
-      // if (rocks % shapes.size() == 0 && rocks != 0 && isValidFloor(heights)) {
-      //   std::cout << "Floor repeated!\n";
-      //   std::cout << "Rocks: " << rocks << '\n';
-      // }
-      if (rocks % shapes.size() == 0 && jet % shifts.size() == 0)
-        std::cout << "Cycle: " << rocks << " " << jet << " h: " << height(heights) << '\n';
+
+    while (rocks < 4000) {
       auto start = getStartingPoint<int64_t>(heights);
       auto didShift = true;
+
+      // cache
+      auto key = constructKey(jet, heights, allPoints);
+      cache[key].push_back({rocks, height(heights)});
+
       while (didShift) {
         switch (shifts[jet % shifts.size()]) {
           case '>':
@@ -94,7 +102,7 @@ class Solution {
           default:
             assert(false);
         }
-        jet++;
+        jet = (jet + 1) % shifts.size();
         didShift = shiftShape(start, shapes[rocks % shapes.size()], DOWN, allPoints);
       }
       for (const auto& point : shapes[rocks % shapes.size()]) {
@@ -105,20 +113,82 @@ class Solution {
       rocks++;
     }
 
-    return *std::max_element(heights.begin(), heights.end()) + 1;
+    // Cycle detection
+    int cycleBaseRocks, cycleBaseHeight, cycleHeightDelta, cycleRockDelta;
+    for (const auto& [key, series] : cache) {
+      auto s = series.size();
+      bool found = false;
+      for (int i = 0; i < s && !found; i++)
+        for (int j = i + 1; j < s && !found; j++)
+          for (int k = j + 1; k < s && !found; k++) {
+            const auto [firstRocks, firstHeight] = series[i];
+            const auto [secondRocks, secondHeight] = series[j];
+            const auto [thirdRocks, thirdHeight] = series[k];
+            if (secondRocks - firstRocks == thirdRocks - secondRocks &&
+                secondHeight - firstHeight == thirdHeight - secondHeight) {
+              std::cout << "\nCYCLE DETECTED:\n";
+              std::cout << "Cycle begins with rock:" << firstRocks << " at height:" << firstHeight << '\n';
+              std::cout << "Repeats at rock:" << secondRocks << " at height:" << secondHeight << '\n';
+              std::cout << "Shows again at rock:" << thirdRocks << " at height:" << thirdHeight << '\n';
+              found = true;
+              cycleBaseRocks = firstRocks, cycleBaseHeight = firstHeight, cycleRockDelta = secondRocks - firstRocks,
+              cycleHeightDelta = secondHeight - firstHeight;
+            }
+          }
+      if (found) break;
+    }
+
+    // run again
+    std::tie(heights, allPoints) = prepareStructures<int64_t>();
+    rocks = 0;
+    jet = 0;
+    const int64_t TO_THROW = 1e12;
+    int toThrowAdditional = (TO_THROW - cycleBaseRocks) % cycleRockDelta;
+    while (rocks < cycleBaseRocks + toThrowAdditional) {
+      auto start = getStartingPoint<int64_t>(heights);
+      auto didShift = true;
+
+      while (didShift) {
+        switch (shifts[jet % shifts.size()]) {
+          case '>':
+            shiftShape(start, shapes[rocks % shapes.size()], RIGHT, allPoints);
+            break;
+          case '<':
+            shiftShape(start, shapes[rocks % shapes.size()], LEFT, allPoints);
+            break;
+          default:
+            assert(false);
+        }
+        jet = (jet + 1) % shifts.size();
+        didShift = shiftShape(start, shapes[rocks % shapes.size()], DOWN, allPoints);
+      }
+      for (const auto& point : shapes[rocks % shapes.size()]) {
+        auto added = add(start, point);
+        heights[added.second] = std::max(heights[added.second], added.first);
+        allPoints.insert(added);
+      }
+      rocks++;
+    }
+    auto additionalHeight = height(heights) - cycleBaseHeight;
+    auto finalHeight =
+        cycleBaseHeight + cycleHeightDelta * ((TO_THROW - cycleBaseRocks) / cycleRockDelta) + additionalHeight + 1;
+
+    return finalHeight;
   }
 
  private:
   template <class T>
-  std::tuple<std::vector<T>, std::unordered_set<std::pair<T, T>, PairHash<T>>> prepareStructures() {
+  std::tuple<std::vector<T>, std::unordered_set<std::pair<T, T>, utils::TupleHash<int64_t, int64_t>>>
+  prepareStructures() {
     auto heights = std::vector<T>(7, -1);
-    auto allPoints = std::unordered_set<std::pair<T, T>, PairHash<T>>();
+    auto allPoints = std::unordered_set<std::pair<T, T>, utils::TupleHash<int64_t, int64_t>>();
     return {heights, allPoints};
   }
 
-  bool shiftShape(std::pair<int64_t, int64_t>& root, const std::vector<std::pair<int64_t, int64_t>>& shape,
-                  const std::pair<int64_t, int64_t> shift,
-                  const std::unordered_set<std::pair<int64_t, int64_t>, PairHash<int64_t>>& allPoints) {
+  bool shiftShape(
+      std::pair<int64_t, int64_t>& root, const std::vector<std::pair<int64_t, int64_t>>& shape,
+      const std::pair<int64_t, int64_t> shift,
+      const std::unordered_set<std::pair<int64_t, int64_t>, utils::TupleHash<int64_t, int64_t>>& allPoints) {
     auto shiftedRoot = add(root, shift);
     for (const auto& point : shape) {
       auto shifted = add(shiftedRoot, point);
