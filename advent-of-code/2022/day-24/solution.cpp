@@ -1,4 +1,5 @@
 #include <cassert>
+#include <chrono>
 #include <fstream>
 #include <iostream>
 #include <queue>
@@ -9,6 +10,14 @@
 
 #include "utils.cc"
 
+template <class result_t = std::chrono::milliseconds, class clock_t = std::chrono::steady_clock,
+          class duration_t = std::chrono::milliseconds>
+auto since(std::chrono::time_point<clock_t, duration_t> const& start) {
+  return std::chrono::duration_cast<result_t>(clock_t::now() - start);
+}
+
+using Blizzard = std::pair<int, int>;                              // offset, step
+using Blizzards = std::unordered_map<int, std::vector<Blizzard>>;  // col or row -> Blizzards
 class Solution {
  public:
   int part1(const std::string& path) {
@@ -16,7 +25,10 @@ class Solution {
     const std::pair<int, int> START{0, 1};
     const std::pair<int, int> END{grid.size() - 1, grid[0].size() - 2};
 
-    return findFastest(rowBlizzards, colBlizzards, grid, 0, START, END);
+    // auto start = std::chrono::steady_clock::now();
+    auto answer = findFastest(rowBlizzards, colBlizzards, grid, 0, START, END);
+    // std::cout << "Elapsed(ms)=" << since(start).count() << std::endl;
+    return answer;
   }
 
   int part2(const std::string& path) {
@@ -30,19 +42,8 @@ class Solution {
     return againToTheEnd;
   }
 
-  void tests() {
-    using State = std::tuple<int, int, int, int>;  // estimate, actual time passed, current x, current y
-    std::priority_queue<State, std::vector<State>, std::greater<State>> astar{std::greater<State>()};
-    astar.push({1, 0, 0, 0});
-    astar.push({3, 0, 0, 0});
-    std::cout << std::get<0>(astar.top());
-  }
-
  private:
-  using Blizzard = std::pair<int, int>;                              // offset, step
-  using Blizzards = std::unordered_map<int, std::vector<Blizzard>>;  // col or row -> Blizzards
   const std::vector<std::pair<int, int>> moves{{-1, 0}, {0, -1}, {0, 0}, {1, 0}, {0, 1}};
-
   int findFastest(const Blizzards& rowBlizzards, const Blizzards& colBlizzards,
                   const std::vector<std::vector<char>>& grid, const int& startingTime, const std::pair<int, int>& START,
                   const std::pair<int, int>& END) {
@@ -54,8 +55,7 @@ class Solution {
     std::unordered_set<std::tuple<int, int, int>, utils::TupleHash<int, int, int>> cache;
 
     auto estimateTimeLeft = [&](const auto& currentX, const auto& currentY) {
-      // return (END.first - currentX) * (END.first - currentX) + (END.second - currentY) * (END.second - currentY);
-      return 0;
+      return std::abs(END.first - currentX) + std::abs(END.second - currentY);
     };
     auto blizzardPosition = [&, &grid = grid](const auto& blizzard, const auto& time, const auto& isRowBlizzard) {
       const int modulo = isRowBlizzard ? grid[0].size() - 2 : grid.size() - 2;
@@ -132,6 +132,5 @@ int main() {
   Solution s;
   std::cout << "Part 1: " << s.part1("input") << '\n';
   std::cout << "Part 2: " << s.part2("input") << '\n';
-  // s.tests();
   return 0;
 }
