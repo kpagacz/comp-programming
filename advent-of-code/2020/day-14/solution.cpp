@@ -1,9 +1,10 @@
+#include <algorithm>
 #include <bitset>
-#include <cassert>
 #include <cstdio>
 #include <fstream>
 #include <iostream>
 #include <numeric>
+#include <ranges>
 #include <sstream>
 #include <string>
 #include <unordered_map>
@@ -43,6 +44,7 @@ class Solution {
       if (mask[it] == '1') ones |= 1ull << bitShift;
       if (mask[it] == '0') zeros &= ~(1ull << bitShift);
     }
+    std::cout << std::ranges::count(mask, 'X') << '\n';
     return {ones, zeros};
   }
   std::pair<NumType, NumType> parseMem(const std::string& line) {
