@@ -45,6 +45,18 @@ std::string replaceAll(const std::string_view& text, const std::string_view& pat
   }
   return out;
 }
+
+std::vector<std::string> split(const std::string_view& text, const std::string_view& separator) {
+  std::string baseText{text};
+  std::vector<std::string> components;
+  std::size_t it{0}, found;
+  while ((found = text.find(separator, it)) != text.npos) {
+    components.push_back(baseText.substr(it, found - it));
+    it = found + separator.size();
+  }
+  components.push_back(baseText.substr(it));
+  return components;
+}
 }  // namespace utils
 
 // int main() {
