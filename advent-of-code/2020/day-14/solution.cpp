@@ -1,4 +1,6 @@
 #include <algorithm>
+#include <bitset>
+#include <cassert>
 #include <cstdio>
 #include <fstream>
 #include <iostream>
@@ -19,9 +21,8 @@ class Solution {
     Bitmask ones, zeros;
     std::unordered_map<NumType, NumType> memory;
     while (std::getline(input, line)) {
-      if (line.starts_with("mask")) {
-        std::tie(ones, zeros) = parseMask(line);
-      } else {
+      if (line.starts_with("mask")) std::tie(ones, zeros) = parseMask(line);
+      else {
         auto [address, value] = parseMem(line);
         value |= ones;
         value &= zeros;
@@ -29,57 +30,72 @@ class Solution {
       }
     }
 
-    return std::accumulate(memory.begin(), memory.end(), (NumType)0,
-                           [](const auto& total, const auto& el) { return total + el.second; });
+    auto values = memory | std::views::values | std::views::common;
+    return std::accumulate(values.begin(), values.end(), (NumType)0);
   }
   NumType part2(const std::string& path) {
+    std::unordered_map<NumType, NumType> memory;
+    std::vector<std::size_t> floatingBitsPositions;
+    std::vector<Bitmask> masks;
+
     std::fstream input(path, std::ios_base::in);
     std::string line;
-    std::vector<Bitmask> masks;
-    std::unordered_map<NumType, NumType> memory;
     while (std::getline(input, line)) {
-      if (line.starts_with("mask")) masks = parseMaskForPart2(line);
+      if (line.starts_with("mask")) std::tie(floatingBitsPositions, masks) = parseMaskForPart2(line);
       else {
-        auto [address, value] = parseMem(line);
-        for (const auto& mask : masks) memory[address | mask] = value;
+        const auto& [address, value] = parseMem(line);
+        std::ranges::for_each(masks, [&](const auto& mask) {
+          auto maskedAddress =
+              std::accumulate(floatingBitsPositions.begin(), floatingBitsPositions.end(), address | mask,
+                              [&](const auto& maskedAddress, const auto& pos) {
+                                return ((mask & (1ull << pos))) ? maskedAddress : maskedAddress & (~(1ull << pos));
+                              });
+          memory[maskedAddress] = value;
+        });
       }
     }
 
-    return std::accumulate(memory.begin(), memory.end(), (NumType)0,
-                           [](const auto& total, const auto& pair) { return total + pair.second; });
+    auto values = memory | std::views::values | std::views::common;
+    return std::accumulate(values.begin(), values.end(), (NumType)0);
   }
 
  private:
-  std::vector<Bitmask> parseMaskForPart2(const std::string& line) {
+  std::pair<std::vector<std::size_t>, std::vector<Bitmask>> parseMaskForPart2(const std::string& line) {
     std::stringstream ss(line);
     std::string mask;
     ss >> mask >> mask >> mask;
-    std::vector<std::string> masks;
-    auto size = std::ranges::count(mask, 'X');
-    masks.reserve(size);
-    masks.push_back(mask);
 
+    std::vector<std::size_t> floating;
+    for (auto idx : std::views::iota(0u, mask.size()))
+      if (mask[idx] == 'X') floating.push_back(mask.size() - 1 - idx);
+
+    // Masks
+    std::vector<std::string> masks = {mask};
     while (std::ranges::find(masks[0], 'X') != masks[0].end()) {
-      auto changedBit = std::find(masks[0].begin(), masks[0].end(), 'X') - masks[0].begin();
-      std::vector<std::string> certainMasks;
-      certainMasks.reserve(1 << 10);
-
+      std::vector<std::string> newMasks;
+      newMasks.reserve(masks.size() * 2);
+      auto foundX = masks[0].find('X');
       for (auto& mask : masks) {
-        mask[changedBit] = '0', certainMasks.push_back(mask);
-        mask[changedBit] = '1', certainMasks.push_back(mask);
+        mask[foundX] = '0', newMasks.push_back(mask);
+        mask[foundX] = '1', newMasks.push_back(mask);
       }
-      masks = certainMasks;
+      masks = newMasks;
     }
 
-    auto castToNumType = [](const auto& el) { return std::stoull(el); };
-    std::vector<Bitmask> casted;
-    std::ranges::transform(masks, std::back_inserter(casted), castToNumType);
-    return casted;
+    assert(masks.size() == (1ull << std::ranges::count(mask, 'X')));
+
+    std::vector<Bitmask> cast;
+    std::ranges::transform(masks, std::back_inserter(cast),
+                           [&](const auto& mask) { return std::stoull(mask, nullptr, 2); });
+    return {floating, cast};
   }
   std::pair<Bitmask, Bitmask> parseMask(const std::string& line) {
     std::stringstream ss(line);
     std::string mask;
     ss >> mask >> mask >> mask;
+    return convertMaskToPair(mask);
+  }
+  std::pair<Bitmask, Bitmask> convertMaskToPair(const std::string& mask) {
     Bitmask ones = 0, zeros = UINT64_MAX;
     for (std::string::size_type it{0}; it < mask.size(); it++) {
       auto bitShift = mask.size() - 1 - it;
@@ -97,6 +113,7 @@ class Solution {
 int main() {
   Solution s;
   std::cout << "Part 1: " << s.part1("input") << '\n';
-  std::cout << "Part 2: " << s.part2("test") << '\n';
+  std::cout << "Part 2: " << s.part2("input") << '\n';
+
   return 0;
 }
