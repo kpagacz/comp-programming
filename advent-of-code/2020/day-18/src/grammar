@@ -1,0 +1,12 @@
+EXPR := (* TERM EXPROPT* )*
+EXPROPT := * EXPR
+TERM := NUM TERMOPT*
+TERMOPT := + (EXPR) | + NUM
+
+Operator precedence: addition first, multiplication later
+
+Examples:
+1 + 2 + 3
+2 * 3
+2 + 3 * 7
+(1 + 2) * 3
