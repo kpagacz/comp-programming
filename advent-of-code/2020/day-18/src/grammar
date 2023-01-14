@@ -1,7 +1,8 @@
-EXPR := (* TERM EXPROPT* )*
+EXPR := TERM EXPROPT*
 EXPROPT := * EXPR
-TERM := NUM TERMOPT*
-TERMOPT := + (EXPR) | + NUM
+TERM := FACTOR TERMOPT*
+TERMOPT := + TERM
+FACTOR := ( EXPR ) | NUM
 
 Operator precedence: addition first, multiplication later
 

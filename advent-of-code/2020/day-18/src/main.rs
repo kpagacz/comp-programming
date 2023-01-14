@@ -63,12 +63,21 @@ struct ExprOpt {
 }
 #[derive(Debug)]
 struct Term {
-    num: i64,
+    factor: Factor,
     term_opts: Vec<TermOpt>,
 }
 #[derive(Debug)]
 struct TermOpt {
-    expr: Expr,
+    term: Term,
+}
+#[derive(Debug)]
+enum FactorValue {
+    Int(i64),
+    Expr(Box<Expr>),
+}
+#[derive(Debug)]
+struct Factor {
+    value: FactorValue,
 }
 
 struct Parser {
@@ -94,54 +103,47 @@ impl<'a> Parser {
         token
     }
 
+    fn factor(&mut self) -> Factor {
+        if self.tokens[self.lookahead] == Token::LeftPar {
+            self.accept();
+            let expr = self.expr();
+            self.accept();
+            return Factor {
+                value: FactorValue::Expr(Box::new(expr)),
+            };
+        } else {
+            let num = self.accept();
+            let int;
+            match num {
+                Token::Num(num) => int = num,
+                _ => panic!("Expected a num"),
+            }
+            Factor {
+                value: FactorValue::Int(*int),
+            }
+        }
+    }
+
     fn term_opt(&mut self) -> TermOpt {
         if self.accept() != &Token::Op(Operator::Plus) {
             panic!("Expected a plus")
         }
 
-        if self.tokens[self.lookahead] != Token::LeftPar {
-            let num_token = self.accept();
-            let value;
-            match num_token {
-                Token::Num(int) => value = *int,
-                _ => panic!("Expected a Num"),
-            }
-            return TermOpt {
-                expr: Expr {
-                    term: Term {
-                        num: value,
-                        term_opts: Vec::new(),
-                    },
-                    expr_opts: Vec::new(),
-                },
-            };
-        } else {
-            return TermOpt { expr: self.expr() };
-        }
+        TermOpt { term: self.term() }
     }
 
     fn term(&mut self) -> Term {
-        let num = self.accept();
-        let value: i64;
-        match num {
-            Token::Num(int) => value = *int,
-            _ => panic!("Expect Num"),
-        }
-
+        let factor = self.factor();
         let mut term_opts = Vec::new();
         while &self.tokens[self.lookahead] == &Token::Op(Operator::Plus) {
             term_opts.push(self.term_opt());
         }
 
-        return Term {
-            num: value,
-            term_opts,
-        };
+        Term { factor, term_opts }
     }
 
     fn expr_opt(&mut self) -> ExprOpt {
-        let multiply = self.accept();
-        if multiply != &Token::Op(Operator::Multiply) {
+        if self.accept() != &Token::Op(Operator::Multiply) {
             panic!("Expected a multiplication")
         }
 
@@ -149,17 +151,11 @@ impl<'a> Parser {
     }
 
     fn expr(&mut self) -> Expr {
-        while self.tokens[self.lookahead] == Token::LeftPar {
-            self.accept();
-        }
         let term = self.term();
         let mut expr_opts = Vec::new();
+
         while self.tokens[self.lookahead] == Token::Op(Operator::Multiply) {
             expr_opts.push(self.expr_opt());
-        }
-
-        while self.tokens[self.lookahead] == Token::RightPar {
-            self.accept();
         }
 
         Expr { term, expr_opts }
@@ -176,7 +172,7 @@ fn eval_expr(expr: &Expr) -> i64 {
 }
 
 fn eval_term(term: &Term) -> i64 {
-    let mut num = term.num;
+    let mut num = eval_factor(&term.factor);
     term.term_opts
         .iter()
         .for_each(|term_opt| num += eval_term_opt(term_opt));
@@ -189,27 +185,24 @@ fn eval_expr_opt(expr_opt: &ExprOpt) -> i64 {
 }
 
 fn eval_term_opt(term_opt: &TermOpt) -> i64 {
-    eval_expr(&term_opt.expr)
+    eval_term(&term_opt.term)
+}
+
+fn eval_factor(factor: &Factor) -> i64 {
+    match &factor.value {
+        FactorValue::Int(int) => return *int,
+        FactorValue::Expr(expr) => return eval_expr(&*expr),
+    }
 }
 
 struct Solution {}
 impl Solution {
     fn part2(self: Solution, path: &str) -> i64 {
         let expressions = Self::parse_input(path);
-        expressions.iter().for_each(|expression| {
-            println!("{}", expression);
+        expressions.iter().map(|expression| {
             let tokens = lex(expression);
-            // println!("{:?}", tokens);
-
-            let mut parser = Parser::new(tokens);
-            let expr = parser.parse();
-            println!("{:?}", expr);
-
-            let result = eval_expr(&expr);
-            println!("{}", &result);
-        });
-
-        return -1;
+            eval_expr(&Parser::new(tokens).parse())
+        }).fold(0, |acc, el| acc + el)
     }
 
     fn parse_input(path: &str) -> Vec<String> {
@@ -220,5 +213,5 @@ impl Solution {
 
 fn main() {
     let s = Solution {};
-    println!("Part 2: {}", s.part2("test"));
+    println!("Part 2: {}", s.part2("input"));
 }
