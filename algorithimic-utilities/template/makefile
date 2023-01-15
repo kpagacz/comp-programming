@@ -1,5 +1,5 @@
-CC=g++
-CFLAGS=-std=c++2a
+CC=g++-12
+CFLAGS=-std=c++2b
 OUTPUT=solution.exe
 SRC=solution.cpp
 
