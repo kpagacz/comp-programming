@@ -1,6 +1,8 @@
-use std::collections::HashMap;
+use std::{collections::HashMap, thread::current};
 
-struct Solution {}
+struct Solution {
+    cache: HashMap<String, Vec<Vec<String>>>,
+}
 
 impl Solution {
     fn parse_input(&self, path: &str) -> (HashMap<String, Vec<Vec<String>>>, Vec<String>) {
@@ -29,19 +31,30 @@ impl Solution {
         (productions, texts)
     }
 
-    fn part1(&self, path: &str) -> i64 {
-        let (productions, texts) = self.parse_input(path);
+    fn part1(&mut self, path: &str) -> i32 {
+        let (mut productions, texts) = self.parse_input(path);
         println!("{:?}", &productions);
 
-        let symbols = vec!["1".to_owned(), "2".to_owned()];
-        let with = vec![vec!["a".to_owned()], vec!["b".to_owned(), "a".to_owned()]];
-        let res = self.replace_one(&symbols, "1", &with);
-        println!("{:?}", res);
-        -1
+        let res = self.eval(&mut productions, "0");
+        let mut res = res
+            .iter()
+            .map(|symbols| symbols.concat())
+            .collect::<Vec<String>>();
+        res.sort_unstable();
+        // println!("{:?}", res);
+
+        texts
+            .iter()
+            .map(|text| match res.binary_search(text) {
+                Ok(_) => 1,
+                Err(_) => 0,
+            })
+            .reduce(|accum, found| accum + found)
+            .unwrap()
     }
 
     fn replace_production(
-        self,
+        &self,
         production: &Vec<Vec<String>>,
         what: &str,
         with: &Vec<Vec<String>>,
@@ -86,39 +99,109 @@ impl Solution {
         out
     }
 
-    fn eval(
-        &self,
-        productions: &HashMap<String, Vec<Vec<String>>>,
+    fn eval<'a>(
+        &'a mut self,
+        productions: &'a mut HashMap<String, Vec<Vec<String>>>,
         current_production: &str,
-        depth: i32,
-    ) {
+    ) -> &Vec<Vec<String>> {
+        // println!("Evaluating {}", current_production);
+        if self.cache.contains_key(current_production) {
+            // println!("Cache hit");
+            return self.cache.get(current_production).unwrap();
+        }
         if self.is_simple(
             &productions
                 .get(current_production)
                 .expect(format!("could not find {}", &current_production).as_str()),
         ) {
-            println!("Dug to depth: {}", &depth);
+            // println!("Simple case");
+            self.cache.insert(
+                current_production.to_owned(),
+                productions.get(current_production).unwrap().clone(),
+            );
+            return productions.get(current_production).unwrap();
         } else {
-            productions
-                .get(current_production)
-                .expect(format!("could not find {}", &current_production).as_str())
-                .iter()
-                .for_each(|production| {
-                    production
-                        .iter()
-                        .for_each(|symbol| self.eval(productions, symbol, depth + 1))
+            let mut new_production = Vec::new();
+
+            let old_production = productions.get(current_production).unwrap().clone();
+            old_production.iter().for_each(|symbols| {
+                let mut generated_productions = vec![symbols.clone()];
+
+                symbols.iter().for_each(|symbol| {
+                    if symbol != "a" && symbol != "b" {
+                        let symbol_evaluation = self.eval(productions, symbol).clone();
+                        generated_productions = self.replace_production(
+                            &generated_productions,
+                            symbol,
+                            &symbol_evaluation,
+                        );
+                    }
                 });
+
+                new_production.extend_from_slice(&generated_productions);
+            });
+
+            productions.insert(current_production.to_owned(), new_production);
         }
+
+        productions.get(current_production).unwrap()
     }
 
     fn is_simple(&self, production: &Vec<Vec<String>>) -> bool {
-        production.iter().count() == 1
-            && production[0].iter().count() == 1
-            && (production[0][0] == "a" || production[0][0] == "b")
+        production
+            .iter()
+            .all(|symbols| symbols.iter().all(|symbol| symbol == "a" || symbol == "b"))
     }
 }
 
 fn main() {
-    let s = Solution {};
-    s.part1("input");
+    let mut s = Solution {
+        cache: HashMap::new(),
+    };
+    println!("Part 1: {}", s.part1("test2"));
+}
+
+#[cfg(test)]
+mod tests {
+    use crate::*;
+
+    #[test]
+    fn test_replace_one() {
+        let s = Solution {
+            cache: HashMap::new(),
+        };
+        let symbols = vec!["1".to_owned(), "2".to_owned()];
+        let with = vec![vec!["a".to_owned()], vec!["b".to_owned(), "a".to_owned()]];
+        let res = s.replace_one(&symbols, "1", &with);
+        assert_eq!(
+            res,
+            vec![
+                vec!["a".to_owned(), "2".to_owned()],
+                vec!["b".to_owned(), "a".to_owned(), "2".to_owned()]
+            ]
+        );
+    }
+
+    #[test]
+    fn test_replace_production() {
+        let s = Solution {
+            cache: HashMap::new(),
+        };
+        let symbols = vec!["1".to_owned(), "2".to_owned()];
+        let symbols2 = vec!["1".to_owned(), "1".to_owned()];
+        let with = vec![vec!["a".to_owned()], vec!["b".to_owned(), "a".to_owned()]];
+        let production = vec![symbols, symbols2];
+
+        let res = s.replace_production(&production, "1", &with);
+        println!("{:?}", res);
+    }
+
+    #[test]
+    fn test_is_simple() {
+        let s = Solution {
+            cache: HashMap::new(),
+        };
+        let production = vec![vec!["a".to_owned()]];
+        assert!(s.is_simple(&production) == false);
+    }
 }
