@@ -203,26 +203,91 @@ fn part1<'a>(
     )
 }
 
-fn trim_sides(tile: Vec<Vec<char>>) -> Vec<Vec<char>> {
-    tile.iter()
-        .skip(1)
-        .take(tile.len() - 2)
-        .map(|line| line.iter().skip(1).take(line.len() - 2).collect())
+fn trim_sides(tile: &mut Vec<Vec<char>>) -> Vec<Vec<char>> {
+    tile.drain(1..tile.len() - 1 as usize)
+        .map(|mut line| line.drain(1..line.len() - 1 as usize).collect())
         .collect()
 }
 
-fn part2(tiling: &Vec<TilePlacing>) -> i64 {
-    let picture_side = (tiling.len() as f32).sqrt() as i32;
-    let trimmed_tiles: Vec<Vec<Vec<char>>> = tiling
+fn count_dragon_tiles(image: &Vec<Vec<char>>) -> i32 {
+    let dragon_coordinates = [
+        (1, 0),
+        (1, 5),
+        (1, 6),
+        (1, 11),
+        (1, 12),
+        (1, 17),
+        (1, 18),
+        (1, 19),
+        (0, 18),
+        (2, 1),
+        (2, 4),
+        (2, 7),
+        (2, 10),
+        (2, 13),
+        (2, 16),
+    ];
+    let mut dragon_tiles = 0;
+    for (x, row) in image.iter().enumerate() {
+        if x == 0 || x == image.len() - 1 {
+            continue;
+        }
+        for (y, _) in row.iter().enumerate() {
+            if y + 19 >= row.len() {
+                continue;
+            }
+            if dragon_coordinates
+                .iter()
+                .all(|(dragon_x, dragon_y)| image[x + dragon_x][y + dragon_y] == '#')
+            {
+                dragon_tiles += dragon_coordinates.len() as i32;
+            }
+        }
+    }
+    dragon_tiles
+}
+
+fn part2(tiling: &Vec<TilePlacing>) -> i32 {
+    let picture_side = (tiling.len() as f32).sqrt() as usize;
+    let mut trimmed_tiles: Vec<Vec<Vec<char>>> = tiling
         .iter()
         .map(|tile_placement| translate_tile(tile_placement.tile, tile_placement.orientation))
-        .map(|rotated_tile| trim_sides(rotated_tile))
+        .map(|mut rotated_tile| trim_sides(&mut rotated_tile))
         .collect();
+    let mut whole_image = vec![vec![]; picture_side * 8];
+    trimmed_tiles
+        .chunks_exact_mut(picture_side)
+        .enumerate()
+        .for_each(|(idx, row_tiles)| {
+            row_tiles.iter_mut().for_each(|tile| {
+                tile.iter_mut()
+                    .enumerate()
+                    .for_each(|(tile_row, row)| whole_image[idx * 8 + tile_row].append(row))
+            });
+        });
+
+    let sharps: i32 = whole_image
+        .iter()
+        .flat_map(|c| c.iter().map(|c| if *c == '#' { 1 } else { 0 }))
+        .sum();
+
+    use Orientation::*;
+    let all_orientations: Vec<Orientation> = vec![
+        Normal0, Normal90, Normal180, Normal270, Mirror0, Mirror90, Mirror180, Mirror270,
+    ];
+
+    for orientation in all_orientations {
+        let rotated_image = translate_tile(&whole_image, orientation);
+        let dragon_tiles = count_dragon_tiles(&rotated_image);
+        if dragon_tiles != 0 {
+            return sharps - dragon_tiles;
+        }
+    }
     -1
 }
 
 fn main() {
-    let path = "test";
+    let path = "input";
     let (tiles, tile_values) = parse_input(path);
     let (answer, tiling) = part1(&tiles, &tile_values);
     println!("Part 1: {}", &answer);
