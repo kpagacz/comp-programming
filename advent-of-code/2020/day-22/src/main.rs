@@ -1,4 +1,7 @@
-use std::collections::{HashSet, VecDeque};
+use std::{
+    collections::{hash_map::DefaultHasher, HashMap, HashSet, VecDeque},
+    hash::{Hash, Hasher},
+};
 
 fn part1(input: &str) -> u32 {
     let (mut deck_one, mut deck_two) = parse_input(input);
@@ -34,7 +37,8 @@ fn play_round(deck_one: &mut VecDeque<u32>, deck_two: &mut VecDeque<u32>) {
 fn part2(input: &str) -> u32 {
     let (deck_one, deck_two) = parse_input(input);
 
-    let (_, winner_deck) = play_recursive_combat(deck_one, deck_two);
+    let mut cache = HashMap::<u64, (Winner, VecDeque<u32>)>::new();
+    let (_, winner_deck) = play_recursive_combat(deck_one, deck_two, &mut cache);
     winner_deck
         .iter()
         .rev()
@@ -43,6 +47,7 @@ fn part2(input: &str) -> u32 {
         .sum()
 }
 
+#[derive(Copy, Clone)]
 enum Winner {
     One,
     Two,
@@ -50,37 +55,56 @@ enum Winner {
 fn play_recursive_combat(
     mut deck_one: VecDeque<u32>,
     mut deck_two: VecDeque<u32>,
+    cache: &mut HashMap<u64, (Winner, VecDeque<u32>)>,
 ) -> (Winner, VecDeque<u32>) {
-    let mut mem = HashSet::<(VecDeque<u32>, VecDeque<u32>)>::new();
-    mem.insert((
-        deck_one.iter().copied().collect(),
-        deck_two.iter().copied().collect(),
-    ));
+    // println!("{:?} {:?}", deck_one, deck_two);
+    let mut hasher = DefaultHasher::new();
+    deck_one.hash(&mut hasher);
+    deck_two.hash(&mut hasher);
+    let hash = hasher.finish();
+    if cache.contains_key(&hash) {
+        let (winner, winning_deck) = cache.get(&hash).unwrap();
+        return (winner.clone(), winning_deck.clone());
+    }
+
+    let mut mem: HashSet<u64> = HashSet::new();
+    mem.insert(hash.clone());
     while deck_one.is_empty() == false && deck_two.is_empty() == false {
         // println!("{:?}\n{:?}\n\n", deck_one, deck_two);
-        play_recursive_round(&mut deck_one, &mut deck_two);
-        if mem.contains(&(
-            deck_one.iter().copied().collect(),
-            deck_two.iter().copied().collect(),
-        )) {
+        play_recursive_round(&mut deck_one, &mut deck_two, cache);
+        let mut hasher = DefaultHasher::new();
+        deck_one.hash(&mut hasher);
+        deck_two.hash(&mut hasher);
+        let new_hash = hasher.finish();
+        if mem.contains(&new_hash) {
+            cache.insert(hash, (Winner::One, deck_one.clone()));
             return (Winner::One, deck_one);
+        } else {
+            mem.insert(new_hash);
         }
     }
 
     if deck_one.is_empty() {
+        cache.insert(hash, (Winner::Two, deck_two.clone()));
         (Winner::Two, deck_two)
     } else {
+        cache.insert(hash, (Winner::One, deck_one.clone()));
         (Winner::One, deck_one)
     }
 }
 
-fn play_recursive_round(deck_one: &mut VecDeque<u32>, deck_two: &mut VecDeque<u32>) {
+fn play_recursive_round(
+    deck_one: &mut VecDeque<u32>,
+    deck_two: &mut VecDeque<u32>,
+    cache: &mut HashMap<u64, (Winner, VecDeque<u32>)>,
+) {
+    // println!("Another round: {:?} {:?}", deck_one, deck_two);
     let (top_one, top_two) = (deck_one.pop_front().unwrap(), deck_two.pop_front().unwrap());
     if top_one <= deck_one.len() as u32 && top_two <= deck_two.len() as u32 {
-        // println!("Recursive at {} {}", top_one, top_two);
         let (winner, _) = play_recursive_combat(
             deck_one.iter().take(top_one as usize).copied().collect(),
             deck_two.iter().take(top_two as usize).copied().collect(),
+            cache,
         );
         match winner {
             Winner::One => {
