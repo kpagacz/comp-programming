@@ -58,3 +58,6 @@
 
 # macOS files
 **/.DS_Store
+
+# Rust build files
+**/target/**
