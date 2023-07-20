@@ -11,21 +11,15 @@ impl Solution {
             } else {
                 loop {
                     match stack.last() {
-                        Some(previous) => {
-                            if *previous < 0 {
-                                stack.push(asteroid);
+                        Some(previous) if *previous >= 0 => match previous.cmp(&(-1 * asteroid)) {
+                            std::cmp::Ordering::Less => stack.pop(),
+                            std::cmp::Ordering::Equal => {
+                                stack.pop();
                                 break;
                             }
-                            match previous.cmp(&(-1 * asteroid)) {
-                                std::cmp::Ordering::Less => stack.pop(),
-                                std::cmp::Ordering::Equal => {
-                                    stack.pop();
-                                    break;
-                                }
-                                std::cmp::Ordering::Greater => break,
-                            }
-                        }
-                        None => {
+                            std::cmp::Ordering::Greater => break,
+                        },
+                        _ => {
                             stack.push(asteroid);
                             break;
                         }
