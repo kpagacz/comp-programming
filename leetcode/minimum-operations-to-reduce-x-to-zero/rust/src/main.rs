@@ -10,8 +10,6 @@ impl Solution {
         let mut current_sum = 0;
 
         let (mut left, mut right) = (0, 0);
-
-        println!("{to_collect}");
         while right < nums.len() {
             current_sum += nums[right];
 
