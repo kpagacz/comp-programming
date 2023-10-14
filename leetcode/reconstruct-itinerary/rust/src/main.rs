@@ -16,8 +16,6 @@ impl Solution {
         tickets.push(vec!["".to_owned(), "JFK".to_owned()]);
         let mut answer = vec![tickets.len() - 1];
 
-        println!("{:?}", tickets);
-        println!("{:?}", ticket_dict);
         let mut used_tickets = vec![false; tickets.len()];
         Self::find_itinerary_rec(&mut answer, &ticket_dict, &tickets, &mut used_tickets);
         answer.iter().map(|id| tickets[*id][1].clone()).collect()
@@ -33,7 +31,6 @@ impl Solution {
             return;
         }
 
-        println!("{:?}", answer);
         for &destination in ticket_dict
             .get(&tickets[*answer.last().unwrap()][1])
             .or(Some(&Vec::new()))
