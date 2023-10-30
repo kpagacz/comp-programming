@@ -4,8 +4,8 @@ pub struct Solution {}
 impl Solution {
     pub fn sort_by_bits(mut arr: Vec<i32>) -> Vec<i32> {
         arr.sort_unstable_by(|&first, &second| {
-            Solution::count_bits(first)
-                .cmp(&Solution::count_bits(second))
+            Solution::smarter_count_bits(first)
+                .cmp(&Solution::smarter_count_bits(second))
                 .then(first.cmp(&second))
         });
         arr
@@ -18,6 +18,16 @@ impl Solution {
                 answer += 1
             }
         });
+        answer
+    }
+
+    fn smarter_count_bits(mut num: i32) -> i32 {
+        let mut answer = 0;
+        while num > 0 {
+            answer += 1;
+            num &= num - 1;
+        }
+
         answer
     }
 }
