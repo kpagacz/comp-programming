@@ -1,4 +1,6 @@
-use std::{cell::RefCell, collections::VecDeque, rc::Rc};
+use std::{
+    cell::RefCell, collections::VecDeque, fmt::Display, iter::once, rc::Rc, thread::current,
+};
 
 // Part 1
 fn make_move(cups: &mut VecDeque<u8>, current_cup: u8) {
@@ -54,14 +56,14 @@ fn part1(path: &str) -> VecDeque<u8> {
 }
 
 // Part 2
-#[derive(Debug)]
+#[derive(Debug, PartialEq, Clone)]
 struct Node {
-    value: u64,
+    value: usize,
     next: Option<Rc<RefCell<Node>>>,
 }
 
 impl Node {
-    fn new(value: u64) -> Self {
+    fn new(value: usize) -> Self {
         Node {
             value,
             next: Option::None,
@@ -69,62 +71,153 @@ impl Node {
     }
 }
 
+impl Display for Node {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        let mut it = Some(Rc::new(RefCell::new(self.clone())));
+        while let Some(node) = it {
+            f.write_fmt(format_args!("{} -> ", node.borrow().value))?;
+            it = node.borrow().next.clone();
+        }
+        Ok(())
+    }
+}
+
 type Link = Rc<RefCell<Node>>;
 
-fn make_move_using_lists(cups: &Vec<Link>, current_cup: usize) {
-    let chosen_cup = cups[current_cup].clone();
-    let moved_head = chosen_cup.as_ref().borrow().next.clone().unwrap().clone();
-    let moved_tail = moved_head
-        .as_ref()
-        .borrow()
-        .next
-        .clone()
-        .unwrap()
-        .clone()
-        .as_ref()
-        .borrow()
-        .next
-        .clone()
-        .unwrap()
-        .clone();
-    let after_moved = moved_tail.as_ref().borrow().next.clone().unwrap();
-    chosen_cup.as_ref().borrow_mut().next = Some(after_moved);
+fn make_move_using_lists(arena_cups: &Vec<Link>, head: &mut Link, current_cup: &mut Link) {
+    let mut removed = vec![];
+    let mut count = 3;
+    while count > 0 {
+        let next_cup = current_cup.borrow_mut().next.take();
+        if let Some(next_cup) = next_cup {
+            current_cup.borrow_mut().next = next_cup.borrow_mut().next.take();
+            removed.push(next_cup);
+            count -= 1;
+        } else {
+            break;
+        }
+    }
+    while count > 0 {
+        removed.push(head.clone());
+        let new_head = head.borrow_mut().next.take().unwrap();
+        *head = new_head;
+        count -= 1;
+    }
+    // println!("removed cups: {removed:?}");
+    // println!("Head after removal: {}", head.borrow());
+
+    let destination_cup =
+        find_destination_cup(&removed, current_cup.borrow().value, arena_cups.len());
+    let destination_cup = &arena_cups[destination_cup];
+    // println!("destination cup: {}", destination_cup.borrow());
+    let after_destination = destination_cup.borrow_mut().next.take();
+    removed[2].borrow_mut().next = after_destination;
+
+    removed[1].borrow_mut().next = Some(removed.pop().unwrap());
+    removed[0].borrow_mut().next = Some(removed.pop().unwrap());
+    destination_cup.borrow_mut().next = Some(removed.pop().unwrap());
+    // println!("after move {}", head.borrow());
+
+    if current_cup.borrow().next.is_some() {
+        let next = current_cup.borrow().next.clone();
+        *current_cup = next.unwrap();
+    } else {
+        *current_cup = head.clone();
+    }
+    // println!("current cup after move: {}", current_cup.borrow());
 }
 
-fn find_cup_destination(cups: &Vec<Link>, current_cup: usize) -> Link {
-
+fn find_destination_cup(removed: &Vec<Link>, current_cup: usize, arena_size: usize) -> usize {
+    let mut next_current = current_cup - 1;
+    let removed_values: Vec<usize> = removed.iter().map(|link| link.borrow().value).collect();
+    while removed_values.contains(&next_current) {
+        next_current -= 1;
+    }
+    if next_current == 0 {
+        next_current = arena_size - 1;
+        while removed_values.contains(&next_current) {
+            next_current -= 1;
+        }
+        next_current
+    } else {
+        next_current
+    }
 }
 
-fn part2(path: &str, size: u64) -> u64 {
-    let cups = parse_input(path);
-    let mut cups: VecDeque<u64> = cups.iter().map(|&el| el as u64).collect();
-    cups.reserve(size as usize);
+fn part2(path: &str) -> usize {
+    let cups: Vec<u8> = parse_input(path).into();
+    let mut cups = once(0_usize)
+        .chain(cups.into_iter().map(u8::into))
+        .chain(10..=1000000)
+        .collect::<Vec<usize>>();
+    cups.sort();
 
-    let max = cups.iter().max().unwrap();
-    for cup in (max + 1)..=size {
-        cups.push_back(cup);
+    let arena_cups: Vec<Link> = cups
+        .into_iter()
+        .map(|val| Rc::new(RefCell::new(Node::new(val as usize))))
+        .collect();
+    // println!("cups: {arena_cups:?}");
+    arena_cups.windows(2).for_each(|window| {
+        let (first, second) = (&window[0], &window[1]);
+        first.borrow_mut().next = Some(second.clone());
+    });
+    // test: (3) 8  9  1  2  5  4  6  7
+    // arena_cups[3].borrow_mut().next = Some(arena_cups[8].clone());
+    // arena_cups[8].borrow_mut().next = Some(arena_cups[9].clone());
+    // arena_cups[9].borrow_mut().next = Some(arena_cups[1].clone());
+    // arena_cups[1].borrow_mut().next = Some(arena_cups[2].clone());
+    // arena_cups[2].borrow_mut().next = Some(arena_cups[5].clone());
+    // arena_cups[5].borrow_mut().next = Some(arena_cups[4].clone());
+    // arena_cups[4].borrow_mut().next = Some(arena_cups[6].clone());
+    // arena_cups[6].borrow_mut().next = Some(arena_cups[7].clone());
+    // arena_cups[7].borrow_mut().next = Some(arena_cups[10].clone());
+
+    // real: 3 1 5 6 7 9 8 2 4
+    arena_cups[3].borrow_mut().next = Some(arena_cups[1].clone());
+    arena_cups[1].borrow_mut().next = Some(arena_cups[5].clone());
+    arena_cups[5].borrow_mut().next = Some(arena_cups[6].clone());
+    arena_cups[6].borrow_mut().next = Some(arena_cups[7].clone());
+    arena_cups[7].borrow_mut().next = Some(arena_cups[9].clone());
+    arena_cups[9].borrow_mut().next = Some(arena_cups[8].clone());
+    arena_cups[8].borrow_mut().next = Some(arena_cups[2].clone());
+    arena_cups[2].borrow_mut().next = Some(arena_cups[4].clone());
+    arena_cups[4].borrow_mut().next = Some(arena_cups[10].clone());
+
+    let mut current_cup = arena_cups[3].clone();
+    let mut head = arena_cups[3].clone();
+    // println!("Arena cups initially:");
+    // println!("{}", head.borrow());
+
+    let moves = 10_000_000;
+    for i in 0..moves {
+        if i % (moves / 10) == 0 {
+            println!("{i} moves done");
+        }
+        make_move_using_lists(&arena_cups, &mut head, &mut current_cup);
     }
 
-    let mut cups: Vec<_> = cups
-        .iter()
-        .map(|&el| Rc::new(RefCell::new(Node::new(el))))
-        .collect();
-    println!("Cups size: {}", cups.len());
+    fn find_one(head: &Link) -> Link {
+        let mut it = Some(head.clone());
+        while let Some(node) = it {
+            if node.borrow().value == 1 {
+                return node.clone();
+            } else {
+                it = node.borrow().next.clone();
+            }
+        }
+        unreachable!()
+    }
 
-    cups.windows(2).for_each(|slice| {
-        let (first_node, second_node) = (slice[0].clone(), slice[1].clone());
-        first_node.borrow_mut().next = Some(second_node);
-    });
-    cups.last().unwrap().borrow_mut().next = Some(cups.first().unwrap().clone());
-
-    let mut current_cup = cups[0].as_ref().borrow().value;
-    cups.sort_by(|a, b| a.as_ref().borrow().value.cmp(&b.as_ref().borrow().value));
-
+    let one = find_one(&head);
+    let a_one = one.borrow().next.clone().unwrap();
+    let aa_one = a_one.borrow().clone().next.unwrap().clone();
+    let (first, second) = (a_one.borrow().value, aa_one.borrow().value);
+    println!("Part 2: {}", first * second);
     0
 }
 
 fn main() {
     let path = "test";
     println!("Part 1: {:?}", part1(path));
-    println!("Part 2: {:?}", part2(path, 10));
+    part2(path);
 }
