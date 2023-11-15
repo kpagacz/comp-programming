@@ -2,6 +2,13 @@
 pub struct Solution {}
 
 // There is of course a naive implementation that takes quadratic time.
+// This is a linear solution with a hefty constant (26), and I wonder if
+// there is a linear solution with a smaller one.
+// I can sort of imagine how it would work - remembering the indices of what
+// characters went before. Maybe BIT? You can query the number of different characters
+// between the current position and the first position that the current character
+// was encountered.
+// This ultimately would nlogn, but it might be faster considering the high constant.
 impl Solution {
     pub fn count_palindromic_subsequence(s: String) -> i32 {
         use std::collections::BTreeMap;
