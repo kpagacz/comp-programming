@@ -1,4 +1,13 @@
-use std::{collections::HashMap, thread::current};
+use std::collections::HashMap;
+
+use nom::{
+    branch::alt,
+    bytes::complete::tag,
+    character::complete::{alphanumeric1, digit1},
+    combinator::{map, map_res, recognize},
+    sequence::tuple,
+    IResult,
+};
 
 struct Solution {
     cache: HashMap<String, Vec<Vec<String>>>,
@@ -154,54 +163,173 @@ impl Solution {
     }
 }
 
-fn main() {
-    let mut s = Solution {
-        cache: HashMap::new(),
-    };
-    println!("Part 1: {}", s.part1("test2"));
+#[derive(Debug, Clone)]
+enum Node {
+    Text(String),
+    Rules(Vec<(usize, usize)>),
+    SingleRules(Vec<usize>),
+    SingleRule(usize),
 }
 
-#[cfg(test)]
-mod tests {
-    use crate::*;
+fn solution(input: &str) {
+    let (rules, examples) = input.split_once("\n\n").unwrap();
 
-    #[test]
-    fn test_replace_one() {
-        let s = Solution {
-            cache: HashMap::new(),
-        };
-        let symbols = vec!["1".to_owned(), "2".to_owned()];
-        let with = vec![vec!["a".to_owned()], vec!["b".to_owned(), "a".to_owned()]];
-        let res = s.replace_one(&symbols, "1", &with);
-        assert_eq!(
-            res,
-            vec![
-                vec!["a".to_owned(), "2".to_owned()],
-                vec!["b".to_owned(), "a".to_owned(), "2".to_owned()]
-            ]
-        );
+    fn parse_node(input: &str) -> IResult<&str, (usize, Node)> {
+        fn my_u32(input: &str) -> IResult<&str, usize> {
+            map_res(recognize(digit1), str::parse)(input)
+        }
+        alt((
+            map(
+                tuple((
+                    my_u32,
+                    tag(": "),
+                    my_u32,
+                    tag(" "),
+                    my_u32,
+                    tag(" | "),
+                    my_u32,
+                    tag(" "),
+                    my_u32,
+                )),
+                |(id, _, first, _, second, _, third, _, fourth)| {
+                    (id, Node::Rules(vec![(first, second), (third, fourth)]))
+                },
+            ),
+            map(
+                tuple((my_u32, tag(": "), my_u32, tag(" | "), my_u32)),
+                |(id, _, first, _, second)| (id, Node::SingleRules(vec![first, second])),
+            ),
+            map(
+                tuple((my_u32, tag(": \""), alphanumeric1, tag("\""))),
+                |(id, _, text, _)| (id, Node::Text(text.to_owned())),
+            ),
+            map(
+                tuple((my_u32, tag(": "), my_u32, tag(" "), my_u32)),
+                |(id, _, first, _, second)| (id, Node::Rules(vec![(first, second)])),
+            ),
+            map(tuple((my_u32, tag(": "), my_u32)), |(id, _, first)| {
+                (id, Node::SingleRule(first))
+            }),
+        ))(input)
     }
 
-    #[test]
-    fn test_replace_production() {
-        let s = Solution {
-            cache: HashMap::new(),
-        };
-        let symbols = vec!["1".to_owned(), "2".to_owned()];
-        let symbols2 = vec!["1".to_owned(), "1".to_owned()];
-        let with = vec![vec!["a".to_owned()], vec!["b".to_owned(), "a".to_owned()]];
-        let production = vec![symbols, symbols2];
-
-        let res = s.replace_production(&production, "1", &with);
-        println!("{:?}", res);
+    use std::collections::BTreeMap;
+    type Rules = BTreeMap<usize, Node>;
+    let mut rules_map = Rules::new();
+    for line in rules.lines() {
+        let node = parse_node(line).unwrap().1;
+        rules_map.insert(node.0, node.1);
     }
 
-    #[test]
-    fn test_is_simple() {
-        let s = Solution {
-            cache: HashMap::new(),
-        };
-        let production = vec![vec!["a".to_owned()]];
-        assert!(s.is_simple(&production) == false);
+    fn match_rule<'a>(input: &'a str, rule: usize, rules: &Rules) -> Vec<&'a str> {
+        match rules.get(&rule).expect("Rule always exists") {
+            Node::Text(pattern) => match input.strip_prefix(pattern) {
+                Some(after) => vec![after],
+                None => vec![], // did not match = no sufixes
+            },
+            Node::Rules(double_rules) => {
+                let mut ans = vec![];
+                for &(first, second) in double_rules {
+                    let after_first = match_rule(input, first, rules);
+                    if after_first.len() == 0 {
+                        // because it did not match at all
+                        // there is no point calculating the rest
+                        continue;
+                    }
+                    let after_second: Vec<_> = after_first
+                        .into_iter()
+                        .map(|sufix| match_rule(sufix, second, rules))
+                        .flatten()
+                        .collect();
+                    ans.extend(after_second.into_iter());
+                }
+                ans
+            }
+            Node::SingleRules(single_rules) => {
+                let reses: Vec<_> = single_rules
+                    .iter()
+                    .filter_map(|&rule| {
+                        let m = match_rule(input, rule, rules);
+                        Some(m)
+                    })
+                    .flatten()
+                    .collect();
+                reses
+            }
+            Node::SingleRule(other_rule) => match_rule(input, *other_rule, rules),
+        }
     }
+
+    // println!("{:?}", rules_map);
+    let rule_nums: Vec<usize> = rules_map.keys().map(|&key| key).collect();
+    let mut answer = 0;
+    for example in examples.lines() {
+        if rule_nums
+            .iter()
+            .any(|rule| match_rule(example, *rule, &rules_map).contains(&""))
+        {
+            // println!("Got a hit on {example}");
+            answer += 1;
+        }
+    }
+    println!("Part 1: {answer}");
+
+    // Part 2
+    let mut rules = rules_map.clone();
+    rules.remove(&8);
+    rules.remove(&11);
+    rules.remove(&0);
+    fn match_42<'a>(input: &'a str, rules: &Rules) -> Vec<&'a str> {
+        match_rule(input, 42, rules)
+    }
+    fn match_31<'a>(input: &'a str, rules: &Rules) -> Vec<&'a str> {
+        match_rule(input, 31, rules)
+    }
+    // Rules 8, 11 and 0 describe the following scenarios.
+    // N times rule 42 or K times rule 42 followed by L<=K rule 31
+    // Let's cap it at a fixed number times and see what happens.
+    const TIMES: i32 = 5;
+
+    let mut answer = 0;
+    for example in examples.lines() {
+        let mut rest = vec![example];
+        for times in 0..TIMES {
+            rest = rest
+                .into_iter()
+                .flat_map(|sufix| match_42(sufix, &rules))
+                .collect();
+
+            let mut rest_after_31 = rest.clone();
+            let mut hit = false;
+            for _ in 0..=times {
+                rest_after_31 = rest_after_31
+                    .into_iter()
+                    .flat_map(|sufix| match_31(sufix, &rules))
+                    .collect();
+                if rest_after_31.iter().any(|sufix| sufix.is_empty()) {
+                    println!("Got a hit on rule 0: {example}");
+                    answer += 1;
+                    hit = true;
+                }
+            }
+            if hit {
+                break;
+            }
+        }
+    }
+    println!("Part 2: {answer}");
+}
+
+fn main() {
+    // let mut s = Solution {
+    //     cache: HashMap::new(),
+    // };
+    // println!("Part 1: {}", s.part1("input"));
+
+    let test = include_str!("../test2");
+    println!("TEST");
+    solution(test);
+    let input = include_str!("../input");
+    println!("INPUT");
+    solution(input);
 }
