@@ -11,13 +11,14 @@ fn parse_scratchcard(input: &str) -> (BTreeSet<usize>, Vec<usize>) {
         .split_whitespace()
         .map(|n| n.parse::<usize>().expect("Always a number"))
         .collect();
+
     (winning, gotten)
 }
 
 fn score_scratchcard(card: &(BTreeSet<usize>, Vec<usize>)) -> usize {
     let (winning, gotten) = (&card.0, &card.1);
-    gotten.into_iter().fold(0, |acc, gotten_num| {
-        if winning.contains(&gotten_num) {
+    gotten.iter().fold(0, |acc, gotten_num| {
+        if winning.contains(gotten_num) {
             if acc == 0 {
                 1
             } else {
@@ -32,13 +33,13 @@ fn score_scratchcard(card: &(BTreeSet<usize>, Vec<usize>)) -> usize {
 fn part1(input: &str) -> usize {
     input
         .lines()
-        .map(|line| parse_scratchcard(line))
+        .map(parse_scratchcard)
         .map(|card| score_scratchcard(&card))
         .sum()
 }
 
 fn part2(input: &str) -> usize {
-    let scratchcards: Vec<_> = input.lines().map(|line| parse_scratchcard(line)).collect();
+    let scratchcards: Vec<_> = input.lines().map(parse_scratchcard).collect();
     let mut copies = vec![1usize; scratchcards.len()];
     scratchcards
         .into_iter()
@@ -58,6 +59,7 @@ fn part2(input: &str) -> usize {
 
     copies.into_iter().sum()
 }
+
 fn main() {
     println!("TEST");
     let test = include_str!("../test");
