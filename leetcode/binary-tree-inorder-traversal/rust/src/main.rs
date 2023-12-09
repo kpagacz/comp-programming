@@ -42,18 +42,16 @@ impl Solution {
             Some(node) => {
                 let mut stack = vec![node];
                 let mut answer = vec![];
-                while !stack.is_empty() {
-                    let top = stack.pop().unwrap();
-                    let mut top_borrow = top.borrow_mut();
-                    if top_borrow.left.is_none() && top_borrow.right.is_none() {
-                        answer.push(top_borrow.val);
+                while let Some(top) = stack.pop() {
+                    if top.borrow().left.is_none() && top.borrow().right.is_none() {
+                        answer.push(top.borrow().val);
                     } else {
-                        let left_child = top_borrow.left.take();
-                        let right_child = top_borrow.right.take();
+                        let left_child = top.borrow_mut().left.take();
+                        let right_child = top.borrow_mut().right.take();
                         if let Some(right_child) = right_child {
                             stack.push(right_child);
                         }
-                        stack.push(top.clone());
+                        stack.push(top);
                         if let Some(left_child) = left_child {
                             stack.push(left_child);
                         }
