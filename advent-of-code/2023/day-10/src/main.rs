@@ -191,7 +191,7 @@ fn part2_smarter(input: &str, point_before_start: Point) -> i32 {
         .chain(std::iter::once(&loop_points[0]))
         .collect();
 
-    let shoelace_area: i32 = shoelace_array
+    let shoelace_area = shoelace_array
         .windows(2)
         .map(|window| {
             let (x1, y1) = *window[0];
