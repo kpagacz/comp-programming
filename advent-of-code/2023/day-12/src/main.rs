@@ -14,182 +14,128 @@ fn parse_input(input: &str) -> Vec<(Vec<u8>, Vec<usize>)> {
         .collect()
 }
 
-fn verify_line(line: &[u8], groupings: &[usize]) -> bool {
-    line.split(|c| c == &b'.')
-        .filter_map(|grouping| {
-            if !grouping.is_empty() {
-                Some(grouping.len())
-            } else {
-                None
-            }
-        })
-        .collect::<Vec<_>>()
-        == groupings
-}
-
-fn solve(
-    line: &mut [u8],
-    current_position: usize,
-    springs_left: usize,
-    groupings: &[usize],
-) -> usize {
-    if current_position >= line.len() {
-        if verify_line(line, groupings) {
-            return 1;
-        } else {
-            return 0;
-        }
-    }
-
-    if line[current_position] != b'?' {
-        let ans = solve(line, current_position + 1, springs_left, groupings);
-        return ans;
-    }
-
-    line[current_position] = b'.';
-    let mut answer = solve(line, current_position + 1, springs_left, groupings);
-
-    if springs_left > 0 {
-        line[current_position] = b'#';
-        answer += solve(line, current_position + 1, springs_left - 1, groupings);
-    }
-    line[current_position] = b'?';
-    answer
-}
-
-fn custom_print(text: String, depth: i32) {
-    for _ in 0..depth {
-        print!(" ");
-    }
-    println!("{text}");
-}
-
+use std::collections::BTreeMap;
 fn solve2(
     line: &mut [u8],
-    mut current_position: usize,
-    mut current_grouping: usize,
-    mut springs_so_far: usize,
+    current_position: usize,
+    current_grouping: usize,
+    springs_so_far: usize,
     groupings: &[usize],
-    depth: i32,
+    cache: &mut BTreeMap<(usize, usize, usize), usize>,
 ) -> usize {
-    if current_grouping > groupings.len() {
-        // println!("current grouping too large");
-        return 0;
-    }
-    while current_position < line.len() && line[current_position] != b'?' {
-        let current_char = line[current_position];
-        match current_char {
-            b'.' => {
-                println!("Found dot at: {current_position}");
-                if current_grouping != groupings.len() {
-                    if springs_so_far > 0 && springs_so_far < groupings[current_grouping] {
-                        println!("current grouping != groupings.len && springs_so_far > 0 && springs_so_far < groupiongs[current_grouping]");
-                        return 0;
-                    }
-                    // The three lines below make test3 fail
-                    if springs_so_far == groupings[current_grouping] {
-                        current_grouping += 1;
-                    }
-                }
-                springs_so_far = 0;
-
-                // The below works for test3 but fails test2
-                // println!("Found dot at: {current_position}");
-                // if current_grouping != groupings.len() {
-                //     if springs_so_far > 0 && springs_so_far < groupings[current_grouping] {
-                //         println!("current grouping != groupings.len && springs_so_far > 0 && springs_so_far < groupiongs[current_grouping]");
-                //         return 0;
-                //     }
-                // }
-                // springs_so_far = 0;
-
-                // if current_grouping < groupings.len()
-                //     && springs_so_far < groupings[current_grouping]
-                // {
-                //     return 0;
-                // } else if current_grouping == groupings.len() && springs_so_far > 0 {
-                //     return 0;
-                // } else if current_grouping < groupings.len()
-                //     && springs_so_far == groupings[current_grouping]
-                // {
-                //     current_grouping += 1;
-                // }
-                //
-                // springs_so_far = 0;
-            }
-            b'#' => {
-                println!("Got static # at: {current_position}");
-                springs_so_far += 1;
-                println!("Spring so far (including this one) {springs_so_far}");
-                if current_grouping >= groupings.len()
-                    || springs_so_far > groupings[current_grouping]
-                {
-                    println!("current_groupoing >= groupings.len() or springs_so_far > groupings[current_grouping]");
-                    return 0;
-                }
-            }
-            _ => {
-                unreachable!()
-            }
-        }
-        current_position += 1;
+    if let Some(&cached) = cache.get(&(current_position, current_grouping, springs_so_far)) {
+        return cached;
     }
 
     if current_position == line.len() {
-        if current_grouping == groupings.len() {
-            println!("Returning 1");
-            return 1;
+        let ans = if current_grouping == groupings.len() {
+            1
         } else {
-            println!("Returning 0");
-            return 0;
+            0
+        };
+        cache.insert((current_position, current_grouping, springs_so_far), ans);
+        return ans;
+    }
+
+    let current_char = line[current_position];
+    let ans = match current_char {
+        b'.' => {
+            if springs_so_far > 0 && springs_so_far < groupings[current_grouping] {
+                return 0;
+            }
+            if current_grouping == groupings.len() || springs_so_far == 0 {
+                solve2(
+                    line,
+                    current_position + 1,
+                    current_grouping,
+                    springs_so_far,
+                    groupings,
+                    cache,
+                )
+            } else {
+                solve2(
+                    line,
+                    current_position + 1,
+                    current_grouping + 1,
+                    0,
+                    groupings,
+                    cache,
+                )
+            }
         }
-    }
+        b'#' => {
+            if current_grouping == groupings.len() {
+                return 0;
+            }
+            if springs_so_far >= groupings[current_grouping] {
+                return 0;
+            }
+            solve2(
+                line,
+                current_position + 1,
+                current_grouping,
+                springs_so_far + 1,
+                groupings,
+                cache,
+            )
+        }
+        b'?' => {
+            if current_grouping == groupings.len() {
+                assert!(springs_so_far == 0);
+                return solve2(
+                    line,
+                    current_position + 1,
+                    current_grouping,
+                    springs_so_far,
+                    groupings,
+                    cache,
+                );
+            }
 
-    if current_grouping == groupings.len() {
-        println!("No groupings left, just add dot");
-        return solve2(line, current_position + 1, current_grouping, 0, groupings);
-    }
+            assert!(current_grouping < groupings.len());
+            if springs_so_far == 0 {
+                return solve2(
+                    line,
+                    current_position + 1,
+                    current_grouping,
+                    springs_so_far,
+                    groupings,
+                    cache,
+                ) + solve2(
+                    line,
+                    current_position + 1,
+                    current_grouping,
+                    springs_so_far + 1,
+                    groupings,
+                    cache,
+                );
+            }
 
-    if springs_so_far == 0 {
-        println!("no previous springs, so add dot or # at: {current_position}");
-        return solve2(line, current_position + 1, current_grouping, 0, groupings)
-            + solve2(line, current_position + 1, current_grouping, 1, groupings);
-    }
+            if springs_so_far == groupings[current_grouping] {
+                return solve2(
+                    line,
+                    current_position + 1,
+                    current_grouping + 1,
+                    0,
+                    groupings,
+                    cache,
+                );
+            }
 
-    if springs_so_far < groupings[current_grouping] {
-        println!("have to continue # at: {current_position}");
-        return solve2(
-            line,
-            current_position + 1,
-            current_grouping,
-            springs_so_far + 1,
-            groupings,
-        );
-    }
+            solve2(
+                line,
+                current_position + 1,
+                current_grouping,
+                springs_so_far + 1,
+                groupings,
+                cache,
+            )
+        }
+        _ => unreachable!(),
+    };
 
-    if springs_so_far == groupings[current_grouping] {
-        println!("Add dot because the limit was achieved at {current_position}");
-        return solve2(
-            line,
-            current_position + 1,
-            current_grouping + 1,
-            0,
-            groupings,
-        );
-    }
-
-    if springs_so_far > groupings[current_grouping] {
-        println!("too many springs for the grouping at {current_position}. returning 0");
-        return 0;
-    }
-
-    unreachable!()
-}
-
-fn count_springs_left(line: &[u8], groupings: &[usize]) -> usize {
-    let total_springs: usize = groupings.iter().sum();
-    let already_inserted = line.iter().filter(|&&c| c == b'#').count();
-    total_springs - already_inserted
+    cache.insert((current_position, current_grouping, springs_so_far), ans);
+    ans
 }
 
 fn part1(input: &str) -> usize {
@@ -197,22 +143,30 @@ fn part1(input: &str) -> usize {
 
     springs_and_groupings
         .into_iter()
+        .map(|thing| multiply_by(thing, 1))
         .map(|(mut line, groupings)| {
-            let springs_left = count_springs_left(&line, &groupings);
-            solve(&mut line, 0, springs_left, &groupings)
+            if line.iter().all(|&el| el == b'?') {
+                fallback_solver(&line, &groupings)
+            } else {
+                line.push(b'.');
+                let mut cache = BTreeMap::new();
+                solve2(&mut line, 0, 0, 0, &groupings, &mut cache)
+            }
         })
         .sum()
 }
 
-fn multiply_by_five(line_and_grouping: (Vec<u8>, Vec<usize>)) -> (Vec<u8>, Vec<usize>) {
-    let multiplier = 2;
+fn multiply_by(
+    line_and_grouping: (Vec<u8>, Vec<usize>),
+    multiplier: usize,
+) -> (Vec<u8>, Vec<usize>) {
     let (line, groupings) = (line_and_grouping.0, line_and_grouping.1);
     let line_n = line.len();
     let groupings_n = groupings.len();
     (
         (line.into_iter().chain(std::iter::once(b'?')))
             .cycle()
-            .take((line_n + 1) * multiplier)
+            .take((line_n + 1) * multiplier - 1)
             .collect(),
         groupings
             .into_iter()
@@ -222,18 +176,36 @@ fn multiply_by_five(line_and_grouping: (Vec<u8>, Vec<usize>)) -> (Vec<u8>, Vec<u
     )
 }
 
+fn n_choose_k(n: usize, k: usize) -> usize {
+    let mut answer = 1;
+    for i in 0..k {
+        answer *= n - i;
+        answer /= i + 1;
+    }
+    answer
+}
+
+fn fallback_solver(line: &[u8], grouping: &[usize]) -> usize {
+    let empty_spaces: usize = line.len() - grouping.iter().sum::<usize>() - grouping.len() + 1;
+    n_choose_k(grouping.len() + empty_spaces, grouping.len())
+}
+
 fn part2(input: &str) -> usize {
     let springs_and_groupings = parse_input(input);
 
     springs_and_groupings
         .into_iter()
-        .map(multiply_by_five)
+        .map(|thing| multiply_by(thing, 5))
         .map(|(mut line, groupings)| {
-            line.push(b'.');
-            println!("{} {groupings:?}", String::from_utf8(line.clone()).unwrap());
-            let answer = solve2(&mut line, 0, 0, 0, &groupings, 0);
-            println!("{answer}");
-            answer
+            if line.iter().all(|&el| el == b'?') {
+                let ans = fallback_solver(&line, &groupings);
+                ans
+            } else {
+                line.push(b'.');
+                let mut cache = BTreeMap::new();
+                let answer = solve2(&mut line, 0, 0, 0, &groupings, &mut cache);
+                answer
+            }
         })
         .sum()
 }
@@ -242,18 +214,10 @@ fn main() {
     println!("TEST");
     let test = include_str!("../test");
     println!("Part 1: {}", part1(test));
-    // println!("Part 2: {}", part2(test));
-
-    println!("Another part 2 test: should return 1");
-    let test = include_str!("../test2");
-    println!("Part 2: {}", part2(test));
-
-    println!("Another part 2 test: should return 506250");
-    let test = include_str!("../test3");
     println!("Part 2: {}", part2(test));
 
     println!("INPUT");
     let input = include_str!("../input");
-    // println!("Part 1: {}", part1(input));
-    // println!("Part 2: {}", part2(input));
+    println!("Part 1: {}", part1(input));
+    println!("Part 2: {}", part2(input));
 }
