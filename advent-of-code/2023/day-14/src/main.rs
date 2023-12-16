@@ -114,19 +114,20 @@ fn part2(input: &str) -> usize {
         let loads = cycle(&mut grid);
         println!("Loads: {loads:?} at {i}");
         if let Some(&cached) = load_cache.get(&loads) {
-            println!("Found cycle starting after: {cached} cycles that loops after {i} cycles");
-            let loop_length = i - cached;
-            let remaining = (1_000_000_000 - i - 1) % loop_length;
-            for _ in 0..remaining {
-                cycle(&mut grid);
-            }
-            return calculate_load(&grid);
+            println!("Already seen these loads at: {cached}");
+            // println!("Found cycle starting after: {cached} cycles that loops after {i} cycles");
+            // let loop_length = i - cached;
+            // let remaining = (1_000_000_000 - i - 1) % loop_length;
+            // for _ in 0..remaining {
+            //     cycle(&mut grid);
+            // }
+            // return calculate_load(&grid);
         } else {
             load_cache.insert(loads, i);
         }
     }
 
-    unreachable!()
+    0
 }
 
 fn main() {
