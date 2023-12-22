@@ -84,7 +84,7 @@ fn part1(input: &str, range: isize) -> usize {
     let mut cache = BTreeMap::new();
     calculate_plots_from(start, range, &grid, &mut cache)
 }
-fn maps_in_range(n: isize) -> usize {
+fn maps_with_diameter(n: isize) -> usize {
     (((n - 1) * n) * 2 + 1) as _
 }
 
@@ -108,11 +108,8 @@ fn plots_from_border_maps(map_range: usize, grid: &[Vec<u8>]) -> usize {
         (1, 1),
         (1, grid[0].len() - 2),
     ] {
-        println!("Starting from :{start:?}");
         answer += map_range * calculate_plots_from(start, 64, grid, &mut cache);
-        println!("new answer {answer}");
         answer += (map_range - 1) * calculate_plots_from(start, 195, grid, &mut cache);
-        println!("new answer {answer}");
     }
 
     for start in [
@@ -121,9 +118,7 @@ fn plots_from_border_maps(map_range: usize, grid: &[Vec<u8>]) -> usize {
         (1, grid[0].len() / 2),
         (grid.len() - 2, grid[0].len() / 2),
     ] {
-        println!("Starting from: {start:?}");
         answer += calculate_plots_from(start, 130, grid, &mut cache);
-        println!("new answer {answer}");
     }
 
     answer
@@ -137,15 +132,16 @@ fn part2(input: &str) -> usize {
     let middle_plots_odd = number_of_plots_from_middle(false, &grid);
     println!("Even plots: {middle_plots_even} Odd plots: {middle_plots_odd}");
     println!("Max sum of map's coordinates: {}", STEPS / 131);
-    let max_map_range = STEPS / 131 + 1;
+    let max_map_range = STEPS / 131;
 
     let mut plots = middle_plots_odd;
-    for range in 1..max_map_range {
-        let border_maps = maps_in_range(range as isize) - maps_in_range(range as isize - 1);
+    for range in 2..=max_map_range {
+        let border_maps =
+            maps_with_diameter(range as isize) - maps_with_diameter(range as isize - 1);
         if range % 2 == 0 {
-            plots += border_maps * middle_plots_odd;
-        } else {
             plots += border_maps * middle_plots_even;
+        } else {
+            plots += border_maps * middle_plots_odd;
         }
     }
     println!("Plots from maps that are not a border: {}", plots);
