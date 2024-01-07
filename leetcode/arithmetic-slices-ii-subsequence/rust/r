@@ -1,0 +1,105 @@
+Array: [2, 4, 6, 8, 10]
+[1, 2, 3, 4]
+[2, 3, 4]
+[3, 4]
+[4]
+[]
+Sorted suffix: [2, 3, 4]
+Sorted suffix len: 3
+For 0 1 found the next elements: [2]
+Sorted suffix: [3, 4]
+Sorted suffix len: 2
+For 1 2 found the next elements: [3]
+Sorted suffix: [4]
+Sorted suffix len: 1
+For 2 3 found the next elements: [4]
+Sorted suffix: []
+Sorted suffix len: 0
+Sorted suffix: [3, 4]
+Sorted suffix len: 2
+For 0 2 found the next elements: [4]
+Sorted suffix: []
+Sorted suffix len: 0
+Sorted suffix: [4]
+Sorted suffix len: 1
+Sorted suffix: []
+Sorted suffix len: 0
+Sorted suffix: [4]
+Sorted suffix len: 1
+Sorted suffix: []
+Sorted suffix len: 0
+7
+Array: [7, 7, 7, 7, 7]
+[1, 2, 3, 4]
+[2, 3, 4]
+[3, 4]
+[4]
+[]
+Sorted suffix: [2, 3, 4]
+Sorted suffix len: 3
+For 0 1 found the next elements: [2, 3, 4]
+Sorted suffix: [3, 4]
+Sorted suffix len: 2
+For 1 2 found the next elements: [3, 4]
+Sorted suffix: [4]
+Sorted suffix len: 1
+For 2 3 found the next elements: [4]
+Sorted suffix: []
+Sorted suffix len: 0
+Sorted suffix: []
+Sorted suffix len: 0
+Sorted suffix: [4]
+Sorted suffix len: 1
+For 1 3 found the next elements: [4]
+Sorted suffix: []
+Sorted suffix len: 0
+Sorted suffix: [3, 4]
+Sorted suffix len: 2
+For 0 2 found the next elements: [3, 4]
+Sorted suffix: [4]
+Sorted suffix len: 1
+For 0 3 found the next elements: [4]
+Sorted suffix: []
+Sorted suffix len: 0
+16
+Array: [3, 1, -1, 1, 3, 1]
+[2, 1, 3, 5, 4]
+[2, 3, 5, 4]
+[3, 5, 4]
+[5, 4]
+[5]
+[]
+Sorted suffix: [2, 3, 5, 4]
+Sorted suffix len: 4
+For 0 1 found the next elements: [2]
+Sorted suffix: [3, 5, 4]
+Sorted suffix len: 3
+Sorted suffix: [3, 5, 4]
+Sorted suffix len: 3
+Sorted suffix: [5, 4]
+Sorted suffix len: 2
+Sorted suffix: [5]
+Sorted suffix len: 1
+Sorted suffix: []
+Sorted suffix len: 0
+Sorted suffix: [5, 4]
+Sorted suffix len: 2
+For 1 3 found the next elements: [5]
+Sorted suffix: []
+Sorted suffix len: 0
+Sorted suffix: [5]
+Sorted suffix len: 1
+Sorted suffix: []
+Sorted suffix len: 0
+Sorted suffix: [5, 4]
+Sorted suffix len: 2
+For 2 3 found the next elements: [4]
+Sorted suffix: [5]
+Sorted suffix len: 1
+Sorted suffix: [5]
+Sorted suffix len: 1
+Sorted suffix: []
+Sorted suffix len: 0
+Sorted suffix: []
+Sorted suffix len: 0
+3
