@@ -11,12 +11,12 @@ impl IntCode {
         Self {
             memory: input
                 .trim()
-                .split(",")
+                .split(',')
                 .map(|code| {
                     code.parse::<IntUnit>()
-                        .or_else(|_| {
+                        .or_else(|e| {
                             println!("Could not parse {code}");
-                            Err(())
+                            Err(e)
                         })
                         .expect("IntCode program always has ints only")
                 })
