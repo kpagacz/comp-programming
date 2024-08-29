@@ -1,0 +1,6 @@
+[package]
+name = "most-stones-removed-with-same-row-or-column"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
