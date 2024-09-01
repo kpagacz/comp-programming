@@ -20,6 +20,12 @@ const POSITION_MODE: IntUnit = 0;
 const IMMEDIATE_MODE: IntUnit = 1;
 const RELATIVE_MODE: IntUnit = 2;
 
+pub enum IntResult {
+    End,
+    AwaitInput,
+    Ok(IntUnit),
+}
+
 pub struct IntCode {
     pub memory: HashMap<usize, IntUnit>,
     pub input: VecDeque<IntUnit>,
@@ -60,7 +66,7 @@ impl IntCode {
         let mut output = vec![];
         self.input = input.into();
 
-        while let Some(value) = self.run_interruptible() {
+        while let IntResult::Ok(value) = self.run_interruptible() {
             output.push(value);
         }
 
@@ -86,7 +92,7 @@ impl IntCode {
         self.last_output = None;
     }
 
-    pub fn run_interruptible(&mut self) -> Option<IntUnit> {
+    pub fn run_interruptible(&mut self) -> IntResult {
         while self.it < self.memory.len() && self.access_memory(self.it) != END_OP {
             let (opcode, parameter_modes) = Self::decode_instruction(self.access_memory(self.it));
 
@@ -117,7 +123,10 @@ impl IntCode {
                     } else {
                         self.access_memory(self.it + 1) as usize
                     };
-                    let value = self.input.pop_front()?;
+                    let value = match self.input.pop_front() {
+                        Some(value) => value,
+                        None => return IntResult::AwaitInput,
+                    };
                     self.write_memory(target, value);
                     self.it += 2;
                 }
@@ -127,7 +136,7 @@ impl IntCode {
                         self.translate_operand(parameter_modes[0], self.access_memory(self.it + 1));
                     self.it += 2;
                     self.last_output = Some(operand);
-                    return Some(operand);
+                    return IntResult::Ok(operand);
                 }
 
                 JUMP_IF_TRUE_OP => {
@@ -197,7 +206,7 @@ impl IntCode {
             }
         }
 
-        None
+        IntResult::End
     }
 
     fn translate_operand(&self, parameter_mode: IntUnit, value: IntUnit) -> IntUnit {
