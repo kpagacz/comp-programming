@@ -1,0 +1,6 @@
+[package]
+name = "find-the-student-that-will-replace-the-chalk"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
