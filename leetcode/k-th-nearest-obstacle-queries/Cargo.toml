@@ -1,0 +1,6 @@
+[package]
+name = "k-th-nearest-obstacle-queries"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]

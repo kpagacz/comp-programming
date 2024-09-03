@@ -1,0 +1,6 @@
+[package]
+name = "select-cells-in-grid-with-maximum-score"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
