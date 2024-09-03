@@ -1,0 +1,6 @@
+[package]
+name = "sum-of-digits-of-string-after-convert"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
