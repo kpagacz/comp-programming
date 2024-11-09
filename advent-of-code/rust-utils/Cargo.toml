@@ -2,5 +2,10 @@
 name = "aoc-utils"
 version = "0.1.0"
 edition = "2021"
+license = "MIT"
+description = "Algorithmic utilities for AoC and EverybodyCodes"
+repository = "https://github.com/kpagacz/comp-programming/tree/main/advent-of-code/rust-utils"
+homepage = "https://github.com/kpagacz/comp-programming/tree/main/advent-of-code/rust-utils"
+
 
 [dependencies]
