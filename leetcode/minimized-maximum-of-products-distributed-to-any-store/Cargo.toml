@@ -1,0 +1,6 @@
+[package]
+name = "minimized-maximum-of-products-distributed-to-any-store"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
