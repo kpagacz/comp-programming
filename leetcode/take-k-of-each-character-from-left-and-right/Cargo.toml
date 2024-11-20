@@ -1,0 +1,6 @@
+[package]
+name = "take-k-of-each-character-from-left-and-right"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
