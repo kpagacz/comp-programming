@@ -1,0 +1,6 @@
+[package]
+name = "quest-06"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
