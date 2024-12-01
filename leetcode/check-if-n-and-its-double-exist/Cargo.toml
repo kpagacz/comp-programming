@@ -1,0 +1,6 @@
+[package]
+name = "check-if-n-and-its-double-exist"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
