@@ -1,0 +1,6 @@
+[package]
+name = "check-if-a-word-occurs-as-a-prefix-of-any-word-in-a-sentence"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
