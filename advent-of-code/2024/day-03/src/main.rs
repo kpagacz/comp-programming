@@ -17,20 +17,19 @@ fn part2(input: &str) -> i64 {
     let mut spans = vec![];
     const DO: i32 = 0;
     const DONT: i32 = 1;
-    for item in input.match_indices("do()") {
-        spans.push((item.0, DO));
+    for (position, _) in input.match_indices("do()") {
+        spans.push((position, DO));
     }
-    for item in input.match_indices("don't()") {
-        spans.push((item.0, DONT));
+    for (position, _) in input.match_indices("don't()") {
+        spans.push((position, DONT));
     }
     spans.sort_unstable();
 
     let mut res = String::default();
     let mut last = 0usize;
     let mut enabled = true;
-    for (id, t) in spans {
-        match (enabled, t) {
-            (true, DO) => {}
+    for (id, mode) in spans {
+        match (enabled, mode) {
             (false, DO) => {
                 enabled = true;
                 last = id;
@@ -40,8 +39,7 @@ fn part2(input: &str) -> i64 {
                 enabled = false;
                 last = id;
             }
-            (false, DONT) => {}
-            _ => unreachable!(),
+            _ => {}
         }
     }
     if enabled {
