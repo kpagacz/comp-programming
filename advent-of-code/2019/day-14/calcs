@@ -1,0 +1,27 @@
+needed molecules in a while: {"FUEL": 1}
+needed molecules in a while: {"PLWSL": 7, "FUEL": 0, "KTJDG": 18, "FHTLT": 31, "BHXH": 6, "ZDVW": 37, "WPTQ": 12}
+7plwsl -> 2 * 7 ZLQW, 3 BMBT, 9 XCVML, 26 XMNCP, 1 WPTQ, 2 MZWV, 1 RJRHP 
+18ktjdg -> 2 * 189 ORE 
+31fhtlt -> 6 * 6 WPTQ, 2 BMBT, 8 ZLQW, 18 KTJDG, 1 XMNCP, 6 MZWV, 1 RJRHP
+6bhxh -> 2 * 114 ORE
+37zdvw -> 37 * 13 WPTQ, 10 LTCX, 3 RJRHP, 14 XMNCP, 2 MZWV, 1 ZLQW
+
+
+needed molecules in a while: {"PLWSL": 0, "XMNCP": 576, "RJRHP": 119, "BMBT": 33, 
+"LTCX": 370, "ZLQW": 99, "XCVML": 18, "ZDVW": 0, "FUEL": 0, 
+"KTJDG": 108, "BHXH": 0, "WPTQ": 519, "MZWV": 114, "FHTLT": 0, "ORE": 606}
+
+
+needed molecules in a while: {
+  "PLWSL": 0, "XMNCP": 0, "RJRHP": 0, "BMBT": 650, 
+  "LTCX": 34, "ZLQW": 0, "XCVML": 1004, "ZDVW": 0, 
+  "FUEL": 0, "KTJDG": 60, "XDBXC": 5151, "BHXH": 469, 
+  "WPTQ": 0, "MZWV": 288, "VRPVC": 431, "FHTLT": 0, "ORE": 2874}
+
+
+needed molecules in a while: {
+  "PLWSL": 0, "XMNCP": 0, "RJRHP": 0, "BMBT": 0, 
+  "LTCX": 0, "ZLQW": 0, "XCVML": 0, "ZDVW": 0, 
+  "FUEL": 0, "KTJDG": 3015, "XDBXC": 0, "BHXH": 2570, 
+  "CNZTR": 69552, "WPTQ": 0, "MZWV": 0, "VRPVC": 32534, 
+  "FHTLT": 0, "ORE": 25037}
