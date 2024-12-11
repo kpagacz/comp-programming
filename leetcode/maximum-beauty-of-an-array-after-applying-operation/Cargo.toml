@@ -1,0 +1,6 @@
+[package]
+name = "maximum-beauty-of-an-array-after-applying-operation"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
