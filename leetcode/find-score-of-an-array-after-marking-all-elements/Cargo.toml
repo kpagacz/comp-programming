@@ -1,0 +1,6 @@
+[package]
+name = "find-score-of-an-array-after-marking-all-elements"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
