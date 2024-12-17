@@ -146,12 +146,13 @@ fn backtrack(output: &[usize], a: usize) -> Option<usize> {
 }
 
 fn part2() -> usize {
+    let (_, _, _, expected) = input();
     let insts = vec![2, 4, 1, 7, 7, 5, 1, 7, 4, 6, 0, 3, 5, 5, 3, 0];
     let new_a = backtrack(&insts, 0).unwrap();
     let mut comp = Computer::new(new_a, 0, 0, insts.clone());
     let out = comp.run();
-    println!("Got {out:?}");
-    println!("Expected {insts:?}");
+    println!("Got      {out:?}");
+    println!("Expected {expected:?}");
     new_a
 }
 
