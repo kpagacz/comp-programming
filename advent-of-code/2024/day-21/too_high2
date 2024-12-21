@@ -1,0 +1,15 @@
+For times = 2
+Part 1 (test): 126384, expected 126384
+Part 1: 248684
+Part 2: 248684
+For times = 3
+Part 1: 612636
+Part 2: 612636
+For times = 4
+Part 1: 1509490
+Part 2: 1509490
+For times = 9
+Part 1: 147217966
+Part 2: 143098130
+For times = 25
+Part 2: 307690647084640
