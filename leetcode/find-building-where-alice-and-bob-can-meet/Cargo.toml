@@ -1,0 +1,6 @@
+[package]
+name = "find-building-where-alice-and-bob-can-meet"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
