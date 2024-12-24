@@ -1,0 +1,758 @@
+digraph G {
+  cfw [color="yellow", style="filled"]
+  qgc -> cfw
+  kfh -> cfw
+  z11 [color="purple", pos="22,20!", style="filled"]
+  cft -> z11
+  gsf -> z11
+  x06 [color="green", pos="12,0!", style="filled"]
+  srm [color="yellow", style="filled"]
+  y18 -> srm
+  x18 -> srm
+  cdw [color="yellow", style="filled"]
+  cdb -> cdw
+  rtm -> cdw
+  vdb [color="blue", style="filled"]
+  cdw -> vdb
+  mgt -> vdb
+  rjm [color="purple", style="filled"]
+  y24 -> rjm
+  x24 -> rjm
+  z44 [color="purple", pos="88,20!", style="filled"]
+  wvr -> z44
+  gpq -> z44
+  x05 [color="green", pos="10,0!", style="filled"]
+  x24 [color="green", pos="48,0!", style="filled"]
+  y02 [color="green", pos="5,0!", style="filled"]
+  mrt [color="yellow", style="filled"]
+  qqt -> mrt
+  vdb -> mrt
+  rrf [color="blue", style="filled"]
+  npf -> rrf
+  fvp -> rrf
+  dgk [color="purple", style="filled"]
+  x32 -> dgk
+  y32 -> dgk
+  rgc [color="blue", style="filled"]
+  swt -> rgc
+  ghb -> rgc
+  x41 [color="green", pos="82,0!", style="filled"]
+  qbf [color="blue", style="filled"]
+  cff -> qbf
+  rbw -> qbf
+  skc [color="yellow", style="filled"]
+  bqd -> skc
+  qsm -> skc
+  x18 [color="green", pos="36,0!", style="filled"]
+  y09 [color="green", pos="19,0!", style="filled"]
+  y23 [color="green", pos="47,0!", style="filled"]
+  ccp [color="yellow", style="filled"]
+  y20 -> ccp
+  x20 -> ccp
+  npf [color="yellow", style="filled"]
+  nng -> npf
+  rgh -> npf
+  dmw [color="yellow", style="filled"]
+  x26 -> dmw
+  y26 -> dmw
+  cpf [color="yellow", style="filled"]
+  pqc -> cpf
+  fcr -> cpf
+  hhp [color="yellow", style="filled"]
+  x01 -> hhp
+  y01 -> hhp
+  dkd [color="yellow", style="filled"]
+  x25 -> dkd
+  y25 -> dkd
+  wpp [color="yellow", style="filled"]
+  pgq -> wpp
+  dwq -> wpp
+  pnf [color="purple", style="filled"]
+  x05 -> pnf
+  y05 -> pnf
+  dfm [color="blue", style="filled"]
+  nnh -> dfm
+  bjr -> dfm
+  x14 [color="green", pos="28,0!", style="filled"]
+  dvp [color="yellow", style="filled"]
+  x31 -> dvp
+  y31 -> dvp
+  brm [color="blue", style="filled"]
+  sgv -> brm
+  khs -> brm
+  x10 [color="green", pos="20,0!", style="filled"]
+  htd [color="yellow", style="filled"]
+  x43 -> htd
+  y43 -> htd
+  hnw [color="purple", style="filled"]
+  x25 -> hnw
+  y25 -> hnw
+  dtr [color="purple", style="filled"]
+  y38 -> dtr
+  x38 -> dtr
+  bsf [color="yellow", style="filled"]
+  jtd -> bsf
+  qwj -> bsf
+  x21 [color="green", pos="42,0!", style="filled"]
+  gbv [color="purple", style="filled"]
+  y18 -> gbv
+  x18 -> gbv
+  z41 [color="purple", pos="82,20!", style="filled"]
+  dns -> z41
+  qbf -> z41
+  x39 [color="green", pos="78,0!", style="filled"]
+  htq [color="yellow", style="filled"]
+  x32 -> htq
+  y32 -> htq
+  vfn [color="yellow", style="filled"]
+  y17 -> vfn
+  x17 -> vfn
+  y10 [color="green", pos="21,0!", style="filled"]
+  cft [color="blue", style="filled"]
+  pgp -> cft
+  skw -> cft
+  y38 [color="green", pos="77,0!", style="filled"]
+  ffm [color="yellow", style="filled"]
+  y16 -> ffm
+  x16 -> ffm
+  djt [color="yellow", style="filled"]
+  pnf -> djt
+  tmr -> djt
+  pfg [color="blue", style="filled"]
+  cgf -> pfg
+  kgh -> pfg
+  frj [color="blue", style="filled"]
+  ngw -> frj
+  srm -> frj
+  hnh [color="yellow", style="filled"]
+  bfg -> hnh
+  vcs -> hnh
+  y32 [color="green", pos="65,0!", style="filled"]
+  cbv [color="purple", style="filled"]
+  x21 -> cbv
+  y21 -> cbv
+  y22 [color="green", pos="45,0!", style="filled"]
+  cgf [color="yellow", style="filled"]
+  phn -> cgf
+  wph -> cgf
+  mnh [color="blue", style="filled"]
+  wmn -> mnh
+  nhd -> mnh
+  x36 [color="green", pos="72,0!", style="filled"]
+  pbq [color="yellow", style="filled"]
+  rkw -> pbq
+  shk -> pbq
+  qwj [color="blue", style="filled"]
+  rft -> qwj
+  ncq -> qwj
+  skw [color="yellow", style="filled"]
+  dfm -> skw
+  ggd -> skw
+  sgv [color="yellow", style="filled"]
+  rqt -> sgv
+  rcd -> sgv
+  z32 [color="purple", pos="64,20!", style="filled"]
+  vdd -> z32
+  dgk -> z32
+  vpv [color="purple", style="filled"]
+  y09 -> vpv
+  x09 -> vpv
+  dsf [color="yellow", style="filled"]
+  rrf -> dsf
+  qnw -> dsf
+  brj [color="yellow", style="filled"]
+  x00 -> brj
+  y00 -> brj
+  bps [color="purple", style="filled"]
+  y40 -> bps
+  x40 -> bps
+  x29 [color="green", pos="58,0!", style="filled"]
+  msm [color="blue", style="filled"]
+  dgm -> msm
+  cth -> msm
+  djr [color="blue", style="filled"]
+  hcg -> djr
+  cwb -> djr
+  z28 [color="purple", pos="56,20!", style="filled"]
+  vdb -> z28
+  qqt -> z28
+  rbw [color="yellow", style="filled"]
+  y40 -> rbw
+  x40 -> rbw
+  y34 [color="green", pos="69,0!", style="filled"]
+  ppf [color="yellow", style="filled"]
+  pfg -> ppf
+  csb -> ppf
+  gpq [color="blue", style="filled"]
+  htd -> gpq
+  scm -> gpq
+  wvr [color="purple", style="filled"]
+  y44 -> wvr
+  x44 -> wvr
+  khs [color="yellow", style="filled"]
+  x37 -> khs
+  y37 -> khs
+  x23 [color="green", pos="46,0!", style="filled"]
+  mgt [color="yellow", style="filled"]
+  x27 -> mgt
+  y27 -> mgt
+  z12 [color="purple", pos="24,20!", style="filled"]
+  mnh -> z12
+  bqw -> z12
+  z19 [color="purple", pos="38,20!", style="filled"]
+  tqj -> z19
+  frj -> z19
+  z00 [color="purple", pos="0,20!", style="filled"]
+  y00 -> z00
+  x00 -> z00
+  pmr [color="yellow", style="filled"]
+  x12 -> pmr
+  y12 -> pmr
+  y37 [color="green", pos="75,0!", style="filled"]
+  y36 [color="green", pos="73,0!", style="filled"]
+  fvp [color="yellow", style="filled"]
+  x34 -> fvp
+  y34 -> fvp
+  y13 [color="green", pos="27,0!", style="filled"]
+  rtm [color="blue", style="filled"]
+  dmw -> rtm
+  sbq -> rtm
+  rvc [color="blue", style="filled"]
+  cfw -> rvc
+  mwg -> rvc
+  x38 [color="green", pos="76,0!", style="filled"]
+  z17 [color="purple", pos="34,20!", style="filled"]
+  vcs -> z17
+  bfg -> z17
+  vdr [color="yellow", style="filled"]
+  hnw -> vdr
+  gvs -> vdr
+  x03 [color="green", pos="6,0!", style="filled"]
+  mrp [color="purple", style="filled"]
+  y33 -> mrp
+  x33 -> mrp
+  y40 [color="green", pos="81,0!", style="filled"]
+  z33 [color="purple", pos="66,20!", style="filled"]
+  chd -> z33
+  mrp -> z33
+  x30 [color="green", pos="60,0!", style="filled"]
+  sbq [color="yellow", style="filled"]
+  vgm -> sbq
+  pmm -> sbq
+  thc [color="purple", style="filled"]
+  y01 -> thc
+  x01 -> thc
+  tnt [color="yellow", style="filled"]
+  x35 -> tnt
+  y35 -> tnt
+  pgq [color="blue", style="filled"]
+  dsw -> pgq
+  pmr -> pgq
+  y30 [color="green", pos="61,0!", style="filled"]
+  ngv [color="yellow", style="filled"]
+  brj -> ngv
+  thc -> ngv
+  bmc [color="blue", style="filled"]
+  ngv -> bmc
+  hhp -> bmc
+  cdb [color="purple", style="filled"]
+  x27 -> cdb
+  y27 -> cdb
+  z20 [color="purple", pos="40,20!", style="filled"]
+  gnd -> z20
+  ddh -> z20
+  y11 [color="green", pos="23,0!", style="filled"]
+  y14 [color="green", pos="29,0!", style="filled"]
+  z40 [color="purple", pos="80,20!", style="filled"]
+  gqg -> z40
+  bps -> z40
+  hcg [color="yellow", style="filled"]
+  x30 -> hcg
+  y30 -> hcg
+  bgs [color="yellow", style="filled"]
+  kqk -> bgs
+  djr -> bgs
+  z36 [color="purple", pos="72,20!", style="filled"]
+  wpv -> z36
+  cwh -> z36
+  mcs [color="yellow", style="filled"]
+  nnt -> mcs
+  cbv -> mcs
+  z37 [color="purple", pos="74,20!", style="filled"]
+  rcd -> z37
+  rqt -> z37
+  x12 [color="green", pos="24,0!", style="filled"]
+  z30 [color="purple", pos="60,20!", style="filled"]
+  msm -> z30
+  fdm -> z30
+  z42 [color="purple", pos="84,20!", style="filled"]
+  qsm -> z42
+  bqd -> z42
+  y15 [color="green", pos="31,0!", style="filled"]
+  vjb [color="yellow", style="filled"]
+  y28 -> vjb
+  x28 -> vjb
+  jsj [color="yellow", style="filled"]
+  x21 -> jsj
+  y21 -> jsj
+  x04 [color="green", pos="8,0!", style="filled"]
+  y43 [color="green", pos="87,0!", style="filled"]
+  y20 [color="green", pos="41,0!", style="filled"]
+  y44 [color="green", pos="89,0!", style="filled"]
+  phn [color="blue", style="filled"]
+  bsd -> phn
+  cpf -> phn
+  y42 [color="green", pos="85,0!", style="filled"]
+  y17 [color="green", pos="35,0!", style="filled"]
+  rcd [color="blue", style="filled"]
+  wgq -> rcd
+  kmg -> rcd
+  y05 [color="green", pos="11,0!", style="filled"]
+  psj [color="blue", style="filled"]
+  vjb -> psj
+  mrt -> psj
+  ncq [color="yellow", style="filled"]
+  x38 -> ncq
+  y38 -> ncq
+  ggd [color="purple", style="filled"]
+  x10 -> ggd
+  y10 -> ggd
+  pvw [color="yellow", style="filled"]
+  wps -> pvw
+  kmn -> pvw
+  x27 [color="green", pos="54,0!", style="filled"]
+  sbf [color="yellow", style="filled"]
+  x05 -> sbf
+  y05 -> sbf
+  cff [color="yellow", style="filled"]
+  gqg -> cff
+  bps -> cff
+  x31 [color="green", pos="62,0!", style="filled"]
+  y29 [color="green", pos="59,0!", style="filled"]
+  bjr [color="yellow", style="filled"]
+  vpv -> bjr
+  ddq -> bjr
+  skt [color="yellow", style="filled"]
+  y13 -> skt
+  x13 -> skt
+  hsd [color="yellow", style="filled"]
+  wvr -> hsd
+  gpq -> hsd
+  vdd [color="blue", style="filled"]
+  bgs -> vdd
+  dvp -> vdd
+  gvs [color="blue", style="filled"]
+  wsv -> gvs
+  pwn -> gvs
+  x15 [color="green", pos="30,0!", style="filled"]
+  y21 [color="green", pos="43,0!", style="filled"]
+  y03 [color="green", pos="7,0!", style="filled"]
+  fcr [color="purple", style="filled"]
+  y14 -> fcr
+  x14 -> fcr
+  x33 [color="green", pos="66,0!", style="filled"]
+  z31 [color="purple", pos="62,20!", style="filled"]
+  djr -> z31
+  kqk -> z31
+  qsm [color="purple", style="filled"]
+  x42 -> qsm
+  y42 -> qsm
+  vgm [color="purple", style="filled"]
+  y26 -> vgm
+  x26 -> vgm
+  nnh [color="yellow", style="filled"]
+  x09 -> nnh
+  y09 -> nnh
+  nmm [color="yellow", style="filled"]
+  x19 -> nmm
+  y19 -> nmm
+  x20 [color="green", pos="40,0!", style="filled"]
+  z27 [color="purple", pos="54,20!", style="filled"]
+  cdb -> z27
+  rtm -> z27
+  rhn [color="yellow", style="filled"]
+  tqj -> rhn
+  frj -> rhn
+  x42 [color="green", pos="84,0!", style="filled"]
+  ktp [color="blue", style="filled"]
+  cms -> ktp
+  qdw -> ktp
+  y01 [color="green", pos="3,0!", style="filled"]
+  x40 [color="green", pos="80,0!", style="filled"]
+  tmr [color="blue", style="filled"]
+  pbq -> tmr
+  dpv -> tmr
+  wgq [color="yellow", style="filled"]
+  y36 -> wgq
+  x36 -> wgq
+  x16 [color="green", pos="32,0!", style="filled"]
+  fmg [color="yellow", style="filled"]
+  x22 -> fmg
+  y22 -> fmg
+  x26 [color="green", pos="52,0!", style="filled"]
+  y39 [color="green", pos="79,0!", style="filled"]
+  pms [color="purple", style="filled"]
+  y22 -> pms
+  x22 -> pms
+  x08 [color="green", pos="16,0!", style="filled"]
+  x25 [color="green", pos="50,0!", style="filled"]
+  z26 [color="purple", pos="52,20!", style="filled"]
+  pmm -> z26
+  vgm -> z26
+  x02 [color="green", pos="4,0!", style="filled"]
+  qgc [color="purple", style="filled"]
+  x06 -> qgc
+  y06 -> qgc
+  z07 [color="purple", pos="14,20!", style="filled"]
+  kpv -> z07
+  rvc -> z07
+  jfh [color="purple", style="filled"]
+  x43 -> jfh
+  y43 -> jfh
+  z29 [color="purple", pos="58,20!", style="filled"]
+  psj -> z29
+  qbn -> z29
+  z10 [color="purple", pos="20,20!", style="filled"]
+  ggd -> z10
+  dfm -> z10
+  y28 [color="green", pos="57,0!", style="filled"]
+  wpv [color="blue", style="filled"]
+  dsf -> wpv
+  tnt -> wpv
+  y04 [color="green", pos="9,0!", style="filled"]
+  z25 [color="purple", pos="50,20!", style="filled"]
+  gvs -> z25
+  hnw -> z25
+  qqt [color="purple", style="filled"]
+  x28 -> qqt
+  y28 -> qqt
+  mwg [color="yellow", style="filled"]
+  y06 -> mwg
+  x06 -> mwg
+  x17 [color="green", pos="34,0!", style="filled"]
+  y35 [color="green", pos="71,0!", style="filled"]
+  z05 [color="purple", pos="10,20!", style="filled"]
+  tmr -> z05
+  pnf -> z05
+  y41 [color="green", pos="83,0!", style="filled"]
+  y08 [color="green", pos="17,0!", style="filled"]
+  z16 [color="purple", pos="32,20!", style="filled"]
+  csb -> z16
+  pfg -> z16
+  z21 [color="purple", pos="42,20!", style="filled"]
+  nnt -> z21
+  cbv -> z21
+  z01 [color="purple", pos="2,20!", style="filled"]
+  thc -> z01
+  brj -> z01
+  z23 [color="purple", pos="46,20!", style="filled"]
+  pgt -> z23
+  hbv -> z23
+  ddh [color="purple", style="filled"]
+  y20 -> ddh
+  x20 -> ddh
+  chd [color="blue", style="filled"]
+  wdr -> chd
+  htq -> chd
+  cjw [color="yellow", style="filled"]
+  vgj -> cjw
+  pms -> cjw
+  cwh [color="purple", style="filled"]
+  y36 -> cwh
+  x36 -> cwh
+  y19 [color="green", pos="39,0!", style="filled"]
+  x44 [color="green", pos="88,0!", style="filled"]
+  hbv [color="purple", style="filled"]
+  x23 -> hbv
+  y23 -> hbv
+  pqc [color="blue", style="filled"]
+  skt -> pqc
+  wpp -> pqc
+  dns [color="purple", style="filled"]
+  x41 -> dns
+  y41 -> dns
+  y12 [color="green", pos="25,0!", style="filled"]
+  z24 [color="purple", pos="48,20!", style="filled"]
+  ktp -> z24
+  rjm -> z24
+  tqj [color="purple", style="filled"]
+  y19 -> tqj
+  x19 -> tqj
+  y00 [color="green", pos="1,0!", style="filled"]
+  y27 [color="green", pos="55,0!", style="filled"]
+  x00 [color="green", pos="0,0!", style="filled"]
+  x43 [color="green", pos="86,0!", style="filled"]
+  csb [color="purple", style="filled"]
+  x16 -> csb
+  y16 -> csb
+  scm [color="yellow", style="filled"]
+  jfh -> scm
+  kmm -> scm
+  wmn [color="yellow", style="filled"]
+  y11 -> wmn
+  x11 -> wmn
+  x22 [color="green", pos="44,0!", style="filled"]
+  y06 [color="green", pos="13,0!", style="filled"]
+  bnc [color="yellow", style="filled"]
+  x42 -> bnc
+  y42 -> bnc
+  pgt [color="blue", style="filled"]
+  fmg -> pgt
+  cjw -> pgt
+  cwb [color="yellow", style="filled"]
+  msm -> cwb
+  fdm -> cwb
+  x07 [color="green", pos="14,0!", style="filled"]
+  wsv [color="yellow", style="filled"]
+  x24 -> wsv
+  y24 -> wsv
+  z13 [color="purple", pos="26,20!", style="filled"]
+  dwq -> z13
+  pgq -> z13
+  ddq [color="blue", style="filled"]
+  pbh -> ddq
+  htn -> ddq
+  htn [color="yellow", style="filled"]
+  x08 -> htn
+  y08 -> htn
+  snk [color="yellow", style="filled"]
+  y02 -> snk
+  x02 -> snk
+  gnd [color="blue", style="filled"]
+  rhn -> gnd
+  nmm -> gnd
+  nhd [color="yellow", style="filled"]
+  cft -> nhd
+  gsf -> nhd
+  z18 [color="purple", pos="36,20!", style="filled"]
+  mtg -> z18
+  gbv -> z18
+  kmn [color="blue", style="filled"]
+  qfb -> kmn
+  snk -> kmn
+  z02 [color="purple", pos="4,20!", style="filled"]
+  wsw -> z02
+  bmc -> z02
+  z34 [color="purple", pos="68,20!", style="filled"]
+  rgh -> z34
+  nng -> z34
+  qbn [color="purple", style="filled"]
+  y29 -> qbn
+  x29 -> qbn
+  sng [color="yellow", style="filled"]
+  y44 -> sng
+  x44 -> sng
+  y31 [color="green", pos="63,0!", style="filled"]
+  z09 [color="purple", pos="18,20!", style="filled"]
+  vpv -> z09
+  ddq -> z09
+  nnt [color="blue", style="filled"]
+  ccp -> nnt
+  vtg -> nnt
+  qdw [color="yellow", style="filled"]
+  pgt -> qdw
+  hbv -> qdw
+  z08 [color="purple", pos="16,20!", style="filled"]
+  bcp -> z08
+  rgc -> z08
+  z39 [color="purple", pos="78,20!", style="filled"]
+  jtd -> z39
+  qwj -> z39
+  kmg [color="yellow", style="filled"]
+  cwh -> kmg
+  wpv -> kmg
+  z15 [color="purple", pos="30,20!", style="filled"]
+  wph -> z15
+  phn -> z15
+  pgp [color="yellow", style="filled"]
+  x10 -> pgp
+  y10 -> pgp
+  x28 [color="green", pos="56,0!", style="filled"]
+  y16 [color="green", pos="33,0!", style="filled"]
+  pmm [color="blue", style="filled"]
+  vdr -> pmm
+  dkd -> pmm
+  bqd [color="blue", style="filled"]
+  bwr -> bqd
+  vqn -> bqd
+  bfg [color="blue", style="filled"]
+  ppf -> bfg
+  ffm -> bfg
+  x35 [color="green", pos="70,0!", style="filled"]
+  kpv [color="purple", style="filled"]
+  y07 -> kpv
+  x07 -> kpv
+  bqw [color="purple", style="filled"]
+  x12 -> bqw
+  y12 -> bqw
+  z06 [color="purple", pos="12,20!", style="filled"]
+  qgc -> z06
+  kfh -> z06
+  y25 [color="green", pos="51,0!", style="filled"]
+  kfh [color="blue", style="filled"]
+  djt -> kfh
+  sbf -> kfh
+  x11 [color="green", pos="22,0!", style="filled"]
+  bcp [color="purple", style="filled"]
+  x08 -> bcp
+  y08 -> bcp
+  gsf [color="purple", style="filled"]
+  y11 -> gsf
+  x11 -> gsf
+  x19 [color="green", pos="38,0!", style="filled"]
+  vjs [color="yellow", style="filled"]
+  x33 -> vjs
+  y33 -> vjs
+  pwn [color="yellow", style="filled"]
+  rjm -> pwn
+  ktp -> pwn
+  kmm [color="blue", style="filled"]
+  skc -> kmm
+  bnc -> kmm
+  vqn [color="yellow", style="filled"]
+  y41 -> vqn
+  x41 -> vqn
+  gqg [color="blue", style="filled"]
+  bsf -> gqg
+  ccs -> gqg
+  rkw [color="purple", style="filled"]
+  x04 -> rkw
+  y04 -> rkw
+  rgh [color="purple", style="filled"]
+  y34 -> rgh
+  x34 -> rgh
+  swt [color="yellow", style="filled"]
+  x07 -> swt
+  y07 -> swt
+  z45 [color="blue", pos="90,20!", style="filled"]
+  hsd -> z45
+  sng -> z45
+  x09 [color="green", pos="18,0!", style="filled"]
+  dgm [color="yellow", style="filled"]
+  x29 -> dgm
+  y29 -> dgm
+  vtg [color="yellow", style="filled"]
+  gnd -> vtg
+  ddh -> vtg
+  rft [color="yellow", style="filled"]
+  dtr -> rft
+  brm -> rft
+  cms [color="yellow", style="filled"]
+  y23 -> cms
+  x23 -> cms
+  x13 [color="green", pos="26,0!", style="filled"]
+  y26 [color="green", pos="53,0!", style="filled"]
+  wdr [color="yellow", style="filled"]
+  vdd -> wdr
+  dgk -> wdr
+  kqk [color="purple", style="filled"]
+  x31 -> kqk
+  y31 -> kqk
+  qfb [color="yellow", style="filled"]
+  bmc -> qfb
+  wsw -> qfb
+  y18 [color="green", pos="37,0!", style="filled"]
+  x37 [color="green", pos="74,0!", style="filled"]
+  wph [color="purple", style="filled"]
+  x15 -> wph
+  y15 -> wph
+  rqt [color="purple", style="filled"]
+  x37 -> rqt
+  y37 -> rqt
+  vgj [color="blue", style="filled"]
+  mcs -> vgj
+  jsj -> vgj
+  mtg [color="blue", style="filled"]
+  hnh -> mtg
+  vfn -> mtg
+  z43 [color="purple", pos="86,20!", style="filled"]
+  kmm -> z43
+  jfh -> z43
+  wsw [color="purple", style="filled"]
+  x02 -> wsw
+  y02 -> wsw
+  y24 [color="green", pos="49,0!", style="filled"]
+  z38 [color="purple", pos="76,20!", style="filled"]
+  dtr -> z38
+  brm -> z38
+  nng [color="blue", style="filled"]
+  cwg -> nng
+  vjs -> nng
+  ngw [color="yellow", style="filled"]
+  mtg -> ngw
+  gbv -> ngw
+  x34 [color="green", pos="68,0!", style="filled"]
+  kgh [color="yellow", style="filled"]
+  y15 -> kgh
+  x15 -> kgh
+  bsd [color="yellow", style="filled"]
+  x14 -> bsd
+  y14 -> bsd
+  jtd [color="purple", style="filled"]
+  x39 -> jtd
+  y39 -> jtd
+  z04 [color="purple", pos="8,20!", style="filled"]
+  shk -> z04
+  rkw -> z04
+  pbh [color="yellow", style="filled"]
+  bcp -> pbh
+  rgc -> pbh
+  z14 [color="purple", pos="28,20!", style="filled"]
+  fcr -> z14
+  pqc -> z14
+  y07 [color="green", pos="15,0!", style="filled"]
+  ghb [color="yellow", style="filled"]
+  rvc -> ghb
+  kpv -> ghb
+  z35 [color="purple", pos="70,20!", style="filled"]
+  rrf -> z35
+  qnw -> z35
+  cwg [color="yellow", style="filled"]
+  chd -> cwg
+  mrp -> cwg
+  dpv [color="yellow", style="filled"]
+  x04 -> dpv
+  y04 -> dpv
+  x32 [color="green", pos="64,0!", style="filled"]
+  dwq [color="purple", style="filled"]
+  y13 -> dwq
+  x13 -> dwq
+  bwr [color="yellow", style="filled"]
+  dns -> bwr
+  qbf -> bwr
+  z03 [color="purple", pos="6,20!", style="filled"]
+  wps -> z03
+  kmn -> z03
+  vcs [color="purple", style="filled"]
+  y17 -> vcs
+  x17 -> vcs
+  fdm [color="purple", style="filled"]
+  y30 -> fdm
+  x30 -> fdm
+  x01 [color="green", pos="2,0!", style="filled"]
+  qnw [color="purple", style="filled"]
+  y35 -> qnw
+  x35 -> qnw
+  cth [color="yellow", style="filled"]
+  psj -> cth
+  qbn -> cth
+  btc [color="yellow", style="filled"]
+  y03 -> btc
+  x03 -> btc
+  y33 [color="green", pos="67,0!", style="filled"]
+  wps [color="purple", style="filled"]
+  x03 -> wps
+  y03 -> wps
+  z22 [color="purple", pos="44,20!", style="filled"]
+  vgj -> z22
+  pms -> z22
+  shk [color="blue", style="filled"]
+  btc -> shk
+  pvw -> shk
+  dsw [color="yellow", style="filled"]
+  bqw -> dsw
+  mnh -> dsw
+  ccs [color="yellow", style="filled"]
+  x39 -> ccs
+  y39 -> ccs
+}
