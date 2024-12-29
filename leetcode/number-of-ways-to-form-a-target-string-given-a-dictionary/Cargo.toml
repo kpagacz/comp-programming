@@ -1,0 +1,6 @@
+[package]
+name = "number-of-ways-to-form-a-target-string-given-a-dictionary"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
