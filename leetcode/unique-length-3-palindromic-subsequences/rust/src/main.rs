@@ -18,15 +18,14 @@ impl Solution {
         s.iter().enumerate().for_each(|(pos, &c)| {
             let entry = positions.entry(c).or_insert((-1i32, -1i32));
             match (entry.0 == -1, entry.1 == -1) {
-                (true, true) => (*entry).0 = pos as i32,
-                (false, _) => (*entry).1 = pos as i32,
+                (true, true) => entry.0 = pos as i32,
+                (false, _) => entry.1 = pos as i32,
                 (_, _) => {}
             }
         });
 
-        println!("{positions:?}");
         let mut answer = 0;
-        positions.values().into_iter().for_each(|&(first, last)| {
+        positions.values().for_each(|&(first, last)| {
             if first != -1 && last != -1 {
                 let mut middle = vec![false; 30];
                 for &c in &s[(first + 1) as usize..last as usize] {
