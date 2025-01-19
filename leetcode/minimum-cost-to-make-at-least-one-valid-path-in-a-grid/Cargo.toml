@@ -1,0 +1,6 @@
+[package]
+name = "minimum-cost-to-make-at-least-one-valid-path-in-a-grid"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
