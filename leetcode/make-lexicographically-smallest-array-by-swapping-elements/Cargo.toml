@@ -1,0 +1,6 @@
+[package]
+name = "make-lexicographically-smallest-array-by-swapping-elements"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
