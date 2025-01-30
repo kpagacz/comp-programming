@@ -1,0 +1,6 @@
+[package]
+name = "divide-nodes-into-the-maximum-number-of-groups"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
