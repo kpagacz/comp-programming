@@ -1,0 +1,6 @@
+[package]
+name = "remove-all-occurrences-of-a-substring"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
