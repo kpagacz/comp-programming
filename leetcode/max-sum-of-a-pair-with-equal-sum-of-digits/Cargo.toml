@@ -1,0 +1,6 @@
+[package]
+name = "max-sum-of-a-pair-with-equal-sum-of-digits"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
