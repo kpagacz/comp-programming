@@ -1,0 +1,6 @@
+[package]
+name = "number-of-sub-arrays-with-odd-sum"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
