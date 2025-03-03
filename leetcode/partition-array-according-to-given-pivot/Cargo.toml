@@ -1,0 +1,6 @@
+[package]
+name = "partition-array-according-to-given-pivot"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
