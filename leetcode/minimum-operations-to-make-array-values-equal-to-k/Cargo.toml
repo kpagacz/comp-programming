@@ -1,0 +1,6 @@
+[package]
+name = "minimum-operations-to-make-array-values-equal-to-k"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
