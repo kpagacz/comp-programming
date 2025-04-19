@@ -9,14 +9,10 @@ impl Solution {
         for i in 0..nums.len() {
             let num = nums[i];
             let nums = &nums[i + 1..];
-            let lower_than = lower - num;
             let pairs_with_sum_lower_than_lower =
-                nums.partition_point(|&sorted| sorted < lower_than);
-
-            let greater_than = upper - num;
+                nums.partition_point(|&sorted| lower > sorted + num);
             let pairs_with_sum_lower_equal_upper =
-                nums.partition_point(|&sorted| sorted <= greater_than);
-
+                nums.partition_point(|&sorted| num + sorted <= upper);
             answer +=
                 pairs_with_sum_lower_equal_upper as i64 - pairs_with_sum_lower_than_lower as i64
         }
