@@ -1,0 +1,6 @@
+[package]
+name = "domino-and-tromino-tiling"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
