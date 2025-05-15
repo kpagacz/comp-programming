@@ -1,11 +1,8 @@
 // https://leetcode.com/problems/longest-unequal-adjacent-groups-subsequence-i/
 pub struct Solution {}
+
 impl Solution {
-    pub fn get_words_in_longest_subsequence(
-        n: i32,
-        words: Vec<String>,
-        groups: Vec<i32>,
-    ) -> Vec<String> {
+    pub fn get_longest_subsequence(n: i32, words: Vec<String>, groups: Vec<i32>) -> Vec<String> {
         let mut longest_ending_zero = vec![];
         let mut longest_ending_one = vec![];
 
