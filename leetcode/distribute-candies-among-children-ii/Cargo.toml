@@ -1,0 +1,6 @@
+[package]
+name = "distribute-candies-among-children-ii"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
