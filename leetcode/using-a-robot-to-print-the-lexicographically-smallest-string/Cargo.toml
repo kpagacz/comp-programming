@@ -1,0 +1,6 @@
+[package]
+name = "using-a-robot-to-print-the-lexicographically-smallest-string"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
