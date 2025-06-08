@@ -11,7 +11,7 @@ impl Solution {
                 rec(current * 10, answer, max);
             }
 
-            if current % 10 != 9 && current + 1 <= n {
+            if current % 10 != 9 && current < max {
                 rec(current + 1, answer, max);
             }
         }
