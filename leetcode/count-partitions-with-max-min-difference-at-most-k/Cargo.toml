@@ -1,0 +1,6 @@
+[package]
+name = "count-partitions-with-max-min-difference-at-most-k"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
