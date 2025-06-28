@@ -1,0 +1,6 @@
+[package]
+name = "find-subsequence-of-length-k-with-the-largest-sum"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
