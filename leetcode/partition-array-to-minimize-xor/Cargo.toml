@@ -1,0 +1,6 @@
+[package]
+name = "partition-array-to-minimize-xor"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
