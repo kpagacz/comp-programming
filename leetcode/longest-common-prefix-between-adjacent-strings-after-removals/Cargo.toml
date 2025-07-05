@@ -1,0 +1,6 @@
+[package]
+name = "longest-common-prefix-between-adjacent-strings-after-removals"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
