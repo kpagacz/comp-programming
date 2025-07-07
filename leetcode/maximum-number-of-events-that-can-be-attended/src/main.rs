@@ -23,6 +23,8 @@ impl Solution {
             return answer;
         }
 
+        // The invariant is that ends contains currently active events
+        // where currently active means start <= current day
         while let Some(std::cmp::Reverse(end)) = ends.pop() {
             if current_day <= end {
                 answer += 1;
@@ -38,6 +40,7 @@ impl Solution {
                 }
             }
 
+            // This is nice
             if ends.is_empty() {
                 if let Some([start, end]) = events.next() {
                     ends.push(std::cmp::Reverse(end));
