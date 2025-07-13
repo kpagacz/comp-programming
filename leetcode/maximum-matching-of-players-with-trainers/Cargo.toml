@@ -1,0 +1,6 @@
+[package]
+name = "maximum-matching-of-players-with-trainers"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
