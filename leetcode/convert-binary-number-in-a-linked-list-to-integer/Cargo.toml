@@ -1,0 +1,6 @@
+[package]
+name = "convert-binary-number-in-a-linked-list-to-integer"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
