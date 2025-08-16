@@ -45,7 +45,6 @@ impl Solution {
     fn neighbours(board: &[Vec<char>], x: usize, y: usize) -> Vec<(usize, usize)> {
         let (rows, cols) = (board.len(), board[0].len());
         let mut neighbours = vec![];
-
         if x > 0 {
             neighbours.push((x - 1, y));
         }
