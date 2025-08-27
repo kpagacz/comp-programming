@@ -1,0 +1,6 @@
+[package]
+name = "length-of-longest-v-shaped-diagonal-segment"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
