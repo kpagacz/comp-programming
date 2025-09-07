@@ -1,0 +1,6 @@
+[package]
+name = "find-n-unique-integers-sum-up-to-zero"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
