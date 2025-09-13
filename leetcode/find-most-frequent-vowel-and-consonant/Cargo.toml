@@ -1,0 +1,6 @@
+[package]
+name = "find-most-frequent-vowel-and-consonant"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
