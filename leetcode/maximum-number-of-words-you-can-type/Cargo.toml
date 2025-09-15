@@ -1,0 +1,6 @@
+[package]
+name = "maximum-number-of-words-you-can-type"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
