@@ -1,65 +1,67 @@
 // https://leetcode.com/problems/design-a-food-rating-system/description/
-use std::{cmp::Reverse, collections::BTreeMap};
-struct FoodRatings {
-    string_to_cuisine: BTreeMap<String, String>,
-    foods: BTreeMap<String, Vec<(i32, Reverse<String>)>>,
+use std::collections::{BTreeSet, HashMap};
+
+#[derive(Clone, PartialEq, Eq)]
+struct FoodItem {
+    name: String,
+    cuisine: String,
+    rating: i32,
+}
+impl PartialOrd for FoodItem {
+    fn partial_cmp(&self, other: &Self) -> Option<std::cmp::Ordering> {
+        Some(self.cmp(other))
+    }
+}
+impl Ord for FoodItem {
+    fn cmp(&self, other: &Self) -> std::cmp::Ordering {
+        self.rating
+            .cmp(&other.rating)
+            .then(other.name.cmp(&self.name))
+    }
 }
 
-/**
- * `&self` means the method takes an immutable reference.
- * If you need a mutable reference, change it to `&mut self` instead.
- */
+#[allow(dead_code)]
+struct FoodRatings {
+    highest_ratings: HashMap<String, BTreeSet<FoodItem>>,
+    food: HashMap<String, FoodItem>,
+}
+
+#[allow(dead_code)]
 impl FoodRatings {
     fn new(foods: Vec<String>, cuisines: Vec<String>, ratings: Vec<i32>) -> Self {
-        let food_to_cuisine =
-            foods
-                .iter()
-                .zip(&cuisines)
-                .fold(BTreeMap::new(), |mut map, (food, cuisine)| {
-                    map.insert(food.clone(), cuisine.clone());
-                    map
-                });
-        let mut food_map = BTreeMap::new();
-        for i in 0..foods.len() {
-            let (food, cuisine, rating) = (foods[i].clone(), cuisines[i].clone(), ratings[i]);
-            food_map
-                .entry(cuisine)
-                .or_insert(vec![])
-                .push((rating, Reverse(food)));
+        let mut highest_ratings: HashMap<_, BTreeSet<FoodItem>> = HashMap::new();
+        let mut food = HashMap::new();
+        for ((f, c), r) in foods.into_iter().zip(cuisines).zip(ratings) {
+            let fi = FoodItem {
+                name: f.clone(),
+                cuisine: c.clone(),
+                rating: r,
+            };
+            highest_ratings.entry(c).or_default().insert(fi.clone());
+            food.insert(f, fi);
         }
-        food_map
-            .values_mut()
-            .for_each(|cuisine| cuisine.sort_unstable());
         Self {
-            string_to_cuisine: food_to_cuisine,
-            foods: food_map,
+            highest_ratings,
+            food,
         }
     }
-
     fn change_rating(&mut self, food: String, new_rating: i32) {
-        let cuisine = self.string_to_cuisine.get(&food).unwrap().clone();
-        self.foods.entry(cuisine).and_modify(|cuisine| {
-            let mut item = cuisine
-                .iter_mut()
-                .find(|(_, item)| &item.0 == &food)
-                .unwrap();
-            *item = (new_rating, Reverse(food));
-            cuisine.sort_unstable();
-        });
+        let fi = self.food.get_mut(&food).unwrap();
+        let hr = self.highest_ratings.get_mut(&fi.cuisine).unwrap();
+        hr.remove(fi);
+        fi.rating = new_rating;
+        hr.insert(fi.clone());
     }
-
     fn highest_rated(&self, cuisine: String) -> String {
-        self.foods
+        self.highest_ratings
             .get(&cuisine)
             .unwrap()
             .last()
             .unwrap()
-            .1
-             .0
+            .name
             .clone()
     }
 }
-
 fn main() {
     println!("Hello, world!");
 }
