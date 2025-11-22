@@ -1,0 +1,6 @@
+[package]
+name = "find-minimum-operations-to-make-all-elements-divisible-by-three"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
