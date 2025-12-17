@@ -7,7 +7,7 @@ impl Solution {
         let k = k as usize;
         let n = prices.len();
 
-        // dfs(i, j, transaction) - max profit at after ith day, j transactions completed,
+        // dfs(i, j, transaction) - max profit at after ith day, j transactions started,
         // transaction type
         #[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash)]
         enum Transaction {
