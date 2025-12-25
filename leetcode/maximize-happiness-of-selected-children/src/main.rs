@@ -1,6 +1,7 @@
 // https://leetcode.com/problems/maximize-happiness-of-selected-children/description/
-pub struct Solution;
+struct Solution;
 
+#[allow(dead_code)]
 impl Solution {
     pub fn maximum_happiness_sum(mut happiness: Vec<i32>, mut k: i32) -> i64 {
         happiness.sort_unstable_by(|a, b| b.cmp(a));
