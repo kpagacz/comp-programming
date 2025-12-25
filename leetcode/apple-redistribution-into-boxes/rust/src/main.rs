@@ -1,6 +1,7 @@
 // https://leetcode.com/problems/apple-redistribution-into-boxes/description/
-pub struct Solution;
+struct Solution;
 
+#[allow(dead_code)]
 impl Solution {
     pub fn minimum_boxes(apple: Vec<i32>, mut capacity: Vec<i32>) -> i32 {
         capacity.sort_unstable_by(|a, b| b.cmp(a));
