@@ -1,5 +1,5 @@
 // https://leetcode.com/problems/magic-squares-in-grid/description/
-pub struct Solution;
+struct Solution;
 
 fn magic(g: &[Vec<i32>], i0: usize, j0: usize) -> bool {
     let mut s = [false; 9];
@@ -29,6 +29,7 @@ fn magic(g: &[Vec<i32>], i0: usize, j0: usize) -> bool {
     true
 }
 
+#[allow(dead_code)]
 impl Solution {
     pub fn num_magic_squares_inside(grid: Vec<Vec<i32>>) -> i32 {
         let mut total = 0;
