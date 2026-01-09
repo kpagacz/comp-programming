@@ -1,0 +1,6 @@
+[package]
+name = "smallest-subtree-with-all-the-deepest-nodes"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
