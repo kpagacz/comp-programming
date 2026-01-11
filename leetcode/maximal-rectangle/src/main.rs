@@ -3,6 +3,10 @@ struct Solution;
 
 #[allow(dead_code)]
 impl Solution {
+    // This is the kind of problem that verbose asks
+    // to find the largest square.
+    // I need to remember that when someone basically asks me to find
+    // the largets square then I should immediately think monotonic stack.
     pub fn maximal_rectangle(matrix: Vec<Vec<char>>) -> i32 {
         let mut col_prefixes = vec![vec![0; matrix[0].len() + 1]; matrix.len()];
 
