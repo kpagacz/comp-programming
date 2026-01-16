@@ -1,0 +1,6 @@
+[package]
+name = "maximum-square-area-by-removing-fences-from-a-field"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
