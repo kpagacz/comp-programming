@@ -1,0 +1,6 @@
+[package]
+name = "minimum-pair-removal-to-sort-array-i"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
