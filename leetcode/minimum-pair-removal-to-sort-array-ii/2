@@ -1,0 +1,38 @@
+// https://leetcode.com/problems/minimum-pair-removal-to-sort-array-ii/description/?envType=daily-question&envId=2026-01-23
+struct Solution;
+#[allow(dead_code)]
+impl Solution {
+    pub fn minimum_pair_removal(nums: Vec<i32>) -> i32 {
+        let mut nums: Vec<_> = nums.into_iter().map(|n| n as i64).collect();
+
+        let mut mapping = Vec::with_capacity(nums.len());
+        mapping[0] = (None, Some(1));
+        for i in 1..nums.len() - 1 {
+            mapping[i] = (Some(i - 1), Some(i + 1));
+        }
+        mapping[mapping.len() - 1] = (Some(mapping.len() - 2), None);
+
+        let mut ops = 0;
+
+        ops
+    }
+}
+
+fn main() {
+    let test_cases = [
+        (vec![5, 2, 3, 1], 2),
+        (vec![1, 2, 2], 0),
+        (vec![1, 0, -100, 20, 10, -5, -10, 7], 5),
+        (
+            vec![
+                5, 2, 3, 1, 7, 0, 1, 10, 9, 8, 7, 0, 1, 2, 3, 4, 100, 1, 2, 3, 4, 5, 6, 7,
+            ],
+            22,
+        ),
+    ];
+
+    for (nums, exp) in test_cases {
+        println!("=====");
+        println!("{} exp:{exp}", Solution::minimum_pair_removal(nums));
+    }
+}
