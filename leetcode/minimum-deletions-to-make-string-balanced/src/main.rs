@@ -4,38 +4,20 @@ pub struct Solution;
 impl Solution {
     pub fn minimum_deletions(s: String) -> i32 {
         let s = s.as_bytes();
-        let prefix_bs = s
-            .iter()
-            .fold((vec![], 0), |(mut acc, bs), c| {
-                acc.push(bs);
-                if *c == b'b' {
-                    (acc, bs + 1)
-                } else {
-                    (acc, bs)
-                }
-            })
-            .0;
-        let suffix_as = s
-            .iter()
-            .enumerate()
-            .rev()
-            .fold((vec![0; s.len()], 0), |(mut acc, aas), (pos, c)| {
-                acc[pos] = aas;
-                if *c == b'a' {
-                    (acc, aas + 1)
-                } else {
-                    (acc, aas)
-                }
-            })
-            .0;
+        let mut suffix_as = s.iter().filter(|c| **c == b'a').count() as i32;
+        let mut prefix_bs = 0;
 
-        let mut answer = i32::MAX;
+        let mut min_ops = suffix_as;
+        for &c in s {
+            if c == b'a' {
+                suffix_as -= 1;
+            } else {
+                prefix_bs += 1;
+            }
 
-        for i in 0..s.len() {
-            answer = i32::min(answer, prefix_bs[i] + suffix_as[i]);
+            min_ops = min_ops.min(suffix_as + prefix_bs);
         }
-
-        answer
+        min_ops
     }
 }
 
