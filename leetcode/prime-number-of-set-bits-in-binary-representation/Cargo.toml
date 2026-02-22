@@ -1,0 +1,6 @@
+[package]
+name = "prime-number-of-set-bits-in-binary-representation"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
