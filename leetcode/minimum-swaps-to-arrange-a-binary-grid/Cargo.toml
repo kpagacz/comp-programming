@@ -1,0 +1,6 @@
+[package]
+name = "minimum-swaps-to-arrange-a-binary-grid"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
