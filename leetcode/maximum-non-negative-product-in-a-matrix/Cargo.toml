@@ -1,0 +1,6 @@
+[package]
+name = "maximum-non-negative-product-in-a-matrix"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
