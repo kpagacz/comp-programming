@@ -3,6 +3,8 @@ struct Solution;
 #[allow(dead_code)]
 impl Solution {
     pub fn count_majority_subarrays(nums: Vec<i32>, target: i32) -> i32 {
+        // You can count inversions on this using customized merge sort
+        // apparently and do it in O(nlogn). Crazy
         let mut prefixes = vec![0; nums.len() + 1];
         for i in 0..nums.len() {
             prefixes[i + 1] = prefixes[i];
