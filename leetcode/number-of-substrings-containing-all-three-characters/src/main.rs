@@ -1,6 +1,7 @@
 // https://leetcode.com/problems/number-of-substrings-containing-all-three-characters/description/?envType=daily-question&envId=2025-03-11
-pub struct Solution;
+struct Solution;
 
+#[allow(dead_code)]
 impl Solution {
     pub fn number_of_substrings(s: String) -> i32 {
         let mut answer = 0;
